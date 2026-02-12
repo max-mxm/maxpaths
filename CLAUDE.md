@@ -197,12 +197,16 @@ Provider dans `app/layout.tsx` via `ThemeProvider`
 - ✅ Tester en mode light et dark
 - ✅ Vérifier l'accessibilité (ratio 4.5:1 minimum)
 - ✅ Utiliser les gradients définis pour les catégories
+- ✅ Privilégier les icônes SVG ou icons library (Lucide React)
+- ✅ Utiliser un langage professionnel et précis
 
 ### Jamais
 - ❌ Hard-coder les couleurs
 - ❌ Créer de nouvelles couleurs sans justification
 - ❌ Ignorer le responsive
 - ❌ Oublier les tests sur mobile
+- ❌ **UTILISER DES ÉMOJIS CLASSIQUES (🎯, 📚, ✅, ❌, etc.)** - Cela donne un aspect non professionnel et générique
+- ❌ Mélanger émojis et texte dans l'interface utilisateur
 
 ---
 

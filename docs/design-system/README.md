@@ -6,6 +6,26 @@ Documentation complète du système de design : couleurs, typographie, thème, e
 
 ## 🎨 Fichiers
 
+### [icons.md](./icons.md) ⭐ **OBLIGATOIRE**
+**Guide d'utilisation des icônes Lucide React.**
+
+**RÈGLE ABSOLUE** : Aucun émoji classique (🚀, 📚, ✅, etc.) ne doit être utilisé.
+
+**Contenu** :
+- Bibliothèque Lucide React
+- Correspondance émojis → icônes
+- Patterns d'utilisation
+- Tailles et couleurs recommandées
+- Accessibilité
+
+**Quand consulter** :
+- **TOUJOURS avant d'ajouter une icône**
+- Migration d'émojis existants
+- Création de nouveaux composants
+- Questions sur les icônes
+
+---
+
 ### [colors.md](./colors.md)
 Palette complète de couleurs pour les modes light et dark.
 

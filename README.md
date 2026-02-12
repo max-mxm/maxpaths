@@ -1,36 +1,175 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Kourso - Plateforme d'apprentissage Next.js
 
-## Getting Started
+Une plateforme open source de cours interactifs pour apprendre Next.js, React et les technologies web modernes.
 
-First, run the development server:
+![Next.js 16](https://img.shields.io/badge/Next.js-16.1.6-black?style=flat-square&logo=next.js)
+![React 19](https://img.shields.io/badge/React-19.2.3-61dafb?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?style=flat-square&logo=typescript)
+![Tailwind CSS 4](https://img.shields.io/badge/Tailwind-4.x-38bdf8?style=flat-square&logo=tailwindcss)
+
+## ✨ Fonctionnalités
+
+- 📚 **Cours interactifs** : Sections détaillées avec exemples de code et démos en temps réel
+- ⚡ **Démos live** : Testez les concepts directement dans le navigateur (SSR, SSG, ISR, Client Components)
+- 🎨 **Design moderne** : Interface élégante avec thème sombre/clair automatique
+- 📊 **Suivi de progression** : Barre de progression et navigation contextuelle avec scroll spy
+- 🔥 **Performance optimale** : Next.js 16 avec Turbopack et App Router
+- 🎯 **Responsive** : Design adapté mobile/tablet/desktop
+
+## 🎓 Cours disponible
+
+### Guide Next.js 15
+Un cours complet sur les modes de rendu modernes avec 6 sections :
+
+1. **Introduction** : Découverte de Next.js et de ses avantages
+2. **SSR** : Server-Side Rendering avec démo en temps réel
+3. **SSG** : Static Site Generation pour la performance maximale
+4. **ISR** : Incremental Static Regeneration pour le meilleur des deux mondes
+5. **Client Components** : Gestion de l'interactivité côté client
+6. **Patterns avancés** : Comparaison et stratégies hybrides
+
+## 🚀 Démarrage rapide
+
+### Prérequis
+
+- Node.js 18+ installé
+- npm ou pnpm
+
+### Installation
 
 ```bash
+# Cloner le repository
+git clone <votre-repo>
+cd kourso
+
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Stack technique
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Frontend
+- **Framework** : Next.js 16.1.6 (App Router)
+- **UI Library** : React 19.2.3
+- **Language** : TypeScript 5.x
+- **Styling** : Tailwind CSS v4
+- **Components** : Shadcn UI (prêt à l'emploi)
 
-## Learn More
+### Design System
+- **Palette** : Teal (#009688) + Violet (#7c3aed)
+- **Thème** : Mode sombre/clair avec `next-themes`
+- **Typographie** : Geist Sans + Geist Mono
+- **Animations** : Transitions fluides avec keyframes CSS
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Structure du projet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+kourso/
+├── app/
+│   ├── cours/
+│   │   ├── nextjs-demo/
+│   │   │   ├── _components/       # Composants spécifiques au cours
+│   │   │   └── page.tsx           # Page du cours Next.js
+│   │   └── page.tsx               # Liste des cours
+│   ├── about/
+│   │   └── page.tsx               # Page À propos
+│   ├── layout.tsx                 # Layout racine
+│   ├── page.tsx                   # Page d'accueil
+│   ├── globals.css                # Styles globaux
+│   └── styles/                    # Styles thématiques
+├── components/
+│   ├── course/
+│   │   ├── course-layout.tsx      # Layout avec scroll spy
+│   │   ├── code-block.tsx         # Block de code stylisé
+│   │   ├── concept-card.tsx       # Carte de concept
+│   │   ├── comparison-table.tsx   # Tableau comparatif
+│   │   └── interactive-demo.tsx   # Démo interactive
+│   ├── theme-provider.tsx         # Provider de thème
+│   └── theme-toggle.tsx           # Toggle dark/light
+├── lib/
+│   └── utils.ts                   # Fonctions utilitaires
+└── docs/                          # Documentation complète
+    ├── architecture/
+    ├── design-system/
+    └── guides/
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Design System
 
-## Deploy on Vercel
+### Couleurs principales
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Light Mode :**
+- Primary : `rgb(0, 150, 136)` - Teal
+- Secondary : `rgb(124, 58, 237)` - Violet
+- Background : `rgb(255, 255, 255)`
+- Foreground : `rgb(10, 10, 10)`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Dark Mode :**
+- Primary : `rgb(0, 150, 136)` - Teal (identique)
+- Secondary : `rgb(139, 92, 246)` - Violet plus clair
+- Background : `rgb(10, 10, 10)`
+- Foreground : `rgb(250, 250, 250)`
+
+### Gradients des catégories
+
+- **Fondamentaux** : Teal → Violet
+- **Rendering** : Bleu → Cyan
+- **Optimization** : Orange → Ambre
+- **Best Practices** : Violet → Rose
+- **Advanced** : Rouge → Rose
+
+## 📝 Scripts disponibles
+
+```bash
+npm run dev      # Lancer le serveur de développement
+npm run build    # Build de production
+npm run start    # Lancer le build de production
+npm run lint     # Linter ESLint
+```
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! Pour contribuer :
+
+1. Forkez le projet
+2. Créez une branche feature (`git checkout -b feature/amazing-course`)
+3. Committez vos changements (`git commit -m 'Add amazing course'`)
+4. Pushez vers la branche (`git push origin feature/amazing-course`)
+5. Ouvrez une Pull Request
+
+### Ajouter un nouveau cours
+
+1. Créez un dossier dans `app/cours/[votre-cours]/`
+2. Créez un fichier `page.tsx` avec votre contenu
+3. Utilisez les composants existants (`CodeBlock`, `ConceptCard`, `ComparisonTable`, `InteractiveDemo`)
+4. Enveloppez vos sections dans `<CourseLayout>`
+5. Mettez à jour `app/cours/page.tsx` pour lister votre cours
+
+## 📚 Documentation
+
+Documentation complète disponible dans `/docs` :
+
+- [Architecture des cours](docs/architecture/cours-structure.md)
+- [Guide des couleurs](docs/design-system/colors.md)
+- [Typographie](docs/design-system/typography.md)
+- [Workflow Impeccable](docs/guides/impeccable-workflow.md)
+
+## 📄 Licence
+
+MIT License - Voir le fichier LICENSE pour plus de détails.
+
+## 🙏 Remerciements
+
+- [Next.js](https://nextjs.org/) pour le framework
+- [Tailwind CSS](https://tailwindcss.com/) pour le styling
+- [Shadcn UI](https://ui.shadcn.com/) pour les composants
+- [Vercel](https://vercel.com/) pour l'hébergement
+
+---
+
+Fait avec ❤️ pour la communauté des développeurs

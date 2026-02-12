@@ -2,11 +2,30 @@
 
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import {
+  Rocket,
+  Zap,
+  FileText,
+  RefreshCw,
+  Monitor,
+  Target,
+  type LucideIcon
+} from 'lucide-react';
+
+// Mapping des noms d'icônes vers les composants
+const iconMap: Record<string, LucideIcon> = {
+  Rocket,
+  Zap,
+  FileText,
+  RefreshCw,
+  Monitor,
+  Target,
+};
 
 interface Section {
   id: string;
   title: string;
-  emoji?: string;
+  iconName?: string;
   category:
     | 'fundamentals'
     | 'rendering'
@@ -49,6 +68,12 @@ const categories = [
 export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
   const [activeSection, setActiveSection] = useState('');
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  // Mount animation
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Scroll spy + progress tracker
   useEffect(() => {
@@ -84,10 +109,10 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
 
   return (
     <div className="relative min-h-screen scroll-smooth bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-      {/* Progress bar global */}
-      <div className="fixed top-0 right-0 left-0 z-50 h-1 bg-slate-200 dark:bg-slate-800">
+      {/* Progress bar global - Améliorée avec gradient et glow */}
+      <div className="fixed top-0 right-0 left-0 z-50 h-0.5 bg-slate-200 dark:bg-slate-800">
         <div
-          className="from-primary to-brand-secondary h-full bg-gradient-to-r transition-all duration-300"
+          className="from-primary to-brand-secondary h-full bg-gradient-to-r transition-all duration-300 shadow-[0_0_10px_rgba(0,150,136,0.5)] dark:shadow-[0_0_15px_rgba(0,150,136,0.6)]"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -96,14 +121,11 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
       <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-900/80">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="from-primary to-brand-secondary bg-gradient-to-r bg-clip-text text-2xl font-black tracking-tight text-transparent">
-                {title}
+            <a href="/" className="hover:opacity-80 transition-opacity">
+              <h1 className="from-primary to-brand-secondary bg-gradient-to-r bg-clip-text text-xl font-black tracking-tight text-transparent">
+                Kourso
               </h1>
-              {subtitle && (
-                <p className="text-muted-foreground text-sm">{subtitle}</p>
-              )}
-            </div>
+            </a>
             <div className="flex items-center gap-3">
               <div className="text-muted-foreground hidden text-sm md:block">
                 {Math.round(scrollProgress)}% complété
@@ -140,18 +162,21 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
                         <a
                           href={`#${section.id}`}
                           className={cn(
-                            'group flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-all',
+                            'group flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-all duration-200',
                             activeSection === section.id
-                              ? 'bg-primary/10 text-primary dark:bg-primary/20 font-semibold'
-                              : 'text-muted-foreground hover:bg-slate-100 dark:hover:bg-slate-800',
+                              ? 'bg-primary/10 text-primary dark:bg-primary/20 font-semibold border-l-2 border-primary'
+                              : 'text-muted-foreground hover:bg-slate-100 dark:hover:bg-slate-800 hover:translate-x-1 border-l-2 border-transparent',
                           )}
                         >
-                          <span className="flex-1 truncate">
-                            {section.emoji && <span className="mr-2">{section.emoji}</span>}
+                          <span className="flex items-center gap-2 flex-1 truncate">
+                            {section.iconName && (() => {
+                              const IconComponent = iconMap[section.iconName];
+                              return IconComponent ? <IconComponent className="w-4 h-4 flex-shrink-0" /> : null;
+                            })()}
                             {section.title}
                           </span>
                           {activeSection === section.id && (
-                            <div className="bg-primary h-2 w-2 rounded-full" />
+                            <div className="bg-primary h-2 w-2 rounded-full animate-pulse" />
                           )}
                         </a>
                       </li>
@@ -170,7 +195,13 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
               <section
                 key={section.id}
                 id={section.id}
-                className="scroll-mt-32"
+                className={cn(
+                  'scroll-mt-32 transition-all duration-700',
+                  mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                )}
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                }}
               >
                 {/* Section header */}
                 <div className="mb-8">
