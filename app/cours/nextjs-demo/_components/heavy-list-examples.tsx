@@ -3,7 +3,6 @@
 import { useState, useMemo, useCallback, memo } from 'react';
 import { Search, Star } from 'lucide-react';
 
-// Génération de données de test
 interface Product {
   id: number;
   name: string;
@@ -25,9 +24,27 @@ const generateProducts = (count: number): Product[] => {
 
 const products = generateProducts(1000);
 
-// Composant Item SANS optimisation
+interface SlowModeWrapperProps {
+  index: number;
+  slowMode: boolean;
+  staggerDelay: number;
+  children: React.ReactNode;
+}
+
+function SlowModeWrapper({ index, slowMode, staggerDelay, children }: SlowModeWrapperProps) {
+  if (!slowMode) return <>{children}</>;
+
+  return (
+    <div
+      className="animate-[fadeInItem_0.3s_ease-out_both]"
+      style={{ animationDelay: `${index * staggerDelay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
+
 function ProductItem({ product }: { product: Product }) {
-  // Simule un calcul coûteux
   const expensiveCalculation = () => {
     let result = 0;
     for (let i = 0; i < 100000; i++) {
@@ -61,7 +78,6 @@ function ProductItem({ product }: { product: Product }) {
   );
 }
 
-// Composant Item AVEC React.memo
 const ProductItemMemo = memo(
   ({ product }: { product: Product }) => {
     const expensiveCalculation = () => {
@@ -103,16 +119,20 @@ const ProductItemMemo = memo(
 
 ProductItemMemo.displayName = 'ProductItemMemo';
 
-// SCÉNARIO 1 : Sans optimisation
-export function HeavyListBaseline({ itemCount = 50 }: { itemCount?: number }) {
+interface HeavyListProps {
+  itemCount?: number;
+  slowMode?: boolean;
+  runId?: number;
+}
+
+// SCENARIO 1 : Sans optimisation - stagger 80ms
+export function HeavyListBaseline({ itemCount = 50, slowMode = false, runId = 0 }: HeavyListProps) {
   const [search, setSearch] = useState('');
 
-  // Filtrage SANS useMemo
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Handler SANS useCallback
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
@@ -129,9 +149,11 @@ export function HeavyListBaseline({ itemCount = 50 }: { itemCount?: number }) {
           className="w-full pl-8 pr-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
-      <div className="h-64 overflow-y-auto border border-border rounded-lg">
-        {filteredProducts.slice(0, itemCount).map((product) => (
-          <ProductItem key={product.id} product={product} />
+      <div className="h-48 overflow-y-auto border border-border rounded-lg" key={runId}>
+        {filteredProducts.slice(0, itemCount).map((product, index) => (
+          <SlowModeWrapper key={product.id} index={index} slowMode={slowMode} staggerDelay={80}>
+            <ProductItem product={product} />
+          </SlowModeWrapper>
         ))}
       </div>
       <p className="text-xs text-foreground/60 text-center">
@@ -141,16 +163,14 @@ export function HeavyListBaseline({ itemCount = 50 }: { itemCount?: number }) {
   );
 }
 
-// SCÉNARIO 2 : Avec React.memo uniquement
-export function HeavyListWithMemo({ itemCount = 50 }: { itemCount?: number }) {
+// SCENARIO 2 : Avec React.memo - stagger 40ms
+export function HeavyListWithMemo({ itemCount = 50, slowMode = false, runId = 0 }: HeavyListProps) {
   const [search, setSearch] = useState('');
 
-  // Filtrage SANS useMemo
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Handler SANS useCallback
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
@@ -167,9 +187,11 @@ export function HeavyListWithMemo({ itemCount = 50 }: { itemCount?: number }) {
           className="w-full pl-8 pr-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
-      <div className="h-64 overflow-y-auto border border-border rounded-lg">
-        {filteredProducts.slice(0, itemCount).map((product) => (
-          <ProductItemMemo key={product.id} product={product} />
+      <div className="h-48 overflow-y-auto border border-border rounded-lg" key={runId}>
+        {filteredProducts.slice(0, itemCount).map((product, index) => (
+          <SlowModeWrapper key={product.id} index={index} slowMode={slowMode} staggerDelay={40}>
+            <ProductItemMemo product={product} />
+          </SlowModeWrapper>
         ))}
       </div>
       <p className="text-xs text-foreground/60 text-center">
@@ -179,11 +201,10 @@ export function HeavyListWithMemo({ itemCount = 50 }: { itemCount?: number }) {
   );
 }
 
-// SCÉNARIO 3 : Avec useMemo uniquement
-export function HeavyListWithUseMemo({ itemCount = 50 }: { itemCount?: number }) {
+// SCENARIO 3 : Avec useMemo - stagger 30ms
+export function HeavyListWithUseMemo({ itemCount = 50, slowMode = false, runId = 0 }: HeavyListProps) {
   const [search, setSearch] = useState('');
 
-  // Filtrage AVEC useMemo
   const filteredProducts = useMemo(
     () =>
       products.filter((product) =>
@@ -192,7 +213,6 @@ export function HeavyListWithUseMemo({ itemCount = 50 }: { itemCount?: number })
     [search]
   );
 
-  // Handler SANS useCallback
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
@@ -209,9 +229,11 @@ export function HeavyListWithUseMemo({ itemCount = 50 }: { itemCount?: number })
           className="w-full pl-8 pr-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
-      <div className="h-64 overflow-y-auto border border-border rounded-lg">
-        {filteredProducts.slice(0, itemCount).map((product) => (
-          <ProductItem key={product.id} product={product} />
+      <div className="h-48 overflow-y-auto border border-border rounded-lg" key={runId}>
+        {filteredProducts.slice(0, itemCount).map((product, index) => (
+          <SlowModeWrapper key={product.id} index={index} slowMode={slowMode} staggerDelay={30}>
+            <ProductItem product={product} />
+          </SlowModeWrapper>
         ))}
       </div>
       <p className="text-xs text-foreground/60 text-center">
@@ -221,11 +243,10 @@ export function HeavyListWithUseMemo({ itemCount = 50 }: { itemCount?: number })
   );
 }
 
-// SCÉNARIO 4 : Tout optimisé
-export function HeavyListOptimized({ itemCount = 50 }: { itemCount?: number }) {
+// SCENARIO 4 : Tout optimise - stagger 5ms
+export function HeavyListOptimized({ itemCount = 50, slowMode = false, runId = 0 }: HeavyListProps) {
   const [search, setSearch] = useState('');
 
-  // Filtrage AVEC useMemo
   const filteredProducts = useMemo(
     () =>
       products.filter((product) =>
@@ -234,7 +255,6 @@ export function HeavyListOptimized({ itemCount = 50 }: { itemCount?: number }) {
     [search]
   );
 
-  // Handler AVEC useCallback
   const handleSearch = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value);
@@ -254,9 +274,11 @@ export function HeavyListOptimized({ itemCount = 50 }: { itemCount?: number }) {
           className="w-full pl-8 pr-3 py-2 text-sm bg-background border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
         />
       </div>
-      <div className="h-64 overflow-y-auto border border-border rounded-lg">
-        {filteredProducts.slice(0, itemCount).map((product) => (
-          <ProductItemMemo key={product.id} product={product} />
+      <div className="h-48 overflow-y-auto border border-border rounded-lg" key={runId}>
+        {filteredProducts.slice(0, itemCount).map((product, index) => (
+          <SlowModeWrapper key={product.id} index={index} slowMode={slowMode} staggerDelay={5}>
+            <ProductItemMemo product={product} />
+          </SlowModeWrapper>
         ))}
       </div>
       <p className="text-xs text-foreground/60 text-center">

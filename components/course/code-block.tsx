@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Check } from 'lucide-react';
+import { Highlight, themes } from 'prism-react-renderer';
+import { useTheme } from '@/components/theme-provider';
 
 type CategoryType =
   | 'fundamentals'
@@ -31,6 +33,27 @@ const categoryColors: Record<CategoryType, string> = {
   testing: 'rgb(249, 115, 22)', // Orange
 };
 
+const plainLanguages = ['text', 'plaintext', 'plain'];
+
+function useResolvedDark() {
+  const { theme } = useTheme();
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (theme === 'system') {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      setIsDark(mq.matches);
+      const listener = (e: MediaQueryListEvent) => setIsDark(e.matches);
+      mq.addEventListener('change', listener);
+      return () => mq.removeEventListener('change', listener);
+    } else {
+      setIsDark(theme === 'dark');
+    }
+  }, [theme]);
+
+  return isDark;
+}
+
 export function CodeBlock({
   code,
   language,
@@ -39,6 +62,7 @@ export function CodeBlock({
   category = 'fundamentals'
 }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
+  const isDark = useResolvedDark();
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(code);
@@ -46,8 +70,9 @@ export function CodeBlock({
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const lines = code.trim().split('\n');
   const borderColor = categoryColors[category];
+  const prismTheme = isDark ? themes.oneDark : themes.oneLight;
+  const isPlain = plainLanguages.includes(language);
 
   return (
     <div
@@ -89,29 +114,43 @@ export function CodeBlock({
 
       {/* Code Content */}
       <div className="overflow-x-auto">
-        <pre className="p-4 sm:p-6 text-sm leading-relaxed">
-          <code className="font-mono">
-            {lines.map((line, index) => {
-              const lineNumber = index + 1;
-              const isHighlighted = highlightLines.includes(lineNumber);
+        <Highlight
+          theme={prismTheme}
+          code={code.trim()}
+          language={isPlain ? 'plain' : language}
+        >
+          {({ tokens, getLineProps, getTokenProps }) => (
+            <pre className="p-4 sm:p-6 text-sm leading-relaxed" style={{ background: 'transparent' }}>
+              <code className="font-mono">
+                {tokens.map((line, index) => {
+                  const lineNumber = index + 1;
+                  const isHighlighted = highlightLines.includes(lineNumber);
+                  const { style: _lineStyle, ...lineProps } = getLineProps({ line });
 
-              return (
-                <div
-                  key={index}
-                  className={cn(
-                    'flex gap-4 px-2 -mx-2 rounded transition-colors',
-                    isHighlighted && 'bg-primary/10'
-                  )}
-                >
-                  <span className="text-muted-foreground/40 select-none text-right w-8 flex-shrink-0">
-                    {lineNumber}
-                  </span>
-                  <span className="text-foreground/90 flex-1">{line || ' '}</span>
-                </div>
-              );
-            })}
-          </code>
-        </pre>
+                  return (
+                    <div
+                      key={index}
+                      {...lineProps}
+                      className={cn(
+                        'flex gap-4 px-2 -mx-2 rounded transition-colors',
+                        isHighlighted && 'bg-primary/10'
+                      )}
+                    >
+                      <span className="text-muted-foreground/40 select-none text-right w-8 flex-shrink-0">
+                        {lineNumber}
+                      </span>
+                      <span className="flex-1">
+                        {line.map((token, key) => (
+                          <span key={key} {...getTokenProps({ token })} />
+                        ))}
+                      </span>
+                    </div>
+                  );
+                })}
+              </code>
+            </pre>
+          )}
+        </Highlight>
       </div>
     </div>
   );

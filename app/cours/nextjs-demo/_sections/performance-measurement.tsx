@@ -374,22 +374,30 @@ function MyComponent() {
             {
               name: 'Sans optimisation',
               description: 'Aucun memo, useMemo ou useCallback',
-              component: <HeavyListBaseline itemCount={itemCount} />,
+              renderComponent: ({ slowMode, runId }) => (
+                <HeavyListBaseline itemCount={itemCount} slowMode={slowMode} runId={runId} />
+              ),
             },
             {
               name: 'Avec React.memo',
               description: 'Items memoizés uniquement',
-              component: <HeavyListWithMemo itemCount={itemCount} />,
+              renderComponent: ({ slowMode, runId }) => (
+                <HeavyListWithMemo itemCount={itemCount} slowMode={slowMode} runId={runId} />
+              ),
             },
             {
               name: 'Avec useMemo',
               description: 'Liste filtrée memoizée uniquement',
-              component: <HeavyListWithUseMemo itemCount={itemCount} />,
+              renderComponent: ({ slowMode, runId }) => (
+                <HeavyListWithUseMemo itemCount={itemCount} slowMode={slowMode} runId={runId} />
+              ),
             },
             {
               name: 'Tout optimisé',
               description: 'React.memo + useMemo + useCallback',
-              component: <HeavyListOptimized itemCount={itemCount} />,
+              renderComponent: ({ slowMode, runId }) => (
+                <HeavyListOptimized itemCount={itemCount} slowMode={slowMode} runId={runId} />
+              ),
             },
           ]}
           itemCount={itemCount}
