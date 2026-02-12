@@ -23,7 +23,7 @@ export default function TDDFrontendVsBackendContent() {
       <ConceptCard
         title="Les chiffres parlent d'eux-mêmes"
         description="La maintenance des tests frontend représente un défi majeur en termes de temps et de complexité"
-        category="testing"
+        category="optimization"
       >
         <ul className="space-y-2 text-sm text-foreground/80">
           <li>
@@ -45,7 +45,7 @@ export default function TDDFrontendVsBackendContent() {
       <ConceptCard
         title="La promesse du TDD"
         description="Le TDD promet un code plus fiable, mieux structuré et plus maintenable. Mais cette promesse s'applique-t-elle uniformément au frontend ?"
-        category="testing"
+        category="best-practices"
       >
         <ul className="space-y-2 text-sm text-foreground/80">
           <li>
@@ -106,7 +106,7 @@ test('Button should toggle modal on click', async () => {
 });`}
         language="typescript"
         filename="tests-comparison.test.ts"
-        category="testing"
+        category="best-practices"
       />
 
       <p>
@@ -209,7 +209,7 @@ test('Button should toggle modal on click', async () => {
 });`}
         language="typescript"
         filename="async-test.test.tsx"
-        category="testing"
+        category="best-practices"
       />
 
       <p>
@@ -234,7 +234,7 @@ test('Button should toggle modal on click', async () => {
 });`}
         language="typescript"
         filename="backend-test.test.ts"
-        category="testing"
+        category="best-practices"
       />
 
       <h3 id="interactions-utilisateur">
@@ -287,7 +287,7 @@ test('Dropdown opens on keyboard Enter', async () => {
 });`}
         language="typescript"
         filename="interactions-test.test.tsx"
-        category="testing"
+        category="best-practices"
       />
 
       <p>
@@ -308,7 +308,7 @@ test('Dropdown opens on keyboard Enter', async () => {
       <ConceptCard
         title="Le problème du CSS"
         description="Comment tester qu'un élément est vraiment visible à l'écran ?"
-        category="testing"
+        category="best-practices"
       >
         <p className="text-sm text-foreground/80">
           <code>toBeInTheDocument()</code> vérifie la présence dans le DOM,
@@ -399,7 +399,7 @@ beforeEach(() => {
 });`}
         language="typescript"
         filename="setup-tests.ts"
-        category="testing"
+        category="best-practices"
       />
 
       <p>
