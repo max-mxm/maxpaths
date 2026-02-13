@@ -10,6 +10,7 @@ interface Section {
   title: string;
   icon?: React.ReactNode;
   emoji?: string;
+  badge?: string;
   category:
     | 'fundamentals'
     | 'rendering'
@@ -143,6 +144,11 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
                       {section.icon}
                       {section.title}
                     </span>
+                    {section.badge && (
+                      <span className="shrink-0 rounded-md bg-orange-500/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-600 dark:text-orange-400">
+                        {section.badge}
+                      </span>
+                    )}
                     {activeSection === section.id && (
                       <div className="bg-primary h-2 w-2 rounded-full animate-pulse" />
                     )}
@@ -200,10 +206,17 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
                       Section {index + 1}/{sections.length}
                     </span>
                   </div>
-                  <h2 className="text-3xl font-black tracking-tight">
-                    {section.emoji && <span className="mr-3">{section.emoji}</span>}
-                    {section.title}
-                  </h2>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <h2 className="text-3xl font-black tracking-tight">
+                      {section.emoji && <span className="mr-3">{section.emoji}</span>}
+                      {section.title}
+                    </h2>
+                    {section.badge && (
+                      <span className="rounded-lg bg-orange-500/15 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-orange-600 dark:text-orange-400">
+                        {section.badge}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Section content */}

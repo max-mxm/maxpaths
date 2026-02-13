@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://kourso.com'),
 
   title: {
-    default: 'Koursorr - Bonnes pratiques React & Next.js',
+    default: 'Koursorr — Bonnes pratiques frontend par Maxime Morellon',
     template: '%s | Koursorr'
   },
 
-  description: 'Bonnes pratiques React et Next.js issues de projets réels. Retours d\'expérience, patterns éprouvés et solutions terrain par Maxime Morellon. Gratuit et open source pour la communauté.',
+  description: 'Guides React et Next.js, articles techniques et retours d\'experience par Maxime Morellon. Patterns eprouves et solutions issues de 8 ans de developpement frontend.',
 
   keywords: [
     'React',
@@ -97,7 +97,7 @@ export default function RootLayout({
         {/* Inline script to prevent theme flash (FOUC) */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('koursorr-ui-theme');if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.add('light')}}catch(e){}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('koursorr-ui-theme');if(t==='dark'){document.documentElement.classList.add('dark')}else{document.documentElement.classList.add('light')}}catch(e){document.documentElement.classList.add('light')}})()`,
           }}
         />
         {/* Organization Schema.org JSON-LD */}
@@ -153,7 +153,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider defaultTheme="system" storageKey="koursorr-ui-theme">
+        <ThemeProvider defaultTheme="light" storageKey="koursorr-ui-theme">
           <Header />
           {children}
           <Footer />

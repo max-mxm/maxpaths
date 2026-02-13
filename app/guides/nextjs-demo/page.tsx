@@ -122,6 +122,7 @@ export default function NextJSDemoCourse() {
     {
       id: 'performance-measurement',
       title: 'Mesure de Performance',
+      badge: 'Interactif',
       icon: <Timer className="w-4 h-4 flex-shrink-0" />,
       category: 'optimization' as const,
       component: <PerformanceMeasurementSection />

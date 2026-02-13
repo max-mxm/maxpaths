@@ -1,81 +1,92 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden py-20">
-      {/* Abstract Background Shape */}
-      <div className="absolute top-0 right-0 w-[40vw] h-[60vh] bg-gradient-to-br from-primary/20 to-brand-secondary/20 blur-3xl rounded-full" />
-
+    <section className="relative min-h-[80vh] flex items-center py-20">
       <div className="container relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Colonne 1-7: Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Mobile: Photo */}
+          <div className="lg:hidden flex justify-center">
+            <div className="relative w-48 h-48 rounded-full overflow-hidden shadow-2xl border border-border/30">
+              <Image
+                src="/moi.png"
+                alt="Maxime Morellon"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Left: Content */}
           <div className="lg:col-span-7 space-y-8">
             {/* Eyebrow */}
             <div className="inline-block">
-              <span className="text-xs font-bold tracking-wider uppercase text-primary">
-                Bonnes pratiques React & Next.js
+              <span className="text-xs font-semibold tracking-widest uppercase text-primary">
+                Frontend&ensp;/&ensp;React&ensp;/&ensp;Next.js
               </span>
             </div>
 
             {/* H1 */}
-            <h1 className="text-[clamp(3rem,8vw,6rem)] font-black leading-[1.05] tracking-tight">
-              Bonnes pratiques testées sur des{' '}
-              <span className="bg-gradient-to-r from-primary to-brand-secondary bg-clip-text text-transparent">
-                projets réels
-              </span>
+            <h1 className="text-[clamp(2.5rem,6vw,4.5rem)] font-black leading-[1.05] tracking-tight text-foreground">
+              Bonnes pratiques
+              <br />
+              <span className="text-primary">frontend</span>
             </h1>
 
-            {/* Subheadline */}
-            <p className="text-[clamp(1.125rem,2vw,1.5rem)] text-muted-foreground leading-relaxed max-w-2xl">
-              Patterns éprouvés, solutions terrain et cas d'usage issus de 8 ans d'expérience par{' '}
-              <a
-                href="https://www.maxime-morellon.dev/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-foreground font-semibold hover:text-primary transition-colors underline decoration-primary/30 underline-offset-4"
-              >
-                Maxime Morellon
-              </a>
-              . Partagés gratuitement avec la communauté des développeurs.
+            {/* Subtitle */}
+            <p className="text-[clamp(1.125rem,2vw,1.375rem)] text-muted-foreground leading-relaxed max-w-2xl">
+              Par Maxime Morellon — 8 ans d&apos;experience en production.
+              Patterns, retours terrain et guides techniques sur React et Next.js.
             </p>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/guides/nextjs-demo"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl hover:translate-y-[-2px]"
+                href="/guides"
+                className="group inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
               >
-                Explorer les ressources
-                <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                Lire les guides
+                <span className="transition-transform duration-200 group-hover:translate-x-0.5">&rarr;</span>
               </Link>
               <Link
-                href="/guides"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-border hover:border-primary/50 font-semibold rounded-xl hover:bg-primary/5 transition-all duration-200"
+                href="/blog"
+                className="inline-flex items-center gap-2 px-7 py-3.5 border border-border hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 transition-all duration-200"
               >
-                Voir tous les guides
+                Parcourir le blog
               </Link>
-            </div>
-
-            {/* Stats Bar */}
-            <div className="flex flex-wrap gap-8 pt-8 border-t border-border/50">
-              <div>
-                <div className="text-4xl font-black text-foreground">8 ans</div>
-                <div className="text-sm text-muted-foreground">d'expérience</div>
-              </div>
-              <div>
-                <div className="text-4xl font-black text-foreground">40+</div>
-                <div className="text-sm text-muted-foreground">cas d'usage documentés</div>
-              </div>
-              <div>
-                <div className="text-4xl font-black text-foreground">100%</div>
-                <div className="text-sm text-muted-foreground">Open Source</div>
-              </div>
             </div>
           </div>
 
-          {/* Colonne 8-12: Visual */}
+          {/* Right: Photo (desktop) */}
           <div className="lg:col-span-5 hidden lg:block">
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20" />
+            <div className="relative aspect-[4/5] max-w-sm ml-auto rounded-2xl overflow-hidden shadow-2xl border border-border/30">
+              <Image
+                src="/moi.png"
+                alt="Maxime Morellon"
+                fill
+                className="object-cover"
+                priority
+                sizes="(min-width: 1024px) 380px, 192px"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Stats bar */}
+        <div className="flex flex-wrap gap-8 sm:gap-12 pt-12 mt-12 border-t border-border/50">
+          <div>
+            <div className="text-3xl font-black text-foreground">8+ ans</div>
+            <div className="text-sm text-muted-foreground mt-1">d&apos;experience terrain</div>
+          </div>
+          <div>
+            <div className="text-3xl font-black text-foreground">4 guides</div>
+            <div className="text-sm text-muted-foreground mt-1">techniques complets</div>
+          </div>
+          <div>
+            <div className="text-3xl font-black text-foreground">60+</div>
+            <div className="text-sm text-muted-foreground mt-1">sections documentees</div>
           </div>
         </div>
       </div>

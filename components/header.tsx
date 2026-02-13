@@ -18,7 +18,7 @@ export function Header() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-black bg-gradient-to-r from-primary to-brand-secondary bg-clip-text text-transparent"
+          className="text-xl font-bold text-foreground tracking-tight"
         >
           Koursorr
         </Link>
