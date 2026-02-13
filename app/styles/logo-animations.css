@@ -1,0 +1,138 @@
+/*
+ * Logo Animations - maxpaths
+ * Animations pour les 3 variantes de logo
+ */
+
+/* ============================================
+   OPTION 1 - Shimmer Effect
+   ============================================ */
+
+@keyframes logo-shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.logo-shimmer {
+  background-size: 200% auto;
+  animation: logo-shimmer 3s linear infinite;
+}
+
+/* Path symbol pulse */
+@keyframes path-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* ============================================
+   OPTION 2 - Monogram Bars
+   ============================================ */
+
+@keyframes grow-bar {
+  from {
+    transform: scaleY(0.6);
+    opacity: 0.6;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgba(0, 150, 136, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(0, 150, 136, 0.8))
+      drop-shadow(0 0 20px rgba(124, 58, 237, 0.4));
+  }
+}
+
+/* Dark mode glow variant */
+@media (prefers-color-scheme: dark) {
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 6px rgba(0, 150, 136, 0.5));
+    }
+    50% {
+      filter: drop-shadow(0 0 16px rgba(0, 150, 136, 1))
+        drop-shadow(0 0 24px rgba(124, 58, 237, 0.6));
+    }
+  }
+}
+
+/* ============================================
+   OPTION 3 - Chevron & Letters
+   ============================================ */
+
+@keyframes rotate-gradient {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes chevron-forward {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes letter-bounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes intense-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(0, 150, 136, 0.6))
+      drop-shadow(0 0 12px rgba(124, 58, 237, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(0, 150, 136, 1))
+      drop-shadow(0 0 28px rgba(124, 58, 237, 0.8))
+      drop-shadow(0 0 40px rgba(124, 58, 237, 0.4));
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-shimmer,
+  .path-pulse,
+  .grow-bar,
+  .pulse-glow,
+  .rotate-gradient,
+  .chevron-forward,
+  .letter-bounce,
+  .intense-glow {
+    animation: none !important;
+  }
+}

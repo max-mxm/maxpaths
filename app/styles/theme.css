@@ -195,6 +195,15 @@
   }
 }
 
+/* Utility classes for animations */
+.animate-fade-up {
+  animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-fade-down {
+  animation: fade-down 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Respect user's motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './theme-toggle';
 import { NavLink } from './nav-link';
@@ -9,6 +8,8 @@ import { MobileMenu } from './mobile-menu';
 import { SearchTrigger, SearchTriggerMobile } from './search/search-trigger';
 import { SearchDialog } from './search/search-dialog';
 import { Menu, X } from 'lucide-react';
+
+import { LogoOption3 } from './logo-option-3';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,12 +32,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-xl font-bold text-foreground tracking-tight"
-        >
-          maxpaths
-        </Link>
+        <LogoOption3 />
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">

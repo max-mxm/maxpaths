@@ -76,7 +76,7 @@ export default function AboutPage() {
       ============================================= */}
       <section className="py-16 md:py-24">
         <div className="container">
-          <div className="max-w-3xl mx-auto lg:mx-0 text-center lg:text-left">
+          <div className="text-center lg:text-left">
             <RevealOnScroll>
               <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold tracking-tight">
                 Pourquoi ce site existe

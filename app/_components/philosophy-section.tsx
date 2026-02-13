@@ -27,7 +27,7 @@ export function PhilosophySection() {
   return (
     <section className="py-14 md:py-24 border-t border-border/50">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center md:text-left">
+        <div className="text-center md:text-left">
           {/* Eyebrow */}
           <span className="text-xs font-semibold tracking-widest uppercase text-primary">
             Demarche

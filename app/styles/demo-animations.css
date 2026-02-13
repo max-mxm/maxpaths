@@ -19,7 +19,7 @@
 @keyframes slideInUp-title {
   0% {
     opacity: 0;
-    transform: translateY(40px) scale(1.05);
+    transform: translateY(40px) scale(0.95);
   }
   60% {
     transform: translateY(0) scale(1.02);
@@ -93,6 +93,45 @@
   }
 }
 
+@keyframes grow-vertical {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: 2.5rem;
+    opacity: 1;
+  }
+}
+
+@keyframes text-shimmer {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    background-position: -200% center;
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    background-position: 200% center;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 /* ============================================
    CUSTOM TIMING FUNCTIONS
    ============================================ */
@@ -120,7 +159,39 @@
 }
 
 .animate-glow-pulse {
-  animation: glow-pulse 2s ease-in-out infinite;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-grow-vertical {
+  animation: grow-vertical 0.6s var(--ease-out-expo) forwards;
+}
+
+.animate-text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    hsl(var(--primary) / 0.6) 25%,
+    var(--primary) 50%,
+    hsl(var(--primary) / 0.6) 75%,
+    var(--primary) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 2.5s var(--ease-out-expo) forwards;
+}
+
+.animate-slideInUp-title {
+  animation: slideInUp-title 1s var(--ease-out-expo) forwards;
+}
+
+.animate-slide-in-from-right {
+  animation: slide-in-from-right 1s var(--ease-out-expo) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-out forwards;
 }
 
 /* ============================================
@@ -139,7 +210,16 @@
   .animate-pulse-shadow,
   .animate-pulse-shadow-purple,
   .animate-wiggle,
-  .animate-glow-pulse {
+  .animate-glow-pulse,
+  .animate-grow-vertical,
+  .animate-text-shimmer {
     animation: none !important;
+  }
+
+  .animate-text-shimmer {
+    background: var(--primary);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }

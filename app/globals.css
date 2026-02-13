@@ -11,6 +11,7 @@
 @import './styles/theme.css';
 @import './styles/theme.utilities.css';
 @import './styles/shadcn-ui.css';
+@import './styles/logo-animations.css';
 
 /* variants - update the below if you add a new variant */
 @variant dark (&:where(.dark, .dark *));

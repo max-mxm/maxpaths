@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Linkedin, Globe } from 'lucide-react';
+import { LogoOption3 } from './logo-option-3';
 
 export function Footer() {
   return (
@@ -8,9 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
           {/* Branding */}
           <div className="md:col-span-5 space-y-4 text-center md:text-left">
-            <h3 className="text-xl font-bold text-foreground tracking-tight">
-              maxpaths
-            </h3>
+            <LogoOption3 />
             <p className="text-muted-foreground leading-relaxed max-w-md mx-auto md:mx-0 text-sm">
               Blog et bonnes pratiques frontend par Maxime Morellon.
               Retours d&apos;experience, patterns eprouves et guides techniques.
