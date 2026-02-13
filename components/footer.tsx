@@ -4,20 +4,20 @@ import { Linkedin, Globe } from 'lucide-react';
 export function Footer() {
   return (
     <footer className="border-t border-border/50 bg-muted/30">
-      <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+      <div className="container py-8 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
           {/* Branding */}
-          <div className="md:col-span-5 space-y-4">
+          <div className="md:col-span-5 space-y-4 text-center md:text-left">
             <h3 className="text-xl font-bold text-foreground tracking-tight">
               Koursorr
             </h3>
-            <p className="text-muted-foreground leading-relaxed max-w-md text-sm">
+            <p className="text-muted-foreground leading-relaxed max-w-md mx-auto md:mx-0 text-sm">
               Blog et bonnes pratiques frontend par Maxime Morellon.
               Retours d&apos;experience, patterns eprouves et guides techniques.
             </p>
 
             {/* Social Links */}
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-center md:justify-start">
               <a
                 href="https://www.linkedin.com/in/maxime-morellon-7a9403112"
                 target="_blank"
@@ -40,11 +40,11 @@ export function Footer() {
           </div>
 
           {/* Navigation */}
-          <div className="md:col-span-3 space-y-4">
+          <div className="md:col-span-3 space-y-4 text-center md:text-left">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
               Navigation
             </h4>
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-2 items-center md:items-start">
               <Link href="/" className="text-sm text-foreground hover:text-primary transition-colors">
                 Accueil
               </Link>
@@ -61,11 +61,11 @@ export function Footer() {
           </div>
 
           {/* Guides */}
-          <div className="md:col-span-4 space-y-4">
+          <div className="md:col-span-4 space-y-4 text-center md:text-left">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
               Guides disponibles
             </h4>
-            <nav className="flex flex-col gap-2">
+            <nav className="flex flex-col gap-2 items-center md:items-start">
               <Link href="/guides/nextjs-demo" className="text-sm text-foreground hover:text-primary transition-colors">
                 Guide Next.js 15
               </Link>
@@ -83,7 +83,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="mt-8 pt-6 md:mt-12 md:pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             &copy; 2026 Koursorr &middot; Cree par{' '}
             <a

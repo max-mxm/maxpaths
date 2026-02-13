@@ -4,21 +4,21 @@ import { Zap, BookOpen, Palette, Unlock } from 'lucide-react';
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-      <main className="container py-12">
-        <div className="max-w-3xl mx-auto space-y-12">
+      <main className="container py-8 md:py-12">
+        <div className="max-w-3xl mx-auto space-y-8 md:space-y-12">
           {/* En-tête */}
-          <div className="space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight">
+          <div className="space-y-6 text-center md:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">
               À propos de Koursorr
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-base md:text-xl text-muted-foreground leading-relaxed">
               Koursorr est mon espace open source de partage de bonnes pratiques React, Next.js et technologies web modernes. Issues de 8 ans d&apos;expérience sur des projets réels, ces ressources ont vocation à évoluer et à s&apos;ouvrir aux contributions d&apos;autres développeurs.
             </p>
           </div>
 
           {/* Mission */}
-          <section className="space-y-4">
-            <h2 className="text-3xl font-black">Ma démarche</h2>
+          <section className="space-y-4 text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-black">Ma démarche</h2>
             <div className="prose prose-slate dark:prose-invert max-w-none">
               <p className="text-lg text-foreground/80 leading-relaxed">
                 Documenter et partager les bonnes pratiques que j&apos;ai éprouvées en production. Chaque guide est basé sur des retours d&apos;expérience concrets, avec des démos interactives et des exemples de code testés sur des projets réels.
@@ -27,11 +27,11 @@ export default function AboutPage() {
           </section>
 
           {/* Caractéristiques */}
-          <section className="space-y-6">
-            <h2 className="text-3xl font-black">Ce qui nous distingue</h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="space-y-3 p-6 rounded-xl border border-border/50 bg-card">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20 flex items-center justify-center">
+          <section className="space-y-6 text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-black">Ce qui nous distingue</h2>
+            <div className="grid gap-4 md:gap-6 md:grid-cols-2">
+              <div className="space-y-3 p-6 rounded-xl border border-border/50 bg-card items-center md:items-start">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20 flex items-center justify-center mx-auto md:mx-0">
                   <Zap className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold">Démos Interactives</h3>
@@ -40,8 +40,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="space-y-3 p-6 rounded-xl border border-border/50 bg-card">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20 flex items-center justify-center">
+              <div className="space-y-3 p-6 rounded-xl border border-border/50 bg-card items-center md:items-start">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20 flex items-center justify-center mx-auto md:mx-0">
                   <BookOpen className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold">Contenu Structuré</h3>
@@ -50,8 +50,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="space-y-3 p-6 rounded-xl border border-border/50 bg-card">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20 flex items-center justify-center">
+              <div className="space-y-3 p-6 rounded-xl border border-border/50 bg-card items-center md:items-start">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20 flex items-center justify-center mx-auto md:mx-0">
                   <Palette className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold">Design Moderne</h3>
@@ -60,8 +60,8 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="space-y-3 p-6 rounded-xl border border-border/50 bg-card">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20 flex items-center justify-center">
+              <div className="space-y-3 p-6 rounded-xl border border-border/50 bg-card items-center md:items-start">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-brand-secondary/10 border border-primary/20 flex items-center justify-center mx-auto md:mx-0">
                   <Unlock className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-xl font-bold">Open Source</h3>
@@ -73,8 +73,8 @@ export default function AboutPage() {
           </section>
 
           {/* Technologies */}
-          <section className="space-y-6">
-            <h2 className="text-3xl font-black">Technologies Utilisées</h2>
+          <section className="space-y-6 text-center md:text-left">
+            <h2 className="text-2xl md:text-3xl font-black">Technologies Utilisées</h2>
             <div className="rounded-xl border border-border/50 bg-card p-8">
               <div className="grid gap-6 md:grid-cols-2">
                 <div>

@@ -43,21 +43,21 @@ export default async function Home() {
         <HeroSection />
 
         {/* Unified content grid */}
-        <section className="container py-20">
-          <div className="space-y-3 mb-12">
+        <section className="container py-12 md:py-20">
+          <div className="space-y-3 mb-8 md:mb-12 text-center md:text-left">
             <span className="text-xs font-semibold tracking-widest uppercase text-primary">
               Ressources
             </span>
-            <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight">
+            <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-tight">
               Guides et articles
             </h2>
-            <p className="text-muted-foreground max-w-2xl">
+            <p className="text-muted-foreground max-w-2xl mx-auto md:mx-0">
               Retours d&apos;experience structures et analyses techniques sur le developpement
               frontend moderne.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {content.map((item, index) => (
               <RevealOnScroll key={item.href} delay={index * 80}>
                 <ContentCard {...item} />

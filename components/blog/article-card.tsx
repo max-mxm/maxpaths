@@ -26,7 +26,7 @@ export function ArticleCard({ metadata, variant = 'default' }: ArticleCardProps)
         href={`/blog/${metadata.slug}`}
         className="group block rounded-2xl border border-border/50 bg-white/50 dark:bg-slate-900/50 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:scale-[1.02] overflow-hidden"
       >
-        <div className="p-8 md:p-10 space-y-6">
+        <div className="p-5 sm:p-8 md:p-10 space-y-6 text-center md:text-left">
           <div className="flex items-center justify-between">
             <span
               className={`inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent border border-current/20`}
@@ -41,7 +41,7 @@ export function ArticleCard({ metadata, variant = 'default' }: ArticleCardProps)
           </div>
 
           <h2
-            className={`text-3xl md:text-4xl font-black tracking-tight group-hover:translate-x-1 transition-transform duration-300 bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent`}
+            className={`text-2xl sm:text-3xl md:text-4xl font-black tracking-tight group-hover:translate-x-1 transition-transform duration-300 bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent`}
           >
             {metadata.title}
           </h2>
@@ -51,7 +51,7 @@ export function ArticleCard({ metadata, variant = 'default' }: ArticleCardProps)
           </p>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 justify-center md:justify-start">
             {metadata.tags.map((tag) => (
               <span
                 key={tag}
@@ -63,7 +63,7 @@ export function ArticleCard({ metadata, variant = 'default' }: ArticleCardProps)
           </div>
 
           {/* Métadonnées */}
-          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground border-t border-border/50 pt-6">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground border-t border-border/50 pt-6 justify-center md:justify-start">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               <time dateTime={metadata.publishedAt}>
@@ -92,7 +92,7 @@ export function ArticleCard({ metadata, variant = 'default' }: ArticleCardProps)
       href={`/blog/${metadata.slug}`}
       className="group block rounded-xl border border-border/50 bg-white/50 dark:bg-slate-900/50 shadow-md backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02] overflow-hidden h-full"
     >
-      <div className="p-6 space-y-4 h-full flex flex-col">
+      <div className="p-4 sm:p-6 space-y-4 h-full flex flex-col text-center md:text-left">
         <div className="flex items-center justify-between">
           <span
             className={`inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent border border-current/20`}
@@ -120,7 +120,7 @@ export function ArticleCard({ metadata, variant = 'default' }: ArticleCardProps)
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1.5 justify-center md:justify-start">
           {metadata.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
@@ -132,7 +132,7 @@ export function ArticleCard({ metadata, variant = 'default' }: ArticleCardProps)
         </div>
 
         {/* Métadonnées */}
-        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground border-t border-border/50 pt-4">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground border-t border-border/50 pt-4 justify-center md:justify-start">
           <time dateTime={metadata.publishedAt}>
             {new Date(metadata.publishedAt).toLocaleDateString('fr-FR', {
               day: 'numeric',

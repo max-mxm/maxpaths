@@ -25,21 +25,21 @@ const values = [
 
 export function PhilosophySection() {
   return (
-    <section className="py-24 border-t border-border/50">
+    <section className="py-14 md:py-24 border-t border-border/50">
       <div className="container">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto text-center md:text-left">
           {/* Eyebrow */}
           <span className="text-xs font-semibold tracking-widest uppercase text-primary">
             Demarche
           </span>
 
           {/* H2 */}
-          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight mt-4 mb-8">
+          <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-bold leading-tight mt-4 mb-8">
             L&apos;experience avant la theorie
           </h2>
 
           {/* Blockquote */}
-          <blockquote className="border-l-2 border-primary pl-6 py-1 text-lg text-muted-foreground leading-relaxed mb-12">
+          <blockquote className="border-l-0 md:border-l-2 border-primary pl-0 md:pl-6 py-1 text-base md:text-lg text-muted-foreground leading-relaxed mb-12">
             &quot;Ce site n&apos;est pas un cours magistral. C&apos;est un carnet de pratiques :
             des solutions que j&apos;ai testees, des erreurs que j&apos;ai commises, et des
             patterns qui ont fait leurs preuves sur des projets en production. L&apos;objectif
@@ -47,9 +47,9 @@ export function PhilosophySection() {
           </blockquote>
 
           {/* Values Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10">
             {values.map((value) => (
-              <div key={value.title} className="flex items-start gap-3">
+              <div key={value.title} className="flex flex-col items-center md:flex-row md:items-start gap-3 text-center md:text-left">
                 <value.icon className="w-5 h-5 text-primary mt-0.5 shrink-0" />
                 <div>
                   <h4 className="font-semibold text-foreground">{value.title}</h4>
@@ -62,7 +62,7 @@ export function PhilosophySection() {
           </div>
 
           {/* Social CTAs */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center md:justify-start">
             <a
               href="https://www.linkedin.com/in/maxime-morellon-7a9403112"
               target="_blank"

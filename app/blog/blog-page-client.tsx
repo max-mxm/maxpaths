@@ -24,21 +24,21 @@ export function BlogPageClient({ articles }: BlogPageClientProps) {
   const regular = filteredArticles.filter((a) => !a.featured);
 
   return (
-    <main className="container py-12">
-      <div className="max-w-6xl mx-auto space-y-12">
+    <main className="container py-8 md:py-12">
+      <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
         {/* En-tête */}
-        <div className="space-y-4">
-          <h1 className="text-5xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-primary to-brand-secondary bg-clip-text text-transparent">
+        <div className="space-y-4 text-center md:text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-primary to-brand-secondary bg-clip-text text-transparent">
             Blog Technique
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
+          <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto md:mx-0">
             Analyses, tutoriels et réflexions sur le développement frontend
             moderne.
           </p>
         </div>
 
         {/* Filtres par catégorie */}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-3 justify-center md:justify-start">
           <button
             onClick={() => setSelectedCategory('all')}
             className={cn(
@@ -75,7 +75,7 @@ export function BlogPageClient({ articles }: BlogPageClientProps) {
 
         {/* Grille articles */}
         {regular.length > 0 ? (
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {regular.map((article) => (
               <ArticleCard key={article.slug} metadata={article} />
             ))}

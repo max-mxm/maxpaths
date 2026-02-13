@@ -56,20 +56,20 @@ export default function CoursesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-      <main className="container py-12">
-        <div className="max-w-5xl mx-auto space-y-12">
+      <main className="container py-8 md:py-12">
+        <div className="max-w-5xl mx-auto space-y-8 md:space-y-12">
           {/* En-tête */}
-          <div className="space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight">
+          <div className="space-y-4 text-center md:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight">
               Catalogue des guides
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl">
+            <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto md:mx-0">
               Parcourez mes guides pratiques basés sur des retours d&apos;expérience et des bonnes pratiques terrain.
             </p>
           </div>
 
           {/* Filtres (placeholder) */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 justify-center md:justify-start">
             <button className="px-4 py-2 rounded-lg bg-primary/10 text-primary font-medium text-sm border border-primary/20">
               Tous
             </button>
@@ -85,7 +85,7 @@ export default function CoursesPage() {
           </div>
 
           {/* Liste des guides */}
-          <div className="grid gap-6">
+          <div className="grid gap-4 md:gap-6">
             {courses.map((course) => (
               <Link
                 key={course.id}
@@ -94,7 +94,7 @@ export default function CoursesPage() {
                 style={{ '--guide-color': course.color } as React.CSSProperties}
               >
                 <div
-                  className="relative rounded-2xl border border-border/50 bg-card p-5 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:translate-y-[-2px] overflow-hidden"
+                  className="relative rounded-2xl border border-border/50 bg-card p-4 sm:p-6 md:p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:translate-y-[-2px] overflow-hidden"
                   style={{ borderTopWidth: '3px', borderTopColor: course.color }}
                 >
                   {/* Gradient accent au survol */}
@@ -125,9 +125,9 @@ export default function CoursesPage() {
                     </div>
 
                     {/* Contenu principal */}
-                    <div className="space-y-3 sm:space-y-4">
+                    <div className="space-y-3 sm:space-y-4 text-center md:text-left">
                       <div>
-                        <div className="flex items-center gap-2 sm:gap-3 mb-2 flex-wrap">
+                        <div className="flex items-center gap-2 sm:gap-3 mb-2 flex-wrap justify-center md:justify-start">
                           {/* Small icon inline on mobile */}
                           <div
                             className="md:hidden w-10 h-10 rounded-lg border flex items-center justify-center flex-shrink-0"
@@ -150,7 +150,7 @@ export default function CoursesPage() {
                         </p>
                       </div>
 
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                         {course.tags.map((tag) => (
                           <span
                             key={tag}
@@ -162,7 +162,7 @@ export default function CoursesPage() {
                         ))}
                       </div>
 
-                      <div className="flex items-center gap-4 sm:gap-6 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-4 sm:gap-6 text-sm text-muted-foreground justify-center md:justify-start">
                         <div className="flex items-center gap-2">
                           <BookOpen className="w-4 h-4" style={{ color: course.color }} />
                           <span>{course.sections} sections</span>

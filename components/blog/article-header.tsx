@@ -11,9 +11,9 @@ export function ArticleHeader({ metadata }: ArticleHeaderProps) {
   const category = BLOG_CATEGORY_INFO[metadata.category];
 
   return (
-    <header className="mb-12 space-y-6">
+    <header className="mb-12 space-y-6 text-center md:text-left">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+      <nav className="flex items-center gap-2 text-sm text-muted-foreground justify-center md:justify-start">
         <Link href="/" className="hover:text-foreground transition-colors">
           Accueil
         </Link>
@@ -36,18 +36,18 @@ export function ArticleHeader({ metadata }: ArticleHeaderProps) {
 
       {/* Titre */}
       <h1
-        className={`text-4xl md:text-5xl font-black tracking-tight leading-tight bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent`}
+        className={`text-2xl sm:text-3xl md:text-5xl font-black tracking-tight leading-tight bg-gradient-to-r ${category.gradient} bg-clip-text text-transparent`}
       >
         {metadata.title}
       </h1>
 
       {/* Description */}
-      <p className="text-xl text-muted-foreground leading-relaxed max-w-3xl">
+      <p className="text-base md:text-xl text-muted-foreground leading-relaxed max-w-3xl mx-auto md:mx-0">
         {metadata.description}
       </p>
 
       {/* Métadonnées */}
-      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+      <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground justify-center md:justify-start">
         <div className="flex items-center gap-2">
           <User className="h-4 w-4" />
           <span>{metadata.author}</span>
@@ -70,7 +70,7 @@ export function ArticleHeader({ metadata }: ArticleHeaderProps) {
 
       {/* Tags */}
       {metadata.tags.length > 0 && (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 justify-center md:justify-start">
           {metadata.tags.map((tag) => (
             <span
               key={tag}
