@@ -1,6 +1,6 @@
 'use client';
 
-import { ArticleCard } from '@/components/blog/article-card';
+import { ContentCard, ContentCardProps } from '@/components/content-card';
 import { ArticleMetadata, BlogCategory } from '@/lib/blog/types';
 import { BLOG_CATEGORY_INFO } from '@/lib/blog/constants';
 import { useState } from 'react';
@@ -8,6 +8,20 @@ import { cn } from '@/lib/utils';
 
 interface BlogPageClientProps {
   articles: ArticleMetadata[];
+}
+
+function articleToContentCard(article: ArticleMetadata): ContentCardProps {
+  const category = BLOG_CATEGORY_INFO[article.category];
+  return {
+    href: `/blog/${article.slug}`,
+    type: 'article' as const,
+    title: article.title,
+    description: article.description,
+    tags: article.tags,
+    accentColor: category.accentColor,
+    publishedAt: article.publishedAt,
+    readingTime: article.readingTime,
+  };
 }
 
 export function BlogPageClient({ articles }: BlogPageClientProps) {
@@ -25,14 +39,14 @@ export function BlogPageClient({ articles }: BlogPageClientProps) {
 
   return (
     <main className="container py-8 md:py-12">
-      <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
+      <div className="space-y-8 md:space-y-12">
         {/* En-tête */}
         <div className="space-y-4 text-center md:text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight bg-gradient-to-r from-primary to-brand-secondary bg-clip-text text-transparent">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight">
             Blog Technique
           </h1>
           <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto md:mx-0">
-            Analyses, tutoriels et réflexions sur le développement frontend
+            Analyses, tutoriels et reflexions sur le developpement frontend
             moderne.
           </p>
         </div>
@@ -69,7 +83,7 @@ export function BlogPageClient({ articles }: BlogPageClientProps) {
         {/* Article featured (si existe) */}
         {featured && (
           <div className="mb-12">
-            <ArticleCard metadata={featured} variant="featured" />
+            <ContentCard {...articleToContentCard(featured)} variant="featured" />
           </div>
         )}
 
@@ -77,13 +91,13 @@ export function BlogPageClient({ articles }: BlogPageClientProps) {
         {regular.length > 0 ? (
           <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
             {regular.map((article) => (
-              <ArticleCard key={article.slug} metadata={article} />
+              <ContentCard key={article.slug} {...articleToContentCard(article)} />
             ))}
           </div>
         ) : (
           <div className="text-center py-12">
             <p className="text-muted-foreground">
-              Aucun article dans cette catégorie pour le moment.
+              Aucun article dans cette categorie pour le moment.
             </p>
           </div>
         )}

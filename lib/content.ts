@@ -11,6 +11,7 @@ export interface LandingContentItem {
   badge?: string;
   sections?: number;
   duration?: string;
+  level?: string;
   publishedAt?: string;
   readingTime?: number;
 }
@@ -27,6 +28,7 @@ const GUIDES: LandingContentItem[] = [
     accentColor: 'rgb(59, 130, 246)',
     sections: 13,
     duration: '3h',
+    level: 'Intermediaire',
     publishedAt: '2026-02-13',
   },
   {
@@ -39,6 +41,7 @@ const GUIDES: LandingContentItem[] = [
     accentColor: 'rgb(249, 115, 22)',
     sections: 14,
     duration: '4h',
+    level: 'Intermediaire',
     publishedAt: '2026-02-10',
   },
   {
@@ -51,6 +54,7 @@ const GUIDES: LandingContentItem[] = [
     accentColor: 'rgb(168, 85, 247)',
     sections: 18,
     duration: '4h',
+    level: 'Avance',
     publishedAt: '2026-02-07',
   },
   {
@@ -64,6 +68,7 @@ const GUIDES: LandingContentItem[] = [
     badge: 'POPULAIRE',
     sections: 21,
     duration: '3h',
+    level: 'Intermediaire',
     publishedAt: '2026-02-03',
   },
   {
@@ -76,6 +81,7 @@ const GUIDES: LandingContentItem[] = [
     accentColor: 'rgb(59, 130, 246)',
     sections: 10,
     duration: '2h',
+    level: 'Intermediaire',
     publishedAt: '2026-01-28',
   },
 ];
@@ -122,6 +128,19 @@ const DEMOS: LandingDemoItem[] = [
   },
 ];
 
+// Demos converties en LandingContentItem pour le catalogue
+const DEMOS_AS_CONTENT: LandingContentItem[] = DEMOS.map((demo) => ({
+  href: demo.href,
+  type: 'guide' as const,
+  title: demo.title,
+  description: demo.description,
+  tags: demo.tags,
+  accentColor: demo.accentColor,
+  badge: demo.badge,
+  duration: demo.duration,
+  level: 'Tous niveaux',
+}));
+
 export function getDemosForLanding(): LandingDemoItem[] {
   return DEMOS;
 }
@@ -130,6 +149,17 @@ export function getGuidesForLanding(): LandingContentItem[] {
   return [...GUIDES].sort((a, b) =>
     new Date(b.publishedAt!).getTime() - new Date(a.publishedAt!).getTime()
   );
+}
+
+export function getGuidesForCatalog(): LandingContentItem[] {
+  const all = [...GUIDES, ...DEMOS_AS_CONTENT];
+  return all.sort((a, b) => {
+    // Items sans publishedAt en dernier
+    if (!a.publishedAt && !b.publishedAt) return 0;
+    if (!a.publishedAt) return 1;
+    if (!b.publishedAt) return -1;
+    return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+  });
 }
 
 export async function getArticlesForLanding(): Promise<LandingContentItem[]> {

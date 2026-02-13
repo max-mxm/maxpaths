@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-interface ContentCardProps {
+export interface ContentCardProps {
   href: string;
   type: 'guide' | 'article';
   title: string;
@@ -12,8 +12,10 @@ interface ContentCardProps {
   badge?: string;
   sections?: number;
   duration?: string;
+  level?: string;
   publishedAt?: string;
   readingTime?: number;
+  variant?: 'default' | 'featured';
 }
 
 function formatDate(dateString: string): string {
@@ -22,6 +24,21 @@ function formatDate(dateString: string): string {
     month: 'short',
     year: 'numeric',
   });
+}
+
+function guideFooter(sections?: number, duration?: string, level?: string): string {
+  return [
+    sections ? `${sections} sections` : null,
+    duration ? `~${duration}` : null,
+    level ?? null,
+  ].filter(Boolean).join(' · ');
+}
+
+function articleFooter(publishedAt?: string, readingTime?: number): string {
+  return [
+    publishedAt ? formatDate(publishedAt) : null,
+    readingTime ? `${readingTime} min` : null,
+  ].filter(Boolean).join(' · ');
 }
 
 export function ContentCard({
@@ -34,18 +51,28 @@ export function ContentCard({
   badge,
   sections,
   duration,
+  level,
   publishedAt,
   readingTime,
+  variant = 'default',
 }: ContentCardProps) {
+  const isFeatured = variant === 'featured';
+  const displayTags = isFeatured ? tags : tags.slice(0, 3);
   return (
     <Link
       href={href}
-      className="group block rounded-xl border border-border/50 bg-card p-4 sm:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+      className={cn(
+        "group block rounded-xl border border-border/50 bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5",
+        isFeatured ? 'p-6 sm:p-8 md:p-10' : 'p-4 sm:p-6',
+      )}
       style={{ borderTopWidth: '2px', borderTopColor: accentColor }}
     >
-      <div className="flex h-full flex-col text-center md:text-left">
+      <div className={cn(
+        "flex h-full flex-col text-center md:text-left",
+        isFeatured && 'gap-1',
+      )}>
         {/* Header: type + badge */}
-        <div className="flex items-center justify-between mb-4">
+        <div className={cn("flex items-center justify-between", isFeatured ? 'mb-5' : 'mb-4')}>
           <span
             className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground"
           >
@@ -68,18 +95,31 @@ export function ContentCard({
         </div>
 
         {/* Title */}
-        <h3 className="text-lg md:text-xl font-bold leading-tight mb-3 transition-colors duration-200 group-hover:text-primary line-clamp-2">
+        <h3 className={cn(
+          "font-bold leading-tight transition-colors duration-200 group-hover:text-primary",
+          isFeatured
+            ? 'text-2xl md:text-3xl mb-4'
+            : 'text-lg md:text-xl mb-3 line-clamp-2',
+        )}>
           {title}
         </h3>
 
         {/* Description */}
-        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4 flex-1">
+        <p className={cn(
+          "text-muted-foreground leading-relaxed flex-1",
+          isFeatured
+            ? 'text-sm sm:text-base mb-5'
+            : 'text-xs sm:text-sm line-clamp-3 mb-4',
+        )}>
           {description}
         </p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-4 justify-center md:justify-start">
-          {tags.slice(0, 3).map((tag) => (
+        <div className={cn(
+          "flex flex-wrap gap-1.5 justify-center md:justify-start",
+          isFeatured ? 'mb-5' : 'mb-4',
+        )}>
+          {displayTags.map((tag) => (
             <span
               key={tag}
               className="text-xs px-2 py-0.5 rounded-md bg-muted text-muted-foreground"
@@ -91,12 +131,10 @@ export function ContentCard({
 
         {/* Footer */}
         <div className="flex items-center justify-center md:justify-between pt-4 border-t border-border/30 gap-2">
-          <span className="text-sm text-muted-foreground">
+          <span className={cn("text-muted-foreground", isFeatured ? 'text-sm' : 'text-sm')}>
             {type === 'guide'
-              ? sections
-                ? `${sections} sections${duration ? ` · ~${duration}` : ''}`
-                : duration ? `~${duration}` : ''
-              : `${publishedAt ? formatDate(publishedAt) : ''}${readingTime ? ` · ${readingTime} min` : ''}`}
+              ? guideFooter(sections, duration, level)
+              : articleFooter(publishedAt, readingTime)}
           </span>
           <ArrowRight className="w-4 h-4 text-muted-foreground transition-transform duration-200 group-hover:translate-x-1 group-hover:text-primary" />
         </div>
