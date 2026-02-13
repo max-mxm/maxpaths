@@ -88,7 +88,9 @@ export function ContentCard({
         <div className="flex items-center justify-center md:justify-between pt-4 border-t border-border/30 gap-2">
           <span className="text-sm text-muted-foreground">
             {type === 'guide'
-              ? `${sections} sections${duration ? ` · ~${duration}` : ''}`
+              ? sections
+                ? `${sections} sections${duration ? ` · ~${duration}` : ''}`
+                : duration ? `~${duration}` : ''
               : `${publishedAt ? formatDate(publishedAt) : ''}${readingTime ? ` · ${readingTime} min` : ''}`}
           </span>
           <ArrowRight className="w-4 h-4 text-muted-foreground transition-transform duration-200 group-hover:translate-x-1 group-hover:text-primary" />

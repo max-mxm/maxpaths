@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Rocket, BookOpen, Clock, BarChart3, Database, Brain } from 'lucide-react';
+import { Rocket, BookOpen, Clock, BarChart3, Database, Brain, Timer } from 'lucide-react';
 
 export default function CoursesPage() {
   const courses = [
@@ -51,6 +51,18 @@ export default function CoursesPage() {
       duration: '2h',
       gradient: 'from-blue-500 to-cyan-500',
       color: 'rgb(59, 130, 246)'
+    },
+    {
+      id: 'nextjs-demo/simulateur-performance',
+      title: 'Simulateur de Performance React',
+      description: 'Comparez 4 strategies d\'optimisation React avec des mesures reelles de temps de rendu. Benchmark interactif : baseline, React.memo, useMemo et combinaison complete.',
+      icon: Timer,
+      tags: ['React', 'Performance', 'Interactif'],
+      level: 'Tous niveaux',
+      duration: '10min',
+      gradient: 'from-orange-500 to-amber-500',
+      color: 'rgb(249, 115, 22)',
+      ribbon: 'Interactif'
     }
   ];
 
@@ -163,10 +175,12 @@ export default function CoursesPage() {
                       </div>
 
                       <div className="flex items-center gap-4 sm:gap-6 text-sm text-muted-foreground justify-center md:justify-start">
-                        <div className="flex items-center gap-2">
-                          <BookOpen className="w-4 h-4" style={{ color: course.color }} />
-                          <span>{course.sections} sections</span>
-                        </div>
+                        {course.sections && (
+                          <div className="flex items-center gap-2">
+                            <BookOpen className="w-4 h-4" style={{ color: course.color }} />
+                            <span>{course.sections} sections</span>
+                          </div>
+                        )}
                         <div className="flex items-center gap-2">
                           <Clock className="w-4 h-4" style={{ color: course.color }} />
                           <span>~{course.duration}</span>

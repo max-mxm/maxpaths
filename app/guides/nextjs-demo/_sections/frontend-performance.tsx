@@ -1,9 +1,10 @@
 'use client';
 
+import Link from 'next/link';
 import { ConceptCard } from '@/components/course/concept-card';
 import { CodeBlock } from '@/components/course/code-block';
 import { ComparisonTable } from '@/components/course/comparison-table';
-import { Check } from 'lucide-react';
+import { Check, Timer, ArrowRight } from 'lucide-react';
 
 export function FrontendPerformanceSection() {
   const bundleOptimizationModes = [
@@ -614,6 +615,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </ul>
         </div>
       </ConceptCard>
+
+      {/* CTA vers le simulateur */}
+      <Link
+        href="/guides/nextjs-demo/simulateur-performance"
+        className="group relative block p-6 rounded-xl border-2 border-orange-500/20 bg-gradient-to-r from-orange-500/5 to-amber-500/5 hover:border-orange-500/40 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300"
+      >
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-orange-500/10 border border-orange-500/20">
+              <Timer className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+            </div>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-bold text-foreground">
+                  Testez ces optimisations en temps reel
+                </span>
+                <span className="rounded-md bg-orange-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-600 dark:text-orange-400">
+                  Interactif
+                </span>
+              </div>
+              <p className="text-sm text-muted-foreground">
+                Ouvrez le simulateur pour comparer React.memo, useMemo et useCallback
+                avec des mesures reelles de performance.
+              </p>
+            </div>
+          </div>
+          <ArrowRight className="w-5 h-5 flex-shrink-0 text-orange-500/50 group-hover:text-orange-500 group-hover:translate-x-1 transition-all" />
+        </div>
+      </Link>
     </div>
   );
 }

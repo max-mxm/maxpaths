@@ -29,6 +29,17 @@ const GUIDES: LandingContentItem[] = [
     duration: '3h',
   },
   {
+    href: '/guides/nextjs-demo/simulateur-performance',
+    type: 'guide',
+    title: 'Simulateur de Performance React',
+    description:
+      'Comparez 4 strategies d\'optimisation React avec des mesures reelles de temps de rendu : baseline, React.memo, useMemo et la combinaison complete.',
+    tags: ['React', 'Performance', 'Interactif'],
+    accentColor: 'rgb(249, 115, 22)',
+    badge: 'INTERACTIF',
+    duration: '10min',
+  },
+  {
     href: '/guides/react-19-advanced',
     type: 'guide',
     title: 'React 19 -- Bonnes pratiques seniors',
