@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articles = await getAllArticlesMetadata();
 
   const articleUrls = articles.map((article) => ({
-    url: `https://kourso.com/blog/${article.slug}`,
+    url: `https://maxpaths.com/blog/${article.slug}`,
     lastModified: article.updatedAt || article.publishedAt,
     changeFrequency: 'monthly' as const,
     priority: 0.7,
@@ -14,13 +14,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Guides disponibles
   const guideUrls = [
     {
-      url: 'https://kourso.com/guides/nextjs-demo',
+      url: 'https://maxpaths.com/guides/nextjs-demo',
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
     {
-      url: 'https://kourso.com/guides/react-19-advanced',
+      url: 'https://maxpaths.com/guides/react-19-advanced',
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
@@ -29,25 +29,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: 'https://kourso.com',
+      url: 'https://maxpaths.com',
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1,
     },
     {
-      url: 'https://kourso.com/guides',
+      url: 'https://maxpaths.com/guides',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: 'https://kourso.com/blog',
+      url: 'https://maxpaths.com/blog',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: 'https://kourso.com/about',
+      url: 'https://maxpaths.com/about',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.5,

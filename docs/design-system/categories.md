@@ -1,4 +1,4 @@
-# Couleurs des Catégories de Guides - Koursorr
+# Couleurs des Catégories de Guides - maxpaths
 
 Les catégories de guides utilisent des gradients distinctifs pour créer une identité visuelle forte et faciliter la navigation.
 

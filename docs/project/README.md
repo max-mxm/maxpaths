@@ -1,4 +1,4 @@
-# Projet - Koursorr
+# Projet - maxpaths
 
 Contexte historique, stack technique, et vision du projet.
 
@@ -26,7 +26,7 @@ Résumé complet de l'import depuis Scanorr.
 
 ## 🎯 Vision du Projet
 
-**Koursorr** est une plateforme simple pour partager et documenter les bonnes pratiques et retours d'expérience (REX).
+**maxpaths** est une plateforme simple pour partager et documenter les bonnes pratiques et retours d'expérience (REX).
 
 ### Objectifs
 - **Simplicité** - Facile à contribuer, facile à consulter

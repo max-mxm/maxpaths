@@ -6,7 +6,7 @@
 
 ## Bibliothèque d'Icônes
 
-Koursorr utilise **Lucide React** comme bibliothèque d'icônes officielle.
+maxpaths utilise **Lucide React** comme bibliothèque d'icônes officielle.
 
 - **Site officiel** : [lucide.dev](https://lucide.dev)
 - **Package** : `lucide-react`

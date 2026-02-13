@@ -9,7 +9,7 @@ export function Footer() {
           {/* Branding */}
           <div className="md:col-span-5 space-y-4 text-center md:text-left">
             <h3 className="text-xl font-bold text-foreground tracking-tight">
-              Koursorr
+              maxpaths
             </h3>
             <p className="text-muted-foreground leading-relaxed max-w-md mx-auto md:mx-0 text-sm">
               Blog et bonnes pratiques frontend par Maxime Morellon.
@@ -85,7 +85,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-8 pt-6 md:mt-12 md:pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; 2026 Koursorr &middot; Cree par{' '}
+            &copy; 2026 maxpaths &middot; Cree par{' '}
             <a
               href="https://www.maxime-morellon.dev/"
               target="_blank"

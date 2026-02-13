@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     'Bonnes pratiques frontend, patterns et retours d\'experience par Maxime Morellon. Guides React, Next.js et articles techniques.',
   openGraph: {
-    title: 'Koursorr — Bonnes pratiques frontend par Maxime Morellon',
+    title: 'maxpaths — Bonnes pratiques frontend par Maxime Morellon',
     description:
       'Guides React, Next.js et articles techniques issus de 8 ans d\'experience en production.',
     images: ['/og-image-home.png'],
@@ -24,7 +24,7 @@ const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Maxime Morellon',
-  url: 'https://kourso.com',
+  url: 'https://maxpaths.com',
   jobTitle: 'Developpeur Frontend Senior',
   sameAs: [
     'https://www.linkedin.com/in/maxime-morellon-7a9403112',

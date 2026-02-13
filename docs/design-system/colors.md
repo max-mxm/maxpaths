@@ -1,4 +1,4 @@
-# Palette de Couleurs - Koursorr
+# Palette de Couleurs - maxpaths
 
 ## Mode Light (Clair)
 

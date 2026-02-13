@@ -1,7 +1,7 @@
 # Migration du Cours Next.js - Résumé Complet
 
 **Date :** Février 2026
-**Projet :** Koursorr - Guide Next.js 16 complet
+**Projet :** maxpaths - Guide Next.js 16 complet
 **Source :** Scanorr nextjs-demo + PERFORMANCE-TIPS.md
 
 ---
@@ -132,7 +132,7 @@ app/cours/nextjs-demo/
 
 ## Composants Utilisés
 
-Tous les composants respectent le design system Koursorr :
+Tous les composants respectent le design system maxpaths :
 
 ### Composants Existants
 - **ConceptCard** : Cartes explicatives avec animations
@@ -151,7 +151,7 @@ Tous les composants respectent le design system Koursorr :
 
 ## Standards Respectés
 
-### Documentation Koursorr
+### Documentation maxpaths
 ✅ [`docs/architecture/cours-structure.md`](../../../docs/architecture/cours-structure.md) - Structure et composants
 ✅ [`docs/design-system/categories.md`](../../../docs/design-system/categories.md) - Gradients par catégorie
 ✅ [`docs/design-system/colors.md`](../../../docs/design-system/colors.md) - Variables CSS

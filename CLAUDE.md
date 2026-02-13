@@ -1,4 +1,4 @@
-# Documentation Koursorr - Référencement Contextuel
+# Documentation maxpaths - Référencement Contextuel
 
 Règles de consultation automatique de la documentation selon le contexte de travail.
 

@@ -119,7 +119,7 @@ Date : 12 Février 2026
 ## 📂 Structure des fichiers créés
 
 ```
-koursorr/
+maxpaths/
 ├── DESIGN.md                           # Documentation couleurs et design
 ├── IMPECCABLE_GUIDE.md                 # Guide complet des skills Impeccable
 ├── COURS_ARCHITECTURE.md               # Architecture des cours

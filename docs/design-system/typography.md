@@ -1,4 +1,4 @@
-# Typographie - Koursorr
+# Typographie - maxpaths
 
 ## Polices
 

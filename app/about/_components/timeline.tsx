@@ -35,7 +35,7 @@ const milestones: TimelineNode[] = [
   },
   {
     year: '2025',
-    title: 'Kourso nait',
+    title: 'maxpaths nait',
     description:
       'Apres 8 ans, il est temps de documenter. Les patterns qui marchent, les erreurs a eviter, les choix d\'architecture qui tiennent dans le temps.',
   },

@@ -1,6 +1,6 @@
 # Guide : Ajouter un Article au Blog
 
-Guide complet pour créer et publier un nouvel article sur le blog Koursorr.
+Guide complet pour créer et publier un nouvel article sur le blog maxpaths.
 
 ---
 
@@ -78,7 +78,7 @@ export const metadata: ArticleMetadata = {
   ],
 
   // SEO avancé (optionnel)
-  seoTitle: 'Titre SEO personnalisé | Blog Koursorr',
+  seoTitle: 'Titre SEO personnalisé | Blog maxpaths',
   seoDescription: 'Description SEO personnalisée',
   ogImage: '/images/blog/nom-article-og.png', // Image Open Graph
 };

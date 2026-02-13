@@ -35,7 +35,7 @@ export function Header() {
           href="/"
           className="text-xl font-bold text-foreground tracking-tight"
         >
-          Koursorr
+          maxpaths
         </Link>
 
         {/* Desktop Navigation */}

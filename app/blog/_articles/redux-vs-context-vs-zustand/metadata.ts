@@ -24,7 +24,7 @@ export const metadata: ArticleMetadata = {
     { id: 'guide-choix', title: 'Guide de choix par projet', level: 2 },
     { id: 'conclusion', title: 'Conclusion', level: 2 },
   ],
-  seoTitle: 'Redux vs Context vs Zustand : Comparaison State Management React 2026 | Koursorr Blog',
+  seoTitle: 'Redux vs Context vs Zustand : Comparaison State Management React 2026 | maxpaths Blog',
   seoDescription:
     'Redux Toolkit, React Context ou Zustand ? Comparaison approfondie avec exemples de code, avantages, inconvenients et guide de choix selon la taille de votre projet React.',
 };

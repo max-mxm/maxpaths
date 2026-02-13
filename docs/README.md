@@ -1,6 +1,6 @@
-# Documentation Koursorr
+# Documentation maxpaths
 
-Bienvenue dans la documentation de Koursorr, une plateforme simple pour partager les bonnes pratiques et retours d'expérience de développement.
+Bienvenue dans la documentation de maxpaths, une plateforme simple pour partager les bonnes pratiques et retours d'expérience de développement.
 
 ---
 

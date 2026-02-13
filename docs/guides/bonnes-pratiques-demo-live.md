@@ -1,6 +1,6 @@
 # Bonnes Pratiques - Demos Live et Simulateurs Interactifs
 
-Standards de qualite et workflow pour creer, publier et maintenir des demos interactives sur Koursorr.
+Standards de qualite et workflow pour creer, publier et maintenir des demos interactives sur maxpaths.
 
 ---
 

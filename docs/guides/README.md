@@ -1,6 +1,6 @@
-# Guides - Koursorr
+# Guides - maxpaths
 
-Guides pratiques et workflows opérationnels pour travailler efficacement sur Koursorr.
+Guides pratiques et workflows opérationnels pour travailler efficacement sur maxpaths.
 
 ---
 

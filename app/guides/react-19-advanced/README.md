@@ -176,7 +176,7 @@ http://localhost:3000/cours/react-19-advanced
 
 ## Composants Utilisés
 
-Ce cours utilise les composants du design system Koursorr :
+Ce cours utilise les composants du design system maxpaths :
 - **CourseLayout** : Layout principal avec navigation
 - **ConceptCard** : Cartes explicatives avec animations
 - **CodeBlock** : Blocs de code avec syntax highlighting
@@ -188,7 +188,7 @@ Voir [`docs/architecture/cours-structure.md`](../../../docs/architecture/cours-s
 
 ## Contributeurs
 
-Cours créé en février 2026 pour la plateforme Koursorr.
+Cours créé en février 2026 pour la plateforme maxpaths.
 
 ---
 

@@ -1,6 +1,6 @@
 # Guide : Ajouter un Nouveau Guide Pratique
 
-Guide complet pour documenter et publier un nouveau guide pratique sur Koursorr.
+Guide complet pour documenter et publier un nouveau guide pratique sur maxpaths.
 
 ---
 

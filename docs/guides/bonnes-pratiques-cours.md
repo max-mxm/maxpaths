@@ -1,6 +1,6 @@
 # Bonnes Pratiques - Partage de Retours d'Expérience
 
-Standards de qualité et recommandations pour documenter efficacement vos bonnes pratiques et REX sur Koursorr.
+Standards de qualité et recommandations pour documenter efficacement vos bonnes pratiques et REX sur maxpaths.
 
 ---
 
@@ -29,7 +29,7 @@ Standards de qualité et recommandations pour documenter efficacement vos bonnes
 
 **Tous les guides doivent suivre :**
 - Les 5 catégories strictes (fundamentals, rendering, optimization, best-practices, advanced)
-- Le design system Koursorr (couleurs, typographie)
+- Le design system maxpaths (couleurs, typographie)
 - La structure de fichiers recommandée
 - Les composants standardisés (ConceptCard, CodeBlock, etc.)
 

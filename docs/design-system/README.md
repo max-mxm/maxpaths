@@ -1,4 +1,4 @@
-# Design System - Koursorr
+# Design System - maxpaths
 
 Documentation complète du système de design : couleurs, typographie, thème, et guidelines visuelles.
 

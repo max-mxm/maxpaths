@@ -1,4 +1,4 @@
-# 🚀 Koursorr - Partage de Bonnes Pratiques Web
+# 🚀 maxpaths - Partage de Bonnes Pratiques Web
 
 Une plateforme open source regroupant les retours d'expérience (REX) et bonnes pratiques terrain pour Next.js, React et les technologies web modernes.
 
@@ -40,7 +40,7 @@ Un guide complet regroupant les bonnes pratiques et retours d'expérience sur le
 ```bash
 # Cloner le repository
 git clone <votre-repo>
-cd koursorr
+cd maxpaths
 
 # Installer les dépendances
 npm install
@@ -69,7 +69,7 @@ Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 ## 📁 Structure du projet
 
 ```
-koursorr/
+maxpaths/
 ├── app/
 │   ├── cours/
 │   │   ├── nextjs-demo/

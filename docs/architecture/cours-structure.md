@@ -1,4 +1,4 @@
-# Architecture des Guides Pratiques - Koursorr
+# Architecture des Guides Pratiques - maxpaths
 
 Documentation technique de la structure pour partager bonnes pratiques et retours d'expérience.
 
@@ -157,7 +157,7 @@ app/
 
 ---
 
-## 🔧 Composants à Créer pour Koursorr
+## 🔧 Composants à Créer pour maxpaths
 
 ### Priorité 1 - MVP
 - [ ] CourseLayout (layout principal)
@@ -260,5 +260,5 @@ Chaque section devrait contenir :
 ---
 
 **Source** : Importé depuis Scanorr (nextjs-demo)
-**Adapté pour** : Koursorr - Plateforme de guides pratiques
+**Adapté pour** : maxpaths - Plateforme de guides pratiques
 **Dernière mise à jour** : Février 2026

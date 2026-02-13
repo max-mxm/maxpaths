@@ -617,7 +617,7 @@ app/
               code={`// messages/en.json
 {
   "home": {
-    "title": "Welcome to Koursorr",
+    "title": "Welcome to maxpaths",
     "subtitle": "Learn Next.js with interactive courses"
   },
   "nav": {
@@ -629,7 +629,7 @@ app/
 // messages/fr.json
 {
   "home": {
-    "title": "Bienvenue sur Koursorr",
+    "title": "Bienvenue sur maxpaths",
     "subtitle": "Apprenez Next.js avec des guides interactifs"
   },
   "nav": {
@@ -687,11 +687,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     title: t('title'),
     description: t('description'),
     alternates: {
-      canonical: \`https://kourso.com/\${locale}\`,
+      canonical: \`https://maxpaths.com/\${locale}\`,
       languages: {
-        'en': 'https://kourso.com/en',
-        'fr': 'https://kourso.com/fr',
-        'es': 'https://kourso.com/es'
+        'en': 'https://maxpaths.com/en',
+        'fr': 'https://maxpaths.com/fr',
+        'es': 'https://maxpaths.com/es'
       }
     }
   };
@@ -703,13 +703,13 @@ export default function sitemap() {
 
   return locales.flatMap((locale) => [
     {
-      url: \`https://kourso.com/\${locale}\`,
+      url: \`https://maxpaths.com/\${locale}\`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1
     },
     {
-      url: \`https://kourso.com/\${locale}/courses\`,
+      url: \`https://maxpaths.com/\${locale}/courses\`,
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.8

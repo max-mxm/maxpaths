@@ -18,14 +18,14 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: 'Article non trouvé | Blog Koursorr',
+      title: 'Article non trouvé | Blog maxpaths',
     };
   }
 
   const metadata = article;
 
   return {
-    title: metadata.seoTitle || `${metadata.title} | Blog Koursorr`,
+    title: metadata.seoTitle || `${metadata.title} | Blog maxpaths`,
     description: metadata.seoDescription || metadata.description,
     authors: [{ name: metadata.author }],
 

@@ -65,7 +65,7 @@ export const metadata: ArticleMetadata = {
   ],
 
   // SEO
-  seoTitle: 'TDD Frontend vs Backend : Les Défis Cachés | Koursorr Blog',
+  seoTitle: 'TDD Frontend vs Backend : Les Défis Cachés | maxpaths Blog',
   seoDescription:
     'Découvrez pourquoi le TDD en frontend présente des défis uniques absents en backend : composants visuels, états asynchrones, et interactions utilisateur.',
 };

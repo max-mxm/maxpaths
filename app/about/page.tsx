@@ -103,7 +103,7 @@ export default function AboutPage() {
 
             <RevealOnScroll delay={300}>
               <p className="text-base md:text-lg text-muted-foreground leading-[1.8]">
-                Kourso est ne de cette frustration : pourquoi personne ne documente
+                maxpaths est ne de cette frustration : pourquoi personne ne documente
                 les anti-patterns reels ? Les choix d&apos;architecture qui font mal 6 mois
                 plus tard ? Les optimisations qui creent plus de bugs qu&apos;elles n&apos;en resolvent ?
               </p>
@@ -123,7 +123,7 @@ export default function AboutPage() {
                 Parcours
               </span>
               <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold tracking-tight mt-3">
-                Les etapes qui ont construit Kourso
+                Les etapes qui ont construit maxpaths
               </h2>
             </div>
           </RevealOnScroll>
