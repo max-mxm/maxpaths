@@ -247,6 +247,22 @@ Ajouter un CTA prominent dans la section la plus pertinente du guide parent :
 </Link>
 ```
 
+### 4. Generer les Keywords Techniques de Recherche
+
+Apres avoir ajoute la demo a `lib/content.ts` et au guide parent, executer :
+
+```
+/generate-keywords demo:{parent}/simulateur-{nom}
+```
+
+Cette commande analyse la demo et genere des keywords **exclusivement techniques** pour la recherche Cmd+K :
+- Noms de fonctions/API benchmarkees (ex: `React.memo`, `useMemo`, `useCallback`)
+- Metriques mesurees (ex: "performance.now", "re-render count", "virtual dom diff")
+- Termes techniques FR/EN (ex: "reconciliation" / "arbre de rendu")
+- Acronymes (ex: CWV, LCP, CLS, INP)
+
+Les keywords seront ajoutes dans `lib/search-index.ts`.
+
 ---
 
 ## Checklist de Validation
@@ -270,10 +286,13 @@ Ajouter un CTA prominent dans la section la plus pertinente du guide parent :
 - [ ] Feedback visuel immediat (couleurs, animations)
 - [ ] Onglets code source pour chaque approche
 
-### Navigation
+### Navigation & Recherche
 - [ ] Entree dans le tableau `DEMOS` de `lib/content.ts`
 - [ ] CTA dans le guide parent (section pertinente)
 - [ ] Liens fonctionnels (demo -> guide, guide -> demo)
+- [ ] Commande `/generate-keywords` executee
+- [ ] Keywords techniques ajoutes dans `lib/search-index.ts` (noms d'API, fonctions benchmarkees, metriques)
+- [ ] Recherche Cmd+K testee avec les termes techniques de la demo
 
 ### Qualite
 - [ ] Dark mode OK

@@ -298,6 +298,34 @@ npm run dev
 
 ---
 
+## Étape 6 : Générer les Keywords Techniques de Recherche
+
+### 6.1 Exécuter la commande generate-keywords
+
+Après avoir enregistré et testé l'article, exécuter :
+
+```
+/generate-keywords article:{slug}
+```
+
+Cette commande analyse le contenu de l'article (metadata.ts + content.tsx) et génère des keywords **exclusivement techniques** pour la recherche Cmd+K :
+- Noms de fonctions/API mentionnées dans les exemples de code
+- Noms de librairies et outils abordés ou comparés
+- Acronymes techniques du domaine
+- Concepts techniques FR/EN
+- Patterns et design patterns décrits
+
+Les keywords sont ajoutés dans `lib/search-index.ts` pour l'article principal ET chaque heading.
+
+### 6.2 Vérifier
+
+- [ ] Entrée article dans `lib/search-index.ts` avec keywords techniques
+- [ ] Entrées article-heading pour chaque H2/H3 avec keywords techniques
+- [ ] Tags du metadata.ts complets (3-7 tags)
+- [ ] Recherche Cmd+K testée avec des noms de fonctions et termes techniques
+
+---
+
 ## Bonnes Pratiques
 
 ### Contenu
@@ -427,6 +455,10 @@ Avant de publier un article, vérifier :
 - [ ] Responsive testé (mobile, tablet, desktop)
 - [ ] Pas d'erreur console
 - [ ] Sitemap généré correctement
+- [ ] Commande `/generate-keywords` exécutée
+- [ ] Keywords techniques ajoutés dans `lib/search-index.ts`
+- [ ] Entrées article + article-headings dans search index
+- [ ] Recherche Cmd+K testée avec des termes techniques
 
 ---
 

@@ -6,11 +6,12 @@ Guide complet pour documenter et publier un nouveau guide pratique sur Koursorr.
 
 ## Vue d'Ensemble
 
-Ajouter un guide pratique implique 4 étapes principales :
+Ajouter un guide pratique implique 5 étapes principales :
 1. Créer la structure de fichiers
 2. Développer les sections du guide
 3. Ajouter le guide à la navigation
 4. Tester et valider
+5. Générer les keywords techniques de recherche
 
 ---
 
@@ -400,6 +401,43 @@ Vérifier :
 
 ---
 
+## Étape 5 : Générer les Keywords Techniques de Recherche
+
+### 5.1 Exécuter la commande generate-keywords
+
+Après avoir complété les étapes 1-4, exécuter la commande Claude Code :
+
+```
+/generate-keywords guide:{slug-du-guide}
+```
+
+Cette commande analyse en profondeur le contenu du guide (page.tsx, toutes les sections, README) et génère des keywords **exclusivement techniques** pour la recherche Cmd+K :
+- Noms d'API, fonctions, hooks, méthodes (ex: `useQuery`, `safeParse`, `generateStaticParams`)
+- Noms de librairies et outils (ex: "tanstack query", "valibot", "prisma")
+- Acronymes techniques (ex: SSR, RSC, ISR, CWV)
+- Concepts techniques FR/EN (ex: "rendu serveur" / "server rendering")
+- Patterns et design patterns (ex: "stale-while-revalidate", "optimistic update")
+
+### 5.2 Vérifier les keywords générés
+
+Après exécution, vérifier dans `lib/search-index.ts` :
+- Le guide principal a 7-15 keywords techniques
+- Chaque section a 5-12 keywords techniques
+- Les noms d'API/fonctions mentionnés dans le code sont tous présents
+- Les keywords incluent des termes FR et EN
+- Les acronymes pertinents sont présents
+- Aucun keyword ne duplique le titre
+
+### 5.3 Tester la recherche
+
+Lancer `npm run dev` et tester la recherche Cmd+K avec :
+- Un nom de fonction (ex: "useQuery", "safeParse")
+- Un acronyme (ex: "SSR", "RSC")
+- Un terme technique en français (ex: "rendu serveur")
+- Un nom de librairie (ex: "tanstack", "valibot")
+
+---
+
 ## Checklist Complète
 
 Avant de considérer votre guide de bonnes pratiques terminé :
@@ -421,7 +459,9 @@ Avant de considérer votre guide de bonnes pratiques terminé :
 - [ ] Guide ajouté à `app/page.tsx`
 - [ ] Guide ajouté à `app/guides/page.tsx`
 - [ ] Guide et sections ajoutés à `lib/search-index.ts`
-- [ ] Mots-clés pertinents ajoutés pour chaque item (acronymes, FR/EN, noms d'API)
+- [ ] Commande `/generate-keywords` exécutée
+- [ ] Keywords techniques vérifiés (noms d'API, fonctions, librairies, acronymes, FR/EN)
+- [ ] Recherche Cmd+K testée avec des termes techniques variés
 - [ ] Stats mises à jour (nombre de guides, sections)
 - [ ] Gradient et couleur cohérents
 
