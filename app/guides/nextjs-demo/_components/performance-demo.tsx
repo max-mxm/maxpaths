@@ -72,16 +72,17 @@ export function PerformanceDemo({
     }));
   }, []);
 
+  // Nouvelle palette : vermillon (lent) → citron (moyen) → émeraude (rapide)
   const getPerformanceColor = (time: number): string => {
-    if (time < 10) return 'text-green-600 dark:text-green-400';
-    if (time < 50) return 'text-orange-600 dark:text-orange-400';
+    if (time < 10) return 'text-emerald-600 dark:text-emerald-400';
+    if (time < 50) return 'text-yellow-600 dark:text-yellow-400';
     return 'text-red-600 dark:text-red-400';
   };
 
   const getBarColor = (time: number): string => {
-    if (time < 10) return 'bg-gradient-to-r from-green-500 to-green-600';
-    if (time < 50) return 'bg-gradient-to-r from-orange-500 to-orange-600';
-    return 'bg-gradient-to-r from-red-500 to-red-600';
+    if (time < 10) return 'bg-gradient-to-r from-emerald-500 to-green-600 shadow-lg shadow-emerald-500/30';
+    if (time < 50) return 'bg-gradient-to-r from-yellow-500 to-amber-500 shadow-lg shadow-yellow-500/30';
+    return 'bg-gradient-to-r from-red-500 to-orange-600 shadow-lg shadow-red-500/30';
   };
 
   const getBarWidth = (time: number, maxTime: number): number => {
@@ -98,41 +99,49 @@ export function PerformanceDemo({
       {/* Header */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h4 className="text-lg font-semibold text-foreground mb-1">
+          <h4 className="text-2xl font-black tracking-tight text-foreground mb-2">
             Comparateur de Performance
           </h4>
           <p className="text-sm text-foreground/70">
-            Comparez les temps de rendu entre differentes approches d&apos;optimisation
+            Comparez les temps de rendu entre différentes approches d&apos;optimisation
           </p>
         </div>
         <button
           onClick={handleRunTest}
-          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-2 shrink-0"
+          className="group relative px-6 py-3 bg-red-500 text-white rounded-xl font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/30 active:scale-95 flex items-center gap-2 shrink-0 animate-pulse-shadow"
         >
-          <Zap className="w-4 h-4" />
+          <Zap className="w-5 h-5 transition-transform duration-200 group-hover:rotate-12" strokeWidth={2.5} />
           Lancer le test
         </button>
       </div>
 
-      {/* Controles */}
+      {/* Contrôles */}
       <div className="flex flex-col sm:flex-row gap-3">
         {/* Toggle mode ralenti */}
         <button
           onClick={() => setSlowMode(!slowMode)}
-          className={`px-4 py-2 text-sm font-medium rounded-lg border transition-colors flex items-center gap-2 ${
+          onMouseEnter={(e) => {
+            if (!slowMode) {
+              e.currentTarget.classList.add('animate-wiggle');
+            }
+          }}
+          onAnimationEnd={(e) => {
+            e.currentTarget.classList.remove('animate-wiggle');
+          }}
+          className={`px-4 py-2.5 text-sm font-bold rounded-xl border-2 transition-all duration-200 flex items-center gap-2 ${
             slowMode
-              ? 'bg-primary/10 text-primary border-primary/30'
-              : 'text-muted-foreground border-border hover:bg-muted'
+              ? 'bg-red-500/20 text-red-700 dark:text-red-400 border-red-500/40 shadow-md shadow-red-500/20'
+              : 'text-foreground/70 border-border/50 hover:border-red-500/30 hover:text-red-600 hover:-translate-y-0.5'
           }`}
         >
-          <Gauge className="w-4 h-4" />
+          <Gauge className="w-4 h-4" strokeWidth={2.5} />
           Mode ralenti {slowMode ? 'actif' : 'inactif'}
         </button>
 
         {/* Slider nombre d'items */}
         {onItemCountChange && (
-          <div className="flex items-center gap-3 flex-1 px-3 py-2 bg-muted/50 rounded-lg border border-border">
-            <label className="text-sm font-medium text-foreground whitespace-nowrap">
+          <div className="flex items-center gap-4 flex-1 px-4 py-3 bg-muted/50 rounded-xl border-2 border-border/50 hover:border-red-500/20 transition-all duration-300 group">
+            <label className="text-sm font-bold text-foreground whitespace-nowrap">
               Items
             </label>
             <input
@@ -142,9 +151,9 @@ export function PerformanceDemo({
               step={10}
               value={itemCount}
               onChange={(e) => onItemCountChange(Number(e.target.value))}
-              className="flex-1 accent-primary"
+              className="flex-1 accent-red-500 cursor-pointer [&::-webkit-slider-thumb]:transition-transform [&::-webkit-slider-thumb]:duration-200 [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:active:scale-125"
             />
-            <span className="text-sm font-mono font-semibold text-primary min-w-[3ch] text-right">
+            <span className="text-base font-mono font-black text-red-600 dark:text-red-400 min-w-[3ch] text-right tabular-nums">
               {itemCount}
             </span>
           </div>
@@ -152,13 +161,13 @@ export function PerformanceDemo({
       </div>
 
       {slowMode && (
-        <p className="text-xs text-foreground/60 px-3 py-2 bg-muted/30 rounded-lg border border-border/50">
-          Le mode ralenti simule visuellement les differences de vitesse : les items apparaissent progressivement.
-          Plus la strategie est optimisee, plus les items apparaissent vite.
+        <p className="text-xs text-foreground/60 px-4 py-3 bg-yellow-500/10 rounded-xl border-2 border-yellow-500/20">
+          Le mode ralenti simule visuellement les différences de vitesse : les items apparaissent progressivement.
+          Plus la stratégie est optimisée, plus les items apparaissent vite.
         </p>
       )}
 
-      {/* Grille des scenarios avec composants reels */}
+      {/* Grille des scénarios avec composants réels */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {scenarios.map((scenario) => {
           const metric = metrics[scenario.name];
@@ -166,29 +175,29 @@ export function PerformanceDemo({
           return (
             <div
               key={scenario.name}
-              className="border border-border rounded-lg overflow-hidden bg-card"
+              className="border-2 border-border/50 rounded-xl overflow-hidden bg-card hover:border-red-500/30 hover:shadow-lg transition-all duration-300"
             >
-              {/* Header du scenario */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border/50 bg-muted/20">
+              {/* Header du scénario */}
+              <div className="flex items-center justify-between px-4 py-3 border-b-2 border-border/30 bg-muted/20">
                 <div className="flex-1">
-                  <h5 className="font-semibold text-foreground text-sm">
+                  <h5 className="font-bold text-foreground text-sm">
                     {scenario.name}
                   </h5>
                   {scenario.description && (
-                    <p className="text-xs text-foreground/60">
+                    <p className="text-xs text-foreground/60 mt-0.5">
                       {scenario.description}
                     </p>
                   )}
                 </div>
                 {metric && (
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-2">
                     {metric.renderTime < 20 ? (
-                      <TrendingDown className="w-3.5 h-3.5 text-green-500" />
+                      <TrendingDown className="w-4 h-4 text-emerald-500" strokeWidth={2.5} />
                     ) : (
-                      <TrendingUp className="w-3.5 h-3.5 text-red-500" />
+                      <TrendingUp className="w-4 h-4 text-red-500" strokeWidth={2.5} />
                     )}
                     <span
-                      className={`text-sm font-mono font-semibold ${getPerformanceColor(
+                      className={`text-base font-mono font-black tabular-nums ${getPerformanceColor(
                         metric.renderTime
                       )}`}
                     >
@@ -210,7 +219,7 @@ export function PerformanceDemo({
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center py-8 text-foreground/40">
-                    <Timer className="w-8 h-8 mb-2 opacity-50" />
+                    <Timer className="w-8 h-8 mb-2 opacity-50" strokeWidth={2} />
                     <p className="text-sm">Cliquez sur &quot;Lancer le test&quot;</p>
                   </div>
                 )}
@@ -222,45 +231,46 @@ export function PerformanceDemo({
 
       {/* Graphique comparatif */}
       {Object.keys(metrics).length > 1 && (
-        <div className="border border-border rounded-lg p-4 bg-card">
-          <h5 className="font-semibold text-foreground mb-4 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4" />
+        <div className="border-2 border-border/50 rounded-2xl p-6 bg-card">
+          <h5 className="text-xl font-black tracking-tight text-foreground mb-6 flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-red-500" strokeWidth={2.5} />
             Comparaison visuelle
           </h5>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {scenarios.map((scenario) => {
               const metric = metrics[scenario.name];
               if (!metric) return null;
 
               return (
-                <div key={scenario.name} className="space-y-1">
+                <div key={scenario.name} className="space-y-2">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-foreground font-medium">
+                    <span className="text-foreground font-bold">
                       {scenario.name}
                     </span>
                     <span
-                      className={`font-mono ${getPerformanceColor(
+                      className={`font-mono font-black text-base tabular-nums ${getPerformanceColor(
                         metric.renderTime
                       )}`}
                     >
                       {metric.renderTime.toFixed(1)} ms
                     </span>
                   </div>
-                  <div className="h-8 bg-muted rounded overflow-hidden flex items-center">
+                  <div className="h-10 bg-muted/50 rounded-xl overflow-hidden flex items-center border-2 border-border/30">
                     <div
-                      className={`h-full transition-all duration-700 ease-out flex items-center justify-end pr-2 ${getBarColor(
+                      className={`h-full flex items-center justify-end pr-3 ${getBarColor(
                         metric.renderTime
                       )}`}
                       style={{
                         width: animateResults
                           ? `${Math.max(getBarWidth(metric.renderTime, maxTime), 3)}%`
                           : '0%',
+                        transition: 'width 1000ms cubic-bezier(0.16, 1, 0.3, 1)',
                         transitionDelay: `${scenarios.indexOf(scenario) * 150}ms`,
                       }}
                     >
                       {animateResults &&
                         getBarWidth(metric.renderTime, maxTime) > 15 && (
-                          <span className="text-white text-xs font-bold">
+                          <span className="text-white text-sm font-black drop-shadow-md tabular-nums">
                             {metric.renderTime.toFixed(1)} ms
                           </span>
                         )}
@@ -271,23 +281,23 @@ export function PerformanceDemo({
             })}
           </div>
 
-          {/* Legende */}
-          <div className="mt-4 pt-4 border-t border-border">
-            <div className="flex flex-wrap gap-4 text-xs">
+          {/* Légende */}
+          <div className="mt-6 pt-6 border-t-2 border-border/30">
+            <div className="flex flex-wrap gap-6 text-xs">
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="text-foreground/70">
+                <div className="w-4 h-4 rounded-full bg-emerald-500 shadow-md shadow-emerald-500/30" />
+                <span className="text-foreground/70 font-semibold">
                   Excellent (&lt; 10ms)
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-orange-500" />
-                <span className="text-foreground/70">Acceptable (10-50ms)</span>
+                <div className="w-4 h-4 rounded-full bg-yellow-500 shadow-md shadow-yellow-500/30" />
+                <span className="text-foreground/70 font-semibold">Acceptable (10-50ms)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <span className="text-foreground/70">
-                  A optimiser (&gt; 50ms)
+                <div className="w-4 h-4 rounded-full bg-red-500 shadow-md shadow-red-500/30" />
+                <span className="text-foreground/70 font-semibold">
+                  À optimiser (&gt; 50ms)
                 </span>
               </div>
             </div>

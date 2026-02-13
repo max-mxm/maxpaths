@@ -89,14 +89,18 @@ export function RenderingTimeline({
               {/* Background track */}
               <div className="absolute inset-0 bg-muted/30 border-r border-border/20" />
 
-              {/* Filled portion */}
+              {/* Filled portion with glow */}
               <div
-                className={`absolute top-0 left-0 h-full ${phaseStyle.bg} transition-[width] duration-75 ease-linear`}
+                className={`absolute top-0 left-0 h-full ${phaseStyle.bg} shadow-lg ${phaseStyle.shadow} transition-[width] duration-75 ease-linear`}
                 style={{
                   width: `${fillPercent}%`,
-                  opacity: 0.85,
                 }}
-              />
+              >
+                {/* Glow overlay during animation */}
+                {isRunning && fillPercent > 0 && fillPercent < 100 && (
+                  <div className="absolute top-0 right-0 h-full w-4 bg-white/20 animate-glow-pulse" />
+                )}
+              </div>
 
               {/* Phase label */}
               {widthPercent > 6 && (

@@ -109,7 +109,7 @@ export function RenderingSimulator() {
       {/* Header + Controls */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h4 className="text-lg font-semibold text-foreground mb-1">
+          <h4 className="text-2xl font-black tracking-tight text-foreground mb-2">
             Simulateur de Rendering
           </h4>
           <p className="text-sm text-foreground/70">
@@ -120,18 +120,18 @@ export function RenderingSimulator() {
           {simulationState === 'completed' && (
             <button
               onClick={resetSimulation}
-              className="px-3 py-2 text-sm font-medium rounded-lg border border-border text-muted-foreground hover:bg-muted transition-colors flex items-center gap-2"
+              className="px-4 py-2.5 text-sm font-bold rounded-xl border-2 border-border/50 text-foreground/70 hover:border-purple-500/30 hover:text-purple-600 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
+              <RotateCcw className="w-4 h-4" strokeWidth={2.5} />
               Reset
             </button>
           )}
           <button
             onClick={startSimulation}
             disabled={isRunning}
-            className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2 shrink-0"
+            className="group relative px-6 py-3 bg-purple-600 text-white rounded-xl font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-2 shrink-0 animate-pulse-shadow-purple"
           >
-            <Play className="w-4 h-4" />
+            <Play className="w-5 h-5 transition-transform duration-200 group-hover:scale-110" strokeWidth={2.5} />
             {isRunning ? 'En cours...' : 'Lancer la simulation'}
           </button>
         </div>
@@ -140,23 +140,31 @@ export function RenderingSimulator() {
       {/* Settings */}
       <div className="flex flex-col sm:flex-row gap-3">
         {/* Network preset */}
-        <div className="flex items-center gap-2 px-3 py-2 bg-muted/50 rounded-lg border border-border">
+        <div className="flex items-center gap-3 px-4 py-3 bg-muted/50 rounded-xl border-2 border-border/50 hover:border-purple-500/20 transition-all duration-300">
           {networkPreset === 'fast' ? (
-            <Wifi className="w-4 h-4 text-muted-foreground" />
+            <Wifi className="w-5 h-5 text-emerald-600" strokeWidth={2.5} />
           ) : (
-            <WifiOff className="w-4 h-4 text-orange-500" />
+            <WifiOff className="w-5 h-5 text-orange-600" strokeWidth={2.5} />
           )}
-          <span className="text-sm font-medium text-foreground">Reseau</span>
-          <div className="flex gap-1">
+          <span className="text-sm font-bold text-foreground whitespace-nowrap">Réseau</span>
+          <div className="flex gap-2">
             {NETWORK_PRESETS.map((preset) => (
               <button
                 key={preset.id}
                 onClick={() => setNetworkPreset(preset.id)}
                 disabled={isRunning}
-                className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+                onMouseEnter={(e) => {
+                  if (networkPreset !== preset.id && !isRunning) {
+                    e.currentTarget.classList.add('animate-wiggle');
+                  }
+                }}
+                onAnimationEnd={(e) => {
+                  e.currentTarget.classList.remove('animate-wiggle');
+                }}
+                className={`px-3 py-1.5 text-xs font-bold rounded-lg border-2 transition-all duration-200 ${
                   networkPreset === preset.id
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:bg-muted'
+                    ? 'bg-purple-600 text-white border-purple-600 shadow-md shadow-purple-500/30'
+                    : 'text-foreground/70 border-border/50 hover:border-purple-500/30 hover:text-purple-600'
                 } ${isRunning ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 {preset.label}
@@ -169,10 +177,18 @@ export function RenderingSimulator() {
         <button
           onClick={() => setIsrCacheHit(!isrCacheHit)}
           disabled={isRunning}
-          className={`px-3 py-2 text-sm font-medium rounded-lg border transition-colors flex items-center gap-2 ${
+          onMouseEnter={(e) => {
+            if (!isRunning) {
+              e.currentTarget.classList.add('animate-wiggle');
+            }
+          }}
+          onAnimationEnd={(e) => {
+            e.currentTarget.classList.remove('animate-wiggle');
+          }}
+          className={`px-4 py-2.5 text-sm font-bold rounded-xl border-2 transition-all duration-200 flex items-center gap-2 ${
             isrCacheHit
-              ? 'text-muted-foreground border-border hover:bg-muted'
-              : 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/30'
+              ? 'text-foreground/70 border-border/50 hover:border-purple-500/30 hover:text-purple-600 hover:-translate-y-0.5'
+              : 'bg-orange-500/20 text-orange-700 dark:text-orange-400 border-orange-500/40 shadow-md shadow-orange-500/20'
           } ${isRunning ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
           ISR : Cache {isrCacheHit ? 'HIT' : 'MISS'}
@@ -181,7 +197,7 @@ export function RenderingSimulator() {
 
       {/* Time scale */}
       {(isRunning || hasCompleted) && (
-        <div className="flex items-center justify-between text-[10px] font-mono text-muted-foreground px-1">
+        <div className="flex items-center justify-between text-[11px] font-mono font-bold text-muted-foreground px-1 tabular-nums">
           <span>0ms</span>
           <span>{Math.round(maxDuration * 0.25)}ms</span>
           <span>{Math.round(maxDuration * 0.5)}ms</span>
@@ -215,22 +231,22 @@ export function RenderingSimulator() {
 
       {/* Phase legend */}
       {(isRunning || hasCompleted) && (
-        <div className="flex flex-wrap gap-3 text-xs pt-2">
+        <div className="flex flex-wrap gap-4 text-xs pt-4 border-t-2 border-border/30">
           {(Object.entries(PHASE_COLORS) as [PhaseType, (typeof PHASE_COLORS)[PhaseType]][])
             .filter(([key]) => key !== 'idle')
             .map(([key, config]) => (
-              <div key={key} className="flex items-center gap-1.5">
-                <div className={`w-3 h-3 rounded-sm ${config.bg}`} />
-                <span className="text-muted-foreground">{config.label}</span>
+              <div key={key} className="flex items-center gap-2">
+                <div className={`w-4 h-4 rounded-md ${config.bg} shadow-md ${config.shadow}`} />
+                <span className="text-foreground/70 font-semibold">{config.label}</span>
               </div>
             ))}
-          <div className="flex items-center gap-1.5 ml-2 pl-2 border-l border-border">
-            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span className="text-muted-foreground">FCP</span>
+          <div className="flex items-center gap-2 ml-2 pl-4 border-l-2 border-border/50">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-md shadow-emerald-500/50" />
+            <span className="text-foreground/70 font-semibold">FCP</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-            <span className="text-muted-foreground">LCP</span>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-blue-500 shadow-md shadow-blue-500/50" />
+            <span className="text-foreground/70 font-semibold">LCP</span>
           </div>
         </div>
       )}

@@ -59,35 +59,41 @@ export const NETWORK_PRESETS: NetworkPreset[] = [
   },
 ];
 
-export const PHASE_COLORS: Record<PhaseType, { bg: string; text: string; label: string }> = {
+export const PHASE_COLORS: Record<PhaseType, { bg: string; text: string; label: string; shadow: string }> = {
   server: {
-    bg: 'bg-blue-500',
-    text: 'text-blue-700 dark:text-blue-300',
+    bg: 'bg-purple-600',
+    text: 'text-purple-100',
+    shadow: 'shadow-purple-500/50',
     label: 'Serveur',
   },
   network: {
-    bg: 'bg-slate-400 dark:bg-slate-500',
-    text: 'text-slate-600 dark:text-slate-300',
+    bg: 'bg-pink-600',
+    text: 'text-pink-100',
+    shadow: 'shadow-pink-500/50',
     label: 'Reseau',
   },
   client: {
-    bg: 'bg-emerald-500',
-    text: 'text-emerald-700 dark:text-emerald-300',
+    bg: 'bg-indigo-600',
+    text: 'text-indigo-100',
+    shadow: 'shadow-indigo-500/50',
     label: 'Client (parse/render)',
   },
   hydration: {
-    bg: 'bg-violet-500',
-    text: 'text-violet-700 dark:text-violet-300',
+    bg: 'bg-violet-600',
+    text: 'text-violet-100',
+    shadow: 'shadow-violet-500/50',
     label: 'Hydration',
   },
   fetch: {
-    bg: 'bg-orange-500',
-    text: 'text-orange-700 dark:text-orange-300',
+    bg: 'bg-fuchsia-600',
+    text: 'text-fuchsia-100',
+    shadow: 'shadow-fuchsia-500/50',
     label: 'Fetch API (client)',
   },
   idle: {
-    bg: 'bg-gray-200 dark:bg-gray-700',
-    text: 'text-gray-500 dark:text-gray-400',
+    bg: 'bg-slate-300 dark:bg-slate-700',
+    text: 'text-slate-500 dark:text-slate-400',
+    shadow: 'shadow-slate-500/20',
     label: 'Attente',
   },
 };

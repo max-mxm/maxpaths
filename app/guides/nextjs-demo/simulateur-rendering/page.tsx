@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Activity, BookOpen } from 'lucide-react';
+import { ArrowLeft, Activity, BookOpen, ArrowRight } from 'lucide-react';
 import { CodeBlock } from '@/components/course/code-block';
+import { AnimatedSection } from '@/components/ui/animated-section';
 import { RenderingSimulator } from '../_components/rendering-simulator';
 import { RENDERING_CODE_TABS } from '../_constants/rendering-code-tabs';
 
@@ -11,112 +12,138 @@ export default function SimulateurRenderingPage() {
   const [activeCodeTab, setActiveCodeTab] = useState('ssr');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-      <div className="container max-w-5xl py-8 md:py-12 space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50/20 to-slate-50 dark:from-slate-950 dark:via-purple-950/50 dark:to-indigo-950">
+      <div className="container max-w-6xl py-12 md:py-16 space-y-10">
+
         {/* Navigation retour */}
-        <Link
-          href="/guides/nextjs-demo#comparison"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Retour au guide Next.js 16
-        </Link>
+        <AnimatedSection delay={0}>
+          <Link
+            href="/guides/nextjs-demo#comparison"
+            className="inline-flex items-center gap-2 text-sm font-medium text-foreground/70 hover:text-purple-600 transition-colors duration-200"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Retour au guide Next.js 16
+          </Link>
+        </AnimatedSection>
 
         {/* Header */}
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
-              Modes de Rendu
-            </span>
-            <span className="rounded-md bg-blue-500/15 px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide text-blue-600 dark:text-blue-400">
-              Interactif
-            </span>
-          </div>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight">
-            SSR, SSG, ISR, CSR et Streaming compares en temps reel
-          </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
-            Visualisez les differences entre les 5 modes de rendering Next.js sur un scenario
-            de page produit e-commerce. Observez comment chaque mode charge, affiche et rend
-            interactive la meme page.
-          </p>
+        <div className="space-y-6">
+          <AnimatedSection delay={100}>
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-indigo-600 dark:text-indigo-400">
+                Modes de Rendu
+              </span>
+              <span className="rounded-full bg-purple-600 px-3 py-1.5 text-[10px] font-black uppercase tracking-wider text-white shadow-lg shadow-purple-500/50">
+                Interactif
+              </span>
+            </div>
+          </AnimatedSection>
 
-          {/* Callout simulation */}
-          <div className="flex items-start gap-3 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 max-w-3xl">
-            <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500/20">
-              <Activity className="h-3 w-3 text-blue-600 dark:text-blue-400" />
-            </div>
-            <div className="space-y-1">
-              <p className="text-sm font-semibold text-blue-700 dark:text-blue-400">
-                Simulation pedagogique basee sur des donnees de reference
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Les timings affiches illustrent les proportions relatives entre les modes de rendering,
-                bases sur des benchmarks documentes (Vercel, Core Web Vitals).
-                Les performances reelles varient selon l&apos;infrastructure et la configuration.
-              </p>
+          <AnimatedSection delay={200} variant="scale">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.95] bg-gradient-to-br from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              SSR, SSG, ISR, CSR et Streaming comparés en temps réel
+            </h1>
+          </AnimatedSection>
+
+          <AnimatedSection delay={300}>
+            <p className="text-lg md:text-xl text-foreground/70 leading-relaxed max-w-4xl">
+              Visualisez les différences entre les 5 modes de rendering Next.js sur un scénario
+              de page produit e-commerce. Observez comment chaque mode charge, affiche et rend
+              interactive la même page.
+            </p>
+          </AnimatedSection>
+        </div>
+
+        {/* Callout simulation */}
+        <AnimatedSection delay={400}>
+          <div className="relative overflow-hidden rounded-2xl border-2 border-indigo-400/30 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 p-6 max-w-4xl dark:border-indigo-400/20">
+            <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-purple-500/10 blur-3xl animate-glow-pulse" />
+            <div className="relative flex items-start gap-4">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-purple-600 shadow-lg shadow-purple-500/30">
+                <Activity className="h-6 w-6 text-white" strokeWidth={2.5} />
+              </div>
+              <div className="space-y-2">
+                <p className="text-lg font-black text-indigo-700 dark:text-indigo-400">
+                  Simulation pédagogique basée sur des données de référence
+                </p>
+                <p className="text-sm text-foreground/70 leading-relaxed">
+                  Les timings affichés illustrent les proportions relatives entre les modes de rendering,
+                  basés sur des benchmarks documentés (Vercel, Core Web Vitals).
+                  Les performances réelles varient selon l&apos;infrastructure et la configuration.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </AnimatedSection>
 
         {/* Simulateur */}
-        <div className="rounded-2xl bg-white/50 p-6 shadow-lg shadow-slate-200/50 backdrop-blur-sm md:p-8 dark:bg-slate-900/50 dark:shadow-slate-950/50 space-y-8">
-          <RenderingSimulator />
+        <AnimatedSection delay={500}>
+          <div className="rounded-3xl bg-white border-2 border-purple-500/20 shadow-2xl shadow-purple-500/10 p-6 md:p-8 space-y-8 dark:bg-slate-900 dark:border-purple-400/30 dark:shadow-purple-500/20">
+            <RenderingSimulator />
 
-          {/* Onglets code source */}
-          <div className="border-t border-border pt-6">
-            <h3 className="font-semibold text-foreground mb-4">
-              Code Next.js de chaque mode
-            </h3>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {RENDERING_CODE_TABS.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveCodeTab(tab.id)}
-                  className={`px-3 py-1.5 text-sm font-medium rounded-lg border transition-colors ${
-                    activeCodeTab === tab.id
-                      ? 'bg-primary/10 text-primary border-primary/20'
-                      : 'text-muted-foreground border-border/50 hover:bg-muted'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-            {RENDERING_CODE_TABS.map((tab) =>
-              activeCodeTab === tab.id ? (
-                <CodeBlock
-                  key={tab.id}
-                  code={tab.code}
-                  language="typescript"
-                  filename={tab.filename}
-                  category="rendering"
-                />
-              ) : null
-            )}
-          </div>
-        </div>
-
-        {/* CTA vers la theorie */}
-        <Link
-          href="/guides/nextjs-demo#comparison"
-          className="group block rounded-2xl bg-white/50 p-6 shadow-lg shadow-slate-200/50 backdrop-blur-sm dark:bg-slate-900/50 dark:shadow-slate-950/50 border border-border/50 hover:border-primary/30 hover:shadow-xl transition-all duration-300"
-        >
-          <div className="flex items-center justify-between">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-primary" />
-                <h3 className="text-lg font-semibold text-foreground">
-                  Lire la comparaison detaillee des modes de rendering
-                </h3>
+            {/* Onglets code source */}
+            <div className="border-t-2 border-purple-500/20 pt-8 dark:border-purple-400/20">
+              <h3 className="text-2xl font-black tracking-tight text-foreground mb-6">
+                Code Next.js de chaque mode
+              </h3>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {RENDERING_CODE_TABS.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveCodeTab(tab.id)}
+                    className={`relative px-4 py-2.5 text-sm font-semibold rounded-xl border-2 transition-all duration-200 ${
+                      activeCodeTab === tab.id
+                        ? 'bg-purple-600 text-white border-purple-600 shadow-lg shadow-purple-500/30'
+                        : 'text-foreground/70 border-border/50 hover:border-purple-500/30 hover:text-purple-600 hover:-translate-y-0.5'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
-              <p className="text-sm text-muted-foreground">
-                Avantages, inconvenients et cas d&apos;usage de chaque mode dans le guide complet.
-              </p>
+              {RENDERING_CODE_TABS.map((tab) =>
+                activeCodeTab === tab.id ? (
+                  <CodeBlock
+                    key={tab.id}
+                    code={tab.code}
+                    language="typescript"
+                    filename={tab.filename}
+                    category="rendering"
+                  />
+                ) : null
+              )}
             </div>
-            <ArrowLeft className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:-translate-x-1 transition-all" />
           </div>
-        </Link>
+        </AnimatedSection>
+
+        {/* CTA vers la théorie */}
+        <AnimatedSection delay={600}>
+          <Link
+            href="/guides/nextjs-demo#comparison"
+            className="group relative block overflow-hidden rounded-3xl border-2 border-purple-500/30 bg-gradient-to-br from-purple-50 to-pink-50 p-8 transition-all duration-500 hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/20 hover:-translate-y-1 dark:from-slate-900 dark:to-purple-950/30 dark:border-purple-400/30"
+          >
+            <div className="relative z-10 flex items-center justify-between gap-6">
+              <div className="space-y-3">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-600 shadow-lg shadow-purple-500/30 transition-transform duration-300 group-hover:scale-110">
+                    <BookOpen className="h-6 w-6 text-white" strokeWidth={2.5} />
+                  </div>
+                  <span className="text-2xl font-black text-foreground">
+                    Retour à la théorie
+                  </span>
+                </div>
+                <p className="text-base text-foreground/70 pl-16">
+                  Avantages, inconvénients et cas d&apos;usage de chaque mode dans le guide complet
+                </p>
+              </div>
+              <ArrowRight className="h-8 w-8 flex-shrink-0 text-purple-600 transition-transform duration-300 group-hover:translate-x-2" strokeWidth={2.5} />
+            </div>
+
+            {/* Glow effect on hover */}
+            <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-purple-500/20 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          </Link>
+        </AnimatedSection>
+
       </div>
     </div>
   );
