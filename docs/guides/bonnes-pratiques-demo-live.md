@@ -201,7 +201,7 @@ Ajouter l'entree dans le tableau `DEMOS` :
 const DEMOS: LandingDemoItem[] = [
   {
     href: '/guides/[parent]/simulateur-[nom]',
-    title: 'Titre de la demo',
+    title: 'Titre aguicheur de la demo',
     description: 'Description concise...',
     tags: ['Tag1', 'Tag2', 'Tag3'],
     accentColor: 'rgb(249, 115, 22)',
@@ -214,13 +214,85 @@ const DEMOS: LandingDemoItem[] = [
 ];
 ```
 
-### 2. Landing Page
+#### Titre aguicheur (champ `title`)
 
-La demo apparaitra automatiquement dans la section "Testez en direct" via `getDemosForLanding()`.
+Le champ `title` dans le tableau `DEMOS` est celui affiche sur la page d'accueil. Il doit etre **concu pour donner envie de cliquer** et est distinct du titre technique de la page de demo.
+
+**Regles pour un titre efficace :**
+- Mettre en avant les technologies cles (React.memo, SSR, useMemo...)
+- Utiliser un verbe d'action ou une invitation ("teste en direct", "compare en live", "mesure maintenant")
+- Rester concis : 5-8 mots maximum
+- Ne pas utiliser le mot "guide" ou "cours"
+
+**Les 3 titres d'une demo :**
+
+| Emplacement | Champ | Style | Exemple |
+|-------------|-------|-------|---------|
+| Page d'accueil | `DEMOS[].title` dans `lib/content.ts` | Court, descriptif | "Simulateur de performance React" |
+| Page catalogue | `courses[].title` dans `app/guides/page.tsx` | Aguicheur, incite a l'action | "useMemo, useCallback et React.memo teste en live" |
+| Page demo (h1) | h1 dans la page `simulateur-*/page.tsx` | Technique, precis | "useMemo, useCallback et React.memo teste en live" |
+
+**Mauvais exemples :**
+- "Demo de test" -- trop generique
+- "Simulateur" -- pas assez descriptif
+- "Guide interactif React" -- le mot "guide" prete a confusion
+
+**Bons exemples :**
+- "Simulateur de performance React" -- technologie + concept
+- "Comparateur de modes de rendering" -- action + sujet technique
+- "Benchmark live : React.memo vs useMemo" -- action + comparaison technique
+
+### 2. Landing Page (Carte de Demo)
+
+La demo apparait automatiquement dans la section "Testez en direct" de la page d'accueil (`app/page.tsx`) via `getDemosForLanding()`.
+
+**Regle de coherence** : Chaque demo utilise le composant partage `DemoCard` de `components/demo-card.tsx`. Ne jamais creer de carte custom pour une demo individuelle.
+
+Le rendu est automatique :
+```tsx
+// app/page.tsx
+{demos.map((demo, index) => (
+  <RevealOnScroll key={demo.href} delay={index * 80}>
+    <DemoCard {...demo} />
+  </RevealOnScroll>
+))}
+```
+
+Les props de `DemoCard` proviennent directement de l'entree `DEMOS` dans `lib/content.ts`. Le composant adapte ses couleurs (badge, icone, barre d'accent) selon `gradientFrom` :
+- `from-orange-500` : badge et icone orange
+- `from-blue-500` : badge et icone bleu
+- Autre : fallback vers `text-primary`
+
+Si une nouvelle palette de couleur est necessaire, etendre la logique conditionnelle dans `components/demo-card.tsx`.
 
 ### 3. Lien dans le Guide Parent
 
-Ajouter un CTA prominent dans la section la plus pertinente du guide parent :
+#### Trouver l'emplacement ideal
+
+Avant de placer le CTA, parcourir systematiquement les sections du guide parent pour identifier la section qui traite de la **theorie correspondante** a ce que la demo permet de tester.
+
+**Methode de selection :**
+1. Lister toutes les sections du guide parent (fichier `page.tsx` du guide)
+2. Identifier la ou les sections dont le contenu theorique est directement illustre par la demo
+3. Privilegier la section qui introduit le concept principal de la demo (pas la conclusion ni l'introduction)
+4. Si plusieurs sections sont pertinentes, placer le CTA dans la **premiere section pertinente** (chronologiquement dans le guide) et ajouter un lien secondaire dans les sections suivantes
+
+**Demander confirmation a l'utilisateur** sur l'emplacement choisi avant d'inserer le CTA. Presenter :
+- Le nom de la section selectionnee et son ID
+- La justification (pourquoi cette section est la plus pertinente)
+- Les alternatives eventuelles
+
+**Exemples existants de placements :**
+
+| Demo | Guide parent | Section du CTA | Justification |
+|------|-------------|----------------|---------------|
+| Simulateur Performance | react-memoization | `comparaison-complete` | Apres la comparaison theorique, la demo permet de tester en vrai |
+| Simulateur Performance | nextjs-demo | `frontend-performance` | La section traite des optimisations frontend, la demo les mesure |
+| Comparateur Rendering | nextjs-demo | `comparison` | La section compare les modes de rendu, la demo les visualise |
+
+#### Code du CTA
+
+Ajouter un CTA prominent dans la section selectionnee :
 
 ```tsx
 <Link
@@ -247,7 +319,95 @@ Ajouter un CTA prominent dans la section la plus pertinente du guide parent :
 </Link>
 ```
 
-### 4. Generer les Keywords Techniques de Recherche
+### 4. Page Catalogue des Guides (`app/guides/page.tsx`)
+
+La page catalogue liste les demos et guides dans un tableau `courses` en dur. Pour chaque nouvelle demo, ajouter une entree :
+
+```ts
+// app/guides/page.tsx
+{
+  id: '[parent]/simulateur-[nom]',
+  title: 'Titre aguicheur pour le catalogue',  // Engageant, incite a l'action
+  description: 'Description engageante...',
+  icon: Timer,  // ou icone Lucide pertinente
+  tags: ['Tag1', 'Tag2', 'Interactif'],
+  level: 'Tous niveaux',
+  duration: '10min',
+  gradient: 'from-orange-500 to-amber-500',
+  color: 'rgb(249, 115, 22)',
+  ribbon: 'Interactif'   // <-- Active le badge "Live" anime
+}
+```
+
+#### Le badge "Live" anime
+
+La propriete `ribbon` declenche l'affichage d'un badge orange avec point anime en haut a droite de la carte :
+
+```tsx
+{course.ribbon && (
+  <div className="absolute right-4 top-4 z-10">
+    <span className="inline-flex items-center gap-1 rounded-full bg-orange-500 px-2.5 py-1 text-[11px] font-semibold text-white shadow-sm">
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+      </span>
+      Live
+    </span>
+  </div>
+)}
+```
+
+**Valeurs de `ribbon` utilisees :**
+- `'Interactif'` : pour les demos standalone (ex: simulateur-performance)
+- `'Testez en direct'` : pour les guides qui contiennent des demos liees (ex: nextjs-demo)
+
+Le texte affiche dans le badge est toujours "Live" (hardcode dans le JSX), la valeur de `ribbon` sert de `title` accessible au survol.
+
+### 5. Badge dans la Sidebar du Guide Parent
+
+Le composant `CourseLayout` (`components/course/course-layout.tsx`) supporte un champ `badge` sur chaque section. Utiliser ce champ pour signaler dans la sidebar que la section contient un lien vers la demo.
+
+#### Ajouter le badge a la section du guide parent
+
+Dans le fichier `page.tsx` du guide parent, ajouter `badge: 'LIVE'` a la section qui contient le CTA vers la demo :
+
+```tsx
+// app/guides/[parent]/page.tsx
+{
+  id: 'comparaison-complete',
+  title: 'Comparaison Complete des Trois',
+  icon: <Table2 className="w-4 h-4 flex-shrink-0" />,
+  category: 'best-practices' as const,
+  badge: 'LIVE',  // <-- Signale la demo dans la sidebar
+  component: <ComparaisonCompleteSection />,
+},
+```
+
+#### Rendu automatique dans la sidebar
+
+Le badge s'affiche automatiquement a deux endroits :
+
+**Sidebar desktop** (pilule orange a droite du titre de section) :
+```tsx
+{section.badge && (
+  <span className="shrink-0 rounded-md bg-orange-500/15 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-orange-600 dark:text-orange-400">
+    {section.badge}
+  </span>
+)}
+```
+
+**Header de section** (pilule orange a droite du titre h2) :
+```tsx
+{section.badge && (
+  <span className="rounded-lg bg-orange-500/15 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-orange-600 dark:text-orange-400">
+    {section.badge}
+  </span>
+)}
+```
+
+Ce badge permet a l'utilisateur de reperer rapidement depuis la sidebar quelle section du guide donne acces a la demo interactive.
+
+### 6. Generer les Keywords Techniques de Recherche
 
 Apres avoir ajoute la demo a `lib/content.ts` et au guide parent, executer :
 
@@ -288,7 +448,12 @@ Les keywords seront ajoutes dans `lib/search-index.ts`.
 
 ### Navigation & Recherche
 - [ ] Entree dans le tableau `DEMOS` de `lib/content.ts`
+- [ ] Titre landing aguicheur et distinct du titre technique de la page
+- [ ] Carte landing coherente avec les autres (composant `DemoCard` partage, palette supportee)
+- [ ] Entree dans le tableau `courses` de `app/guides/page.tsx` avec `ribbon` pour badge "Live"
+- [ ] Emplacement du CTA dans le guide parent valide par l'utilisateur
 - [ ] CTA dans le guide parent (section pertinente)
+- [ ] Badge `'LIVE'` ajoute a la section du guide parent dans `CourseLayout`
 - [ ] Liens fonctionnels (demo -> guide, guide -> demo)
 - [ ] Commande `/generate-keywords` executee
 - [ ] Keywords techniques ajoutes dans `lib/search-index.ts` (noms d'API, fonctions benchmarkees, metriques)
@@ -330,6 +495,20 @@ Les keywords seront ajoutes dans `lib/search-index.ts`.
 - La demo doit etre decouvrable depuis le guide parent
 - Placer le CTA dans la section la plus pertinente (apres la theorie correspondante)
 - Utiliser le design de CTA standard (gradient subtil + badge INTERACTIF)
+
+### 6. Carte Custom sur la Landing Page
+- Toujours utiliser le composant partage `DemoCard` de `components/demo-card.tsx`
+- Ne jamais creer de composant de carte specifique a une demo
+- Verifier que `gradientFrom` correspond a une palette geree par `DemoCard` (orange ou bleu)
+
+### 7. Oubli du Badge "Live" sur le Catalogue
+- Ajouter systematiquement `ribbon: 'Interactif'` dans le tableau `courses` de `app/guides/page.tsx`
+- Sans le `ribbon`, la demo n'est pas visuellement distinguee des guides dans le catalogue
+
+### 8. Titre Generique ou Identique Partout
+- Le titre dans `DEMOS` (landing) doit etre different du titre de la page de demo
+- Eviter les titres generiques ("Demo", "Test", "Simulateur" seul)
+- Mettre en avant la technologie et l'action dans chaque titre
 
 ---
 

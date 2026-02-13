@@ -32,7 +32,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Schemas, inference de types, validation de formulaires et d\'API. De la validation basique aux patterns de production.',
     href: '/guides/zod-validation',
     tags: ['Zod', 'TypeScript', 'Validation'],
-    keywords: ['schema', 'parse', 'safeParse', 'validation donnees', 'type-safe', 'formulaire', 'api'],
+    keywords: ['schema', 'parse', 'safeParse', 'z.object', 'z.string', 'z.infer', 'z.enum', 'runtime validation', 'type inference', 'type erasure', 'validation donnees', 'type-safe', 'formulaire', 'api'],
   },
   {
     type: 'guide-section',
@@ -40,7 +40,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#introduction',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['pourquoi zod', 'installation', 'decouverte', 'runtime validation'],
+    keywords: ['pourquoi zod', 'installation', 'type erasure', 'tsc', 'runtime validation'],
   },
   {
     type: 'guide-section',
@@ -48,7 +48,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#primitive-schemas',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['z.string', 'z.number', 'z.boolean', 'z.date', 'primitives', 'types de base'],
+    keywords: ['z.string', 'z.number', 'z.boolean', 'z.date', 'z.literal', 'z.coerce', '.email', '.url', '.uuid', '.optional', '.nullable', 'z.enum'],
   },
   {
     type: 'guide-section',
@@ -56,7 +56,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#parse-errors',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['safeParse', 'ZodError', 'gestion erreurs', 'error handling', 'try catch', 'validation erreur'],
+    keywords: ['.parse', '.parseAsync', 'safeParse', 'ZodError', 'flatten', 'format', '.issues', 'ZodIssueCode', 'setErrorMap', 'error handling'],
   },
   {
     type: 'guide-section',
@@ -64,7 +64,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#complex-types',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['z.object', 'z.array', 'z.record', 'z.tuple', 'types complexes', 'nested', 'imbrique'],
+    keywords: ['z.object', 'z.array', 'z.record', 'z.tuple', 'z.union', 'z.discriminatedUnion', 'z.intersection', 'z.nativeEnum', '.strict', '.passthrough', '.catchall'],
   },
   {
     type: 'guide-section',
@@ -72,7 +72,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#composable-schemas',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['merge', 'extend', 'pick', 'omit', 'partial', 'composition', 'reutilisation'],
+    keywords: ['merge', 'extend', 'pick', 'omit', 'partial', '.required', 'z.input', 'z.output', 'standard schema', '.deepPartial'],
   },
   {
     type: 'guide-section',
@@ -80,7 +80,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#transforms-refinements',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['transform', 'refine', 'superRefine', 'pipe', 'preprocessing', 'coercion', 'transformation'],
+    keywords: ['transform', 'refine', 'superRefine', 'pipe', 'z.preprocess', 'z.coerce', 'z.custom', 'z.brand', 'preprocessing', 'coercion'],
   },
   {
     type: 'guide-section',
@@ -88,7 +88,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#performance-bundle',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['bundle size', 'taille bundle', 'valibot', 'yup', 'joi', 'alternatives', 'tree-shaking', 'performance'],
+    keywords: ['bundle size', 'valibot', 'yup', 'joi', 'arktype', 'io-ts', 'superstruct', 'tree-shaking', 'ops/sec', 'gzipped'],
   },
   {
     type: 'guide-section',
@@ -96,7 +96,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#env-validation',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['env', 'process.env', 'variables environnement', 't3-env', 'configuration', 'dotenv'],
+    keywords: ['env', 'process.env', 't3-env', 'createEnv', '@t3-oss/env-nextjs', 'NEXT_PUBLIC_', 'NODE_ENV', 'dotenv', 'configuration'],
   },
   {
     type: 'guide-section',
@@ -104,7 +104,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#form-validation',
     tags: ['Zod', 'React Hook Form'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['react-hook-form', 'formulaire', 'form', 'zodResolver', 'useForm', 'validation formulaire'],
+    keywords: ['react-hook-form', 'zodResolver', 'useForm', 'register', 'handleSubmit', 'useFieldArray', 'formState', 'formulaire'],
   },
   {
     type: 'guide-section',
@@ -112,7 +112,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#server-actions',
     tags: ['Zod', 'Next.js'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['server action', 'validation serveur', 'useActionState', 'formulaire serveur', 'next.js actions'],
+    keywords: ['server action', 'useActionState', 'FormData', 'use server', 'NextRequest', 'NextResponse', 'validation serveur', 'next.js actions'],
   },
   {
     type: 'guide-section',
@@ -120,7 +120,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#api-validation',
     tags: ['Zod', 'API'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['api route', 'route handler', 'validation requete', 'request validation', 'response validation', 'endpoint'],
+    keywords: ['api route', 'route handler', 'tRPC', 'json schema', 'toJSONSchema', 'request validation', 'response validation', 'endpoint'],
   },
   {
     type: 'guide-section',
@@ -128,7 +128,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#advanced-patterns',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['discriminated union', 'recursive', 'branded types', 'generiques', 'patterns avances'],
+    keywords: ['discriminated union', 'recursive', 'branded types', 'z.lazy', 'state machine', 'generic factory', 'generiques'],
   },
   {
     type: 'guide-section',
@@ -136,7 +136,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/zod-validation#ecosystem-v4',
     tags: ['Zod'],
     parentTitle: 'Zod -- Validation TypeScript-first',
-    keywords: ['zod v4', 'migration', 'tRPC', 'drizzle', 'prisma', 'ecosysteme', 'librairies'],
+    keywords: ['zod v4', 'migration', 'tRPC', 'drizzle', 'prisma', 'zod-form-data', 'zod-i18n-map', 'standard schema', '@hookform/resolvers'],
   },
 
   // ==========================================================================
@@ -148,7 +148,19 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Comparez 4 strategies d\'optimisation React avec des mesures reelles de temps de rendu.',
     href: '/guides/nextjs-demo/simulateur-performance',
     tags: ['React', 'Performance', 'Interactif'],
-    keywords: ['memoisation', 'memo', 'useMemo', 'useCallback', 'React.memo', 'benchmark', 'simulateur', 'rendu', 'render time'],
+    keywords: ['memoisation', 'memo', 'useMemo', 'useCallback', 'React.memo', 'benchmark', 'simulateur', 'render time', 'performance.now', 'benchmark live'],
+  },
+
+  // ==========================================================================
+  // DEMO : Comparateur de modes de rendering
+  // ==========================================================================
+  {
+    type: 'guide',
+    title: 'SSR, SSG, ISR, CSR et Streaming compares en temps reel',
+    description: 'Visualisez les differences entre les 5 modes de rendering Next.js. Timelines animees et metriques Core Web Vitals.',
+    href: '/guides/nextjs-demo/simulateur-rendering',
+    tags: ['Next.js', 'Rendering', 'Interactif'],
+    keywords: ['ssr', 'ssg', 'isr', 'csr', 'streaming', 'core web vitals', 'ttfb', 'lcp', 'fcp', 'tti', 'simulateur', 'timeline'],
   },
 
   // ==========================================================================
@@ -160,7 +172,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Query, Router, Table, Virtual, Form, Store et Pacer. Du data fetching a l\'architecture de production.',
     href: '/guides/tanstack-react',
     tags: ['TanStack Query', 'TanStack Router', 'React'],
-    keywords: ['react query', 'data fetching', 'cache', 'mutation', 'table', 'virtualisation', 'formulaire'],
+    keywords: ['react query', 'data fetching', 'cache', 'useQuery', 'useMutation', 'queryClient', 'headless', 'type-safe', 'staleTime', 'server state'],
   },
   {
     type: 'guide-section',
@@ -168,7 +180,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#introduction',
     tags: ['TanStack'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['tanstack', 'presentation', 'vue ensemble', 'librairies'],
+    keywords: ['tanstack', 'server state', 'client state', 'race condition', 'deduplication', 'framework-agnostic'],
   },
   {
     type: 'guide-section',
@@ -176,7 +188,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#query-basics',
     tags: ['TanStack Query'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['useQuery', 'queryClient', 'queryKey', 'data fetching', 'requete', 'cache', 'staleTime'],
+    keywords: ['useQuery', 'queryClient', 'queryKey', 'staleTime', 'gcTime', 'retry', 'refetchOnWindowFocus', 'isLoading', 'isFetching', 'isError', 'query function'],
   },
   {
     type: 'guide-section',
@@ -184,7 +196,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#query-advanced',
     tags: ['TanStack Query'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['useInfiniteQuery', 'prefetch', 'pagination', 'parallel queries', 'dependent queries', 'select'],
+    keywords: ['useInfiniteQuery', 'prefetch', 'pagination', 'parallel queries', 'dependent queries', 'select', 'placeholderData', 'initialData', 'useQueries', 'refetchInterval', 'enabled'],
   },
   {
     type: 'guide-section',
@@ -192,7 +204,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#mutations-invalidation',
     tags: ['TanStack Query'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['useMutation', 'invalidateQueries', 'optimistic update', 'mise a jour optimiste', 'cache invalidation'],
+    keywords: ['useMutation', 'invalidateQueries', 'optimistic update', 'mutateAsync', 'onMutate', 'onSettled', 'cancelQueries', 'setQueryData', 'rollback'],
   },
   {
     type: 'guide-section',
@@ -200,7 +212,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#query-patterns',
     tags: ['TanStack Query'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['queryOptions', 'query factory', 'patterns', 'organisation', 'bonnes pratiques query'],
+    keywords: ['queryOptions', 'query factory', 'prefetchQuery', 'QueryErrorResetBoundary', 'throwOnError', 'query key factory'],
   },
   {
     type: 'guide-section',
@@ -208,7 +220,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#tanstack-router',
     tags: ['TanStack Router'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['router', 'routing', 'type-safe routing', 'file-based routing', 'navigation', 'liens types'],
+    keywords: ['router', 'type-safe routing', 'file-based routing', 'createRootRoute', 'createRoute', 'Outlet', 'validateSearch', 'ensureQueryData', 'useSuspenseQuery', 'pendingComponent'],
   },
   {
     type: 'guide-section',
@@ -216,7 +228,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#tanstack-table',
     tags: ['TanStack Table'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['table', 'tableau', 'headless', 'tri', 'sorting', 'filtrage', 'pagination table', 'colonnes'],
+    keywords: ['useReactTable', 'ColumnDef', 'flexRender', 'getCoreRowModel', 'getSortedRowModel', 'getFilteredRowModel', 'getPaginationRowModel', 'headless', 'sorting', 'filtrage'],
   },
   {
     type: 'guide-section',
@@ -224,7 +236,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#tanstack-virtual',
     tags: ['TanStack Virtual'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['virtualisation', 'virtual scroll', 'liste longue', 'performance liste', 'windowing', 'useVirtualizer'],
+    keywords: ['useVirtualizer', 'virtualisation', 'virtual scroll', 'windowing', 'estimateSize', 'overscan', 'measureElement', 'getTotalSize', 'getVirtualItems', 'scrollToIndex'],
   },
   {
     type: 'guide-section',
@@ -232,7 +244,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#tanstack-form',
     tags: ['TanStack Form'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['formulaire', 'form', 'validation', 'useForm', 'champ', 'field', 'soumission'],
+    keywords: ['useForm', 'form.Field', 'form.Subscribe', 'zodValidator', 'onChangeAsync', 'validatorAdapter', 'formulaire', 'validation'],
   },
   {
     type: 'guide-section',
@@ -240,7 +252,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#tanstack-store',
     tags: ['TanStack Store'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['store', 'state', 'etat', 'reactif', 'signal', 'gestion etat', 'state management'],
+    keywords: ['store', 'setState', 'subscribe', 'useStore', 'selector', 'signal', 'state management'],
   },
   {
     type: 'guide-section',
@@ -248,7 +260,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#tanstack-pacer',
     tags: ['TanStack Pacer'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['debounce', 'throttle', 'rate limit', 'timing', 'scheduling', 'tempo'],
+    keywords: ['debounce', 'throttle', 'rate limit', 'useDebouncedCallback', 'useThrottledValue', 'useQueuedState', 'maxRequests', 'windowMs'],
   },
   {
     type: 'guide-section',
@@ -256,7 +268,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#devtools',
     tags: ['TanStack'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['devtools', 'debug', 'react query devtools', 'inspection', 'outils developpement'],
+    keywords: ['devtools', 'debug', 'ReactQueryDevtools', 'TanStackRouterDevtools', 'buttonPosition', 'initialIsOpen'],
   },
   {
     type: 'guide-section',
@@ -264,7 +276,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#ssr-nextjs',
     tags: ['TanStack Query', 'Next.js'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['ssr', 'server side rendering', 'next.js', 'hydration', 'prefetch serveur', 'dehydrate'],
+    keywords: ['ssr', 'server side rendering', 'next.js', 'hydration', 'dehydrate', 'HydrationBoundary', 'useSuspenseQuery', 'server components', 'revalidate'],
   },
   {
     type: 'guide-section',
@@ -272,7 +284,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/tanstack-react#architecture-production',
     tags: ['TanStack'],
     parentTitle: 'TanStack -- Ecosysteme complet React',
-    keywords: ['architecture', 'production', 'structure projet', 'organisation code', 'scalable'],
+    keywords: ['architecture', 'production', 'apiClient', 'CrudApi', 'createQueryFactory', 'custom hooks pattern', 'scalable'],
   },
 
   // ==========================================================================
@@ -284,7 +296,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Patterns avances React 19 : Compiler, Server Components, Actions. Solutions eprouvees et cas d\'usage professionnels.',
     href: '/guides/react-19-advanced',
     tags: ['React 19', 'Server Components', 'Compiler'],
-    keywords: ['react 19', 'bonnes pratiques', 'senior', 'avance', 'patterns', 'nouveautes react'],
+    keywords: ['react 19', 'use()', 'useActionState', 'useOptimistic', 'useTransition', 'rsc', 'server actions', 'concurrent rendering', 'react compiler'],
   },
   {
     type: 'guide-section',
@@ -292,7 +304,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#introduction',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['react 19', 'nouveautes', 'migration', 'changelog', 'quoi de neuf'],
+    keywords: ['react 19', 'migration', 'breaking changes', 'upgrade', 'react 18', 'changelog'],
   },
   {
     type: 'guide-section',
@@ -300,7 +312,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#use-hook',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['use()', 'hook use', 'suspense', 'promise', 'context', 'async', 'data fetching react'],
+    keywords: ['use()', 'hook use', 'suspense', 'promise', 'context', 'async component', 'conditional hook', 'suspense 2.0'],
   },
   {
     type: 'guide-section',
@@ -308,7 +320,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#react-compiler',
     tags: ['React 19', 'Compiler'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['react compiler', 'compilation', 'optimisation automatique', 'babel', 'memoisation auto', 'react forget'],
+    keywords: ['react compiler', 'babel-plugin-react-compiler', 'use no memo', 'react forget', 'automatic memoization', 'expression-level'],
   },
   {
     type: 'guide-section',
@@ -316,7 +328,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#server-components',
     tags: ['React 19', 'RSC'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['rsc', 'server components', 'composants serveur', 'rendu serveur', 'zero bundle', 'use server'],
+    keywords: ['rsc', 'server components', 'use client', 'use server', 'async component', 'zero bundle', 'hydration', 'prisma'],
   },
   {
     type: 'guide-section',
@@ -324,7 +336,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#actions-transitions',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['actions', 'transitions', 'useTransition', 'startTransition', 'async', 'formulaire action'],
+    keywords: ['useTransition', 'startTransition', 'isPending', 'non-blocking', 'interruptible', 'async actions'],
   },
   {
     type: 'guide-section',
@@ -332,7 +344,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#use-action-state',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['useActionState', 'useOptimistic', 'optimistic update', 'mise a jour optimiste', 'form state'],
+    keywords: ['useActionState', 'useOptimistic', 'optimistic update', 'FormData', 'rollback', 'server mutation', 'form state'],
   },
   {
     type: 'guide-section',
@@ -340,7 +352,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#streaming',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['streaming', 'ppr', 'partial pre-rendering', 'suspense boundary', 'chargement progressif'],
+    keywords: ['streaming', 'ppr', 'partial pre-rendering', 'suspense boundary', 'ttfb', 'selective hydration', 'html streaming'],
   },
   {
     type: 'guide-section',
@@ -348,7 +360,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#bundle-optimization',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['bundle', 'taille bundle', 'tree-shaking', 'code splitting', 'lazy loading', 'optimisation'],
+    keywords: ['tree-shaking', 'code splitting', 'lazy loading', 'dynamic()', 'next/dynamic', '@next/bundle-analyzer', 'webpack-bundle-analyzer'],
   },
   {
     type: 'guide-section',
@@ -356,7 +368,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#performance-hooks',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['useMemo', 'useCallback', 'useDeferredValue', 'useTransition', 'hooks performance', 'optimisation rendu'],
+    keywords: ['useMemo', 'useCallback', 'useDeferredValue', 'useTransition', 'concurrent', 'priority', 'scheduler'],
   },
   {
     type: 'guide-section',
@@ -364,7 +376,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#memory-management',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['memoire', 'memory leak', 'fuite memoire', 'cleanup', 'useEffect cleanup', 'garbage collection'],
+    keywords: ['memory leak', 'cleanup', 'useEffect cleanup', 'garbage collection', 'removeEventListener', 'clearTimeout', 'clearInterval', 'WeakRef'],
   },
   {
     type: 'guide-section',
@@ -372,7 +384,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#data-fetching',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['data fetching', 'recuperation donnees', 'fetch', 'waterfall', 'parallel', 'preload'],
+    keywords: ['data fetching', 'fetch', 'waterfall', 'parallel', 'preload', 'race condition', 'tanstack query', 'promise stability'],
   },
   {
     type: 'guide-section',
@@ -380,7 +392,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#state-consolidation',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['state', 'etat', 'consolidation', 'useReducer', 'reducer', 'gestion etat', 'simplification'],
+    keywords: ['useReducer', 'reducer', 'discriminated union', 'state machine', 'impossible states', 'atomic update'],
   },
   {
     type: 'guide-section',
@@ -388,7 +400,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#architecture',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['architecture', 'scalable', 'structure projet', 'organisation', 'dossiers', 'modules'],
+    keywords: ['architecture', 'scalable', 'feature-based', 'colocation', 'domain-driven', 'separation of concerns'],
   },
   {
     type: 'guide-section',
@@ -396,7 +408,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#error-handling',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['error boundary', 'gestion erreurs', 'ErrorBoundary', 'try catch', 'fallback', 'erreur'],
+    keywords: ['error boundary', 'ErrorBoundary', 'getDerivedStateFromError', 'componentDidCatch', 'sentry', 'react-error-boundary', 'fallback'],
   },
   {
     type: 'guide-section',
@@ -404,7 +416,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#typescript-patterns',
     tags: ['React 19', 'TypeScript'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['typescript', 'generiques', 'generics', 'type inference', 'discriminated union', 'typage avance'],
+    keywords: ['typescript', 'generics', 'type inference', 'discriminated union', 'zod', 'as const', 'type guard', 'generic component'],
   },
   {
     type: 'guide-section',
@@ -412,7 +424,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#testing-strategy',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['test', 'testing', 'vitest', 'jest', 'react testing library', 'strategie test', 'tdd', 'unitaire'],
+    keywords: ['vitest', 'jest', 'react testing library', 'playwright', 'renderHook', 'act', 'fireEvent', 'screen', 'waitFor', 'tdd'],
   },
   {
     type: 'guide-section',
@@ -420,7 +432,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#accessibility',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['accessibilite', 'a11y', 'aria', 'wcag', 'screen reader', 'clavier', 'contraste'],
+    keywords: ['accessibilite', 'a11y', 'aria', 'wcag 2.2', 'screen reader', 'focus trap', 'headless ui', 'keyboard navigation'],
   },
   {
     type: 'guide-section',
@@ -428,7 +440,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#custom-hooks',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['custom hook', 'hooks personnalises', 'useLocalStorage', 'useFetch', 'abstraction', 'reutilisation'],
+    keywords: ['custom hook', 'useLocalStorage', 'useFetch', 'useMediaQuery', 'useDebounce', 'useIntersectionObserver'],
   },
   {
     type: 'guide-section',
@@ -436,7 +448,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-19-advanced#refs-metadata',
     tags: ['React 19'],
     parentTitle: 'React 19 -- Bonnes pratiques seniors',
-    keywords: ['ref', 'useRef', 'forwardRef', 'ref callback', 'metadata', 'document title', 'head', 'seo'],
+    keywords: ['ref', 'useRef', 'forwardRef', 'ref callback', 'cleanup ref', 'document.title', 'meta tags', 'seo'],
   },
 
   // ==========================================================================
@@ -448,7 +460,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Modes de rendu SSR, SSG, ISR et Client Components. Retours d\'experience sur des projets en production avec exemples concrets.',
     href: '/guides/nextjs-demo',
     tags: ['Next.js 16', 'React 19', 'TypeScript'],
-    keywords: ['nextjs', 'next.js 16', 'app router', 'react server components', 'fullstack', 'framework'],
+    keywords: ['nextjs', 'next.js 16', 'app router', 'react server components', 'server actions', 'rendering modes', 'fullstack'],
   },
   {
     type: 'guide-section',
@@ -456,7 +468,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#introduction',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['nextjs', 'introduction', 'presentation', 'pourquoi next.js', 'avantages'],
+    keywords: ['nextjs', 'hot reload', 'file-based routing', 'dx', 'developer experience'],
   },
   {
     type: 'guide-section',
@@ -464,7 +476,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#ssr',
     tags: ['Next.js', 'SSR'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['ssr', 'rendu serveur', 'server side rendering', 'getServerSideProps', 'dynamic rendering', 'rendu dynamique'],
+    keywords: ['ssr', 'server side rendering', 'getServerSideProps', 'dynamic rendering', 'cache no-store', 'per-request', 'fetch'],
   },
   {
     type: 'guide-section',
@@ -472,7 +484,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#ssg',
     tags: ['Next.js', 'SSG'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['ssg', 'site statique', 'static generation', 'getStaticProps', 'generateStaticParams', 'build time'],
+    keywords: ['ssg', 'static generation', 'getStaticProps', 'generateStaticParams', 'build time', 'force-cache', 'cdn', 'pre-rendering'],
   },
   {
     type: 'guide-section',
@@ -480,7 +492,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#isr',
     tags: ['Next.js', 'ISR'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['isr', 'regeneration incrementale', 'revalidate', 'on-demand revalidation', 'cache', 'stale-while-revalidate'],
+    keywords: ['isr', 'revalidate', 'on-demand revalidation', 'stale-while-revalidate', 'background regeneration', 'cache'],
   },
   {
     type: 'guide-section',
@@ -488,7 +500,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#csr',
     tags: ['Next.js', 'CSR'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['csr', 'rendu client', 'client side rendering', 'useEffect', 'spa', 'single page app', 'use client'],
+    keywords: ['csr', 'client side rendering', 'useEffect', 'useState', 'spa', 'single page app', 'use client', 'ttfb', 'fcp'],
   },
   {
     type: 'guide-section',
@@ -496,7 +508,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#hybrid',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['hybride', 'server client', 'composition', 'island architecture', 'hydration partielle'],
+    keywords: ['hybride', 'server components', 'island architecture', 'hydration mismatch', 'suppressHydrationWarning', 'serialization'],
   },
   {
     type: 'guide-section',
@@ -504,7 +516,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#client-components',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['client component', 'use client', 'composant client', 'interactivite', 'hooks', 'useState'],
+    keywords: ['client component', 'use client', 'useState', 'browser apis', 'localStorage', 'event handlers', 'onClick', 'onChange'],
   },
   {
     type: 'guide-section',
@@ -512,7 +524,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#dynamic-import',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['dynamic import', 'code splitting', 'next/dynamic', 'lazy loading', 'chargement dynamique', 'bundle splitting'],
+    keywords: ['dynamic import', 'code splitting', 'next/dynamic', 'lazy loading', 'ssr false', 'bundle splitting'],
   },
   {
     type: 'guide-section',
@@ -520,7 +532,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#server-actions',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['server action', 'use server', 'action serveur', 'formulaire', 'mutation', 'revalidatePath'],
+    keywords: ['server action', 'use server', 'revalidatePath', 'revalidateTag', 'FormData', 'progressive enhancement', 'mutation'],
   },
   {
     type: 'guide-section',
@@ -528,7 +540,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#streaming',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['streaming', 'suspense', 'loading.tsx', 'chargement progressif', 'skeleton', 'fallback'],
+    keywords: ['streaming', 'suspense', 'loading.tsx', 'ppr', 'partial prerendering', 'selective hydration', 'skeleton', 'fallback'],
   },
   {
     type: 'guide-section',
@@ -536,7 +548,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#frontend-performance',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['performance frontend', 'lcp', 'fcp', 'cls', 'core web vitals', 'lighthouse', 'optimisation client'],
+    keywords: ['lcp', 'fcp', 'cls', 'inp', 'ttfb', 'core web vitals', 'lighthouse', 'next/image', 'next/font', 'webp', 'avif'],
   },
   {
     type: 'guide-section',
@@ -544,7 +556,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#backend-performance',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['performance backend', 'cache serveur', 'database', 'api', 'ttfb', 'edge runtime', 'middleware'],
+    keywords: ['cache serveur', 'database', 'ttfb', 'edge runtime', 'prisma', 'n+1 query', 'upstash redis', 'middleware'],
   },
   {
     type: 'guide-section',
@@ -552,7 +564,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#performance-measurement',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['mesure performance', 'web vitals', 'lighthouse', 'profiling', 'devtools', 'analyse performance'],
+    keywords: ['web vitals', 'lighthouse', 'profiling', 'devtools', 'react profiler', 'performance.now', 'vercel analytics'],
   },
   {
     type: 'guide-section',
@@ -560,7 +572,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#security',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['securite', 'security', 'xss', 'csrf', 'injection', 'headers', 'csp', 'content security policy'],
+    keywords: ['securite', 'xss', 'csrf', 'injection', 'csp', 'content security policy', 'owasp', 'rls', 'bcrypt', 'DOMPurify'],
   },
   {
     type: 'guide-section',
@@ -568,7 +580,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#react-patterns',
     tags: ['Next.js', 'React'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['bonnes pratiques', 'best practices', 'patterns react', 'conventions', 'clean code'],
+    keywords: ['zustand', 'tanstack query', 'swr', 'immer', 'prop drilling', 'custom hooks', 'clean code'],
   },
   {
     type: 'guide-section',
@@ -576,7 +588,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#composition',
     tags: ['Next.js', 'React'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['composition', 'children', 'render props', 'compound components', 'slots', 'inversion de controle'],
+    keywords: ['composition', 'children', 'render props', 'compound component', 'slots', 'provider pattern', 'dependency injection'],
   },
   {
     type: 'guide-section',
@@ -584,7 +596,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#architecture',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['architecture', 'structure projet', 'dossiers', 'organisation', 'modules', 'layers'],
+    keywords: ['architecture', 'solid', 'repository pattern', 'factory pattern', 'clean architecture', 'vitest', 'playwright', 'layers'],
   },
   {
     type: 'guide-section',
@@ -592,7 +604,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#accessibility',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['accessibilite', 'a11y', 'aria', 'wcag', 'screen reader', 'clavier', 'contraste'],
+    keywords: ['accessibilite', 'a11y', 'aria', 'wcag 2.1', 'screen reader', 'focus trap', 'skip links', 'semantic html'],
   },
   {
     type: 'guide-section',
@@ -600,7 +612,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#advanced-patterns',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['patterns avances', 'middleware', 'intercepting routes', 'parallel routes', 'route groups'],
+    keywords: ['middleware', 'intercepting routes', 'parallel routes', 'route groups', 'next-intl', 'NextRequest', 'NextResponse', 'edge runtime', 'i18n'],
   },
   {
     type: 'guide-section',
@@ -608,7 +620,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/nextjs-demo#comparison',
     tags: ['Next.js'],
     parentTitle: 'Guide Next.js 16',
-    keywords: ['comparaison', 'conclusion', 'recapitulatif', 'quand utiliser', 'choix rendu'],
+    keywords: ['ssr vs ssg', 'rendu dynamique', 'rendu statique', 'choix architecture', 'quand utiliser'],
   },
 
   // ==========================================================================
@@ -620,7 +632,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Comprendre les 3 mecanismes de memoisation React avec des exemples concrets et testables.',
     href: '/guides/react-memoization',
     tags: ['React', 'Performance', 'Hooks'],
-    keywords: ['memoisation', 'memo', 'useMemo', 'useCallback', 'React.memo', 'performance', 're-render', 'optimisation'],
+    keywords: ['memoisation', 'memo', 'useMemo', 'useCallback', 'React.memo', 're-render', 'reference stability', 'shallow comparison', 'dependency array'],
   },
   {
     type: 'guide-section',
@@ -628,7 +640,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#introduction',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['memoisation', 'introduction', 'pourquoi memoiser', 'concept', 'cache'],
+    keywords: ['memoisation', 'caching', 'prop comparison', 'cache'],
   },
   {
     type: 'guide-section',
@@ -636,7 +648,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#probleme-re-render',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['re-render', 'rendu', 'render inutile', 'reconciliation', 'virtual dom', 'performance rendu'],
+    keywords: ['re-render', 'reconciliation', 'virtual dom', 'performance.now', 'react profiler', '60fps', '16ms', 'diff algorithm'],
   },
   {
     type: 'guide-section',
@@ -644,7 +656,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#react-memo',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['React.memo', 'memo', 'HOC', 'higher order component', 'shallow comparison', 'composant memo'],
+    keywords: ['React.memo', 'memo', 'HOC', 'higher order component', 'shallow comparison', 'areEqual', 'custom comparator', 'reference equality'],
   },
   {
     type: 'guide-section',
@@ -652,7 +664,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#usememo',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['useMemo', 'valeur calculee', 'calcul couteux', 'memoisation valeur', 'dependances'],
+    keywords: ['useMemo', 'derived state', 'data transformation', 'Intl.NumberFormat', 'filtering', 'sorting', 'dependances'],
   },
   {
     type: 'guide-section',
@@ -660,7 +672,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#usecallback',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['useCallback', 'fonction memoisee', 'callback stable', 'reference stable', 'dependances'],
+    keywords: ['useCallback', 'callback stable', 'reference stable', 'debounce', 'stale closure', 'closure', 'clearTimeout'],
   },
   {
     type: 'guide-section',
@@ -668,7 +680,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#trio-en-action',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['trio', 'exemple complet', 'combinaison', 'cas pratique', 'useMemo useCallback memo'],
+    keywords: ['useMemo useCallback memo', 'large list', 'reduce', 'filter', 'sort', 'currency formatting'],
   },
   {
     type: 'guide-section',
@@ -676,7 +688,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#comparaison-complete',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['comparaison', 'difference', 'quand utiliser', 'tableau comparatif', 'memo vs useMemo vs useCallback'],
+    keywords: ['memo vs useMemo vs useCallback', 'overhead', 'memory consumption', 'comparison cost', 'quand utiliser'],
   },
   {
     type: 'guide-section',
@@ -684,7 +696,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#erreurs-courantes',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['erreurs', 'anti-pattern', 'pieges', 'mauvaises pratiques', 'common mistakes'],
+    keywords: ['anti-pattern', 'over-memoization', 'exhaustive-deps', 'eslint', 'inline props', 'common mistakes'],
   },
   {
     type: 'guide-section',
@@ -692,7 +704,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#quand-ne-pas-memoiser',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['quand ne pas', 'over-optimization', 'premature optimization', 'cout memoisation'],
+    keywords: ['over-optimization', 'premature optimization', 'flamegraph', 'leaf component', 'highlight updates'],
   },
   {
     type: 'guide-section',
@@ -700,7 +712,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/guides/react-memoization#react-compiler',
     tags: ['React'],
     parentTitle: 'useMemo, useCallback et React.memo',
-    keywords: ['react compiler', 'futur', 'memoisation automatique', 'react forget', 'avenir'],
+    keywords: ['react compiler', 'react forget', 'babel-plugin-react-compiler', 'use no memo', 'rules of react', 'purity', 'immutability'],
   },
 
   // ==========================================================================
@@ -720,7 +732,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#introduction',
     tags: ['TDD'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['tdd', 'introduction', 'contexte'],
+    keywords: ['red green refactor', 'test cycle', 'test unitaire'],
   },
   {
     type: 'article-heading',
@@ -736,7 +748,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#les-defis-specifiques',
     tags: ['TDD', 'Frontend'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['defis', 'difficultes', 'specificites frontend'],
+    keywords: ['async testing', 'dom testing', 'browser apis', 'flaky tests'],
   },
   {
     type: 'article-heading',
@@ -744,7 +756,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#etat-asynchrone',
     tags: ['TDD'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['asynchrone', 'async', 'state', 'etat', 'promise', 'await'],
+    keywords: ['async', 'promise', 'await', 'waitFor', 'act', 'mock fetch'],
   },
   {
     type: 'article-heading',
@@ -752,7 +764,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#interactions-utilisateur',
     tags: ['TDD'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['interactions', 'evenements', 'click', 'user event', 'formulaire'],
+    keywords: ['userEvent', 'click', 'keyboard', 'focus management', 'aria attributes'],
   },
   {
     type: 'article-heading',
@@ -760,7 +772,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#dom-et-css',
     tags: ['TDD'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['dom', 'css', 'style', 'layout', 'responsive', 'media query'],
+    keywords: ['dom', 'css', 'toBeInTheDocument', 'toBeVisible', 'display none', 'media query'],
   },
   {
     type: 'article-heading',
@@ -768,7 +780,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#mocks-complexes',
     tags: ['TDD'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['mock', 'stub', 'spy', 'dependances', 'api mock', 'msw'],
+    keywords: ['mock', 'stub', 'spy', 'msw', 'IntersectionObserver', 'matchMedia', 'localStorage mock'],
   },
   {
     type: 'article-heading',
@@ -776,7 +788,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#separation-concerns',
     tags: ['TDD'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['separation of concerns', 'solid', 'architecture', 'decouplage', 'responsabilite'],
+    keywords: ['separation of concerns', 'solid', 'custom hooks', 'fonctions pures', 'logique metier'],
   },
   {
     type: 'article-heading',
@@ -784,7 +796,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#pourquoi-continuer',
     tags: ['TDD'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['motivation', 'avantages tdd', 'benefices', 'qualite code'],
+    keywords: ['test-after development', 'regression testing', 'refactoring', 'cypress', 'playwright'],
   },
   {
     type: 'article-heading',
@@ -792,7 +804,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/tdd-frontend-vs-backend#conclusion',
     tags: ['TDD'],
     parentTitle: "TDD cote front vs back",
-    keywords: ['conclusion', 'resume', 'synthese'],
+    keywords: ['approche hybride', 'test e2e', 'test integration', 'vitest', 'testing library'],
   },
 
   // ==========================================================================
@@ -804,7 +816,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Comparaison technique de trois approches de gestion d\'etat en React.',
     href: '/blog/redux-vs-context-vs-zustand',
     tags: ['React', 'State Management', 'Redux', 'Zustand', 'Context API'],
-    keywords: ['state management', 'gestion etat', 'store', 'flux', 'comparaison', 'choix technique'],
+    keywords: ['state management', 'store', 'redux toolkit', 'rtk', 'rtk query', 'immer', 'createSlice', 'configureStore'],
   },
   {
     type: 'article-heading',
@@ -812,7 +824,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#introduction',
     tags: ['State Management'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['state management', 'introduction', 'contexte', 'problematique'],
+    keywords: ['state management', 'prop drilling', 'server state', 'client state'],
   },
   {
     type: 'article-heading',
@@ -828,7 +840,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#context-limites',
     tags: ['Context API'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['limites context', 're-render', 'performance context', 'problemes'],
+    keywords: ['re-render', 'provider hell', 'selecteur', 'performance context'],
   },
   {
     type: 'article-heading',
@@ -844,7 +856,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#redux-quand',
     tags: ['Redux'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['quand redux', 'cas usage', 'grande application', 'devtools', 'middleware'],
+    keywords: ['devtools', 'middleware', 'thunk', 'time-travel debugging', 'rtk query', 'redux-persist'],
   },
   {
     type: 'article-heading',
@@ -852,7 +864,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#zustand',
     tags: ['Zustand'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['zustand', 'create', 'store minimal', 'lightweight', 'simple'],
+    keywords: ['zustand', 'create', 'selector', 'useStore', 'set', 'get'],
   },
   {
     type: 'article-heading',
@@ -860,7 +872,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#zustand-avantages',
     tags: ['Zustand'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['avantages zustand', 'simplicite', 'boilerplate', 'performance zustand'],
+    keywords: ['zustand persist', 'zustand devtools', 'zustand immer', 'selecteurs', 'typescript-first'],
   },
   {
     type: 'article-heading',
@@ -868,7 +880,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#comparaison',
     tags: ['State Management'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['comparaison', 'tableau', 'versus', 'benchmark', 'performance'],
+    keywords: ['benchmark', 'bundle size', 'gzipped', 're-render performance', 'selecteurs'],
   },
   {
     type: 'article-heading',
@@ -876,7 +888,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#react-19',
     tags: ['React 19', 'State Management'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['react 19', 'impact', 'use()', 'server components', 'avenir state management'],
+    keywords: ['react 19', 'use()', 'server components', 'useActionState', 'tanstack query', 'swr'],
   },
   {
     type: 'article-heading',
@@ -884,7 +896,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#guide-choix',
     tags: ['State Management'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['guide choix', 'decision', 'quel choisir', 'recommandation', 'taille projet'],
+    keywords: ['zustand vs redux', 'context vs zustand', 'server state vs client state', 'tanstack query'],
   },
   {
     type: 'article-heading',
@@ -892,7 +904,7 @@ const SEARCH_INDEX: SearchItem[] = [
     href: '/blog/redux-vs-context-vs-zustand#conclusion',
     tags: ['State Management'],
     parentTitle: 'Redux vs Context vs Zustand',
-    keywords: ['conclusion', 'resume', 'synthese', 'recommandation finale'],
+    keywords: ['etat client', 'etat serveur', 'minimiser state', 'zustand + tanstack query'],
   },
 ];
 

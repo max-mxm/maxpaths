@@ -20,7 +20,7 @@ const GUIDES: LandingContentItem[] = [
   {
     href: '/guides/zod-validation',
     type: 'guide',
-    title: 'Zod -- Validation TypeScript-first',
+    title: 'Arretez de valider vos donnees a la main -- Zod fait mieux',
     description:
       'Schemas, inference de types, validation de formulaires et d\'API. De la validation basique aux patterns de production.',
     tags: ['Zod', 'TypeScript', 'Validation'],
@@ -32,7 +32,7 @@ const GUIDES: LandingContentItem[] = [
   {
     href: '/guides/tanstack-react',
     type: 'guide',
-    title: 'TanStack -- Ecosysteme complet React',
+    title: 'TanStack : les 7 librairies qui remplacent tout votre boilerplate React',
     description:
       'Query, Router, Table, Virtual, Form, Store et Pacer. Du data fetching a l\'architecture de production.',
     tags: ['TanStack Query', 'TanStack Router', 'React'],
@@ -44,7 +44,7 @@ const GUIDES: LandingContentItem[] = [
   {
     href: '/guides/react-19-advanced',
     type: 'guide',
-    title: 'React 19 -- Bonnes pratiques seniors',
+    title: 'React 19 : ce que les seniors font differemment (et pourquoi ca marche)',
     description:
       'Patterns avances React 19 : Compiler, Server Components, Actions. Solutions eprouvees et cas d\'usage professionnels.',
     tags: ['React 19', 'Server Components', 'Compiler'],
@@ -56,7 +56,7 @@ const GUIDES: LandingContentItem[] = [
   {
     href: '/guides/nextjs-demo',
     type: 'guide',
-    title: 'Guide Next.js 16',
+    title: 'Next.js 16 : le guide que j\'aurais voulu avoir en production',
     description:
       'Modes de rendu SSR, SSG, ISR et Client Components. Retours d\'experience sur des projets en production avec exemples concrets.',
     tags: ['Next.js 16', 'React 19', 'TypeScript'],
@@ -69,7 +69,7 @@ const GUIDES: LandingContentItem[] = [
   {
     href: '/guides/react-memoization',
     type: 'guide',
-    title: 'useMemo, useCallback et React.memo',
+    title: 'La memoisation React demystifiee : quand (ne pas) optimiser',
     description:
       'Comprendre les 3 mecanismes de memoisation React avec des exemples concrets et testables.',
     tags: ['React', 'Performance', 'Hooks'],
@@ -96,7 +96,7 @@ export interface LandingDemoItem {
 const DEMOS: LandingDemoItem[] = [
   {
     href: '/guides/nextjs-demo/simulateur-performance',
-    title: 'Simulateur de performance React',
+    title: 'useMemo, useCallback, React.memo : quand utiliser quoi ? Testez en direct',
     description:
       'Comparez 4 strategies d\'optimisation React avec des mesures reelles de temps de rendu. Testez React.memo, useMemo et useCallback en live.',
     tags: ['React', 'Performance', 'Mesures reelles'],
@@ -109,7 +109,7 @@ const DEMOS: LandingDemoItem[] = [
   },
   {
     href: '/guides/nextjs-demo/simulateur-rendering',
-    title: 'Comparateur de modes de rendering',
+    title: 'SSR, SSG, ISR : lequel choisir pour votre cas ? Testez en direct',
     description:
       'Visualisez les differences entre SSR, SSG, ISR, CSR et Streaming. Timelines animees et metriques Core Web Vitals en temps reel.',
     tags: ['Next.js', 'SSR', 'Core Web Vitals'],
