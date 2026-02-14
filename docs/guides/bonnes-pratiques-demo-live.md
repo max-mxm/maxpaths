@@ -36,6 +36,7 @@ Une demo live est une page interactive standalone qui permet aux utilisateurs de
 
 ```
 app/demos/simulateur-[nom]/
+  layout.tsx        # SEO Metadata (OBLIGATOIRE - car page.tsx est 'use client')
   page.tsx          # Page principale (client component)
 ```
 
@@ -59,6 +60,63 @@ app/demos/
 - Slug en kebab-case
 - Descriptif et court : `simulateur-performance`, `simulateur-rendering`
 - Toutes les demos dans `/app/demos/` (pas dans `/app/guides/`)
+
+---
+
+## SEO / GEO Metadata (OBLIGATOIRE)
+
+Les pages de demo sont des `'use client'` components et **ne peuvent pas exporter de metadata**. La solution est de creer un `layout.tsx` server component dans le meme dossier.
+
+### Creer `layout.tsx` (OBLIGATOIRE)
+
+```tsx
+// app/demos/simulateur-[nom]/layout.tsx
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Simulateur [Nom] : [Mots-cles] en Direct',
+  description: 'Description SEO (150-160 caracteres) avec mots-cles techniques et proposition de valeur.',
+  openGraph: {
+    title: 'Simulateur [Nom] | Maxpaths',
+    description: 'Description OG engageante (max 200 caracteres).',
+    type: 'article',
+    images: [{ url: '/api/og?title=Simulateur+[Nom]&category=optimization', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Simulateur [Nom] | Maxpaths',
+    description: 'Description Twitter (max 200 caracteres).',
+    images: ['/api/og?title=Simulateur+[Nom]&category=optimization'],
+  },
+};
+
+export default function SimulateurLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return children;
+}
+```
+
+**Regles :**
+- Le `layout.tsx` ne rend que `children` (pas de markup supplementaire)
+- La `category` dans l'URL OG doit correspondre au theme de la demo (optimization, rendering, etc.)
+- Le titre SEO doit contenir le mot "Simulateur" + les technologies cles
+- Le `layout.tsx` est un server component (pas de `'use client'`)
+
+### Ajouter au Sitemap
+
+Chaque demo doit etre ajoutee dans `app/sitemap.ts` :
+
+```typescript
+{
+  url: `${BASE_URL}/demos/simulateur-[nom]`,
+  lastModified: new Date(),
+  changeFrequency: 'monthly' as const,
+  priority: 0.8,
+},
+```
 
 ---
 
@@ -443,10 +501,18 @@ Les keywords seront ajoutes dans `lib/search-index.ts`.
 ## Checklist de Validation
 
 ### Structure
-- [ ] Page dans `app/guides/[parent]/simulateur-[nom]/page.tsx`
-- [ ] Composants dans `_components/` du guide parent
-- [ ] Convention `'use client'` en haut du fichier
+- [ ] Page dans `app/demos/simulateur-[nom]/page.tsx`
+- [ ] Composants dans `app/demos/_components/`
+- [ ] Convention `'use client'` en haut du fichier page.tsx
 - [ ] Navigation retour vers le guide parent
+
+### SEO / GEO (OBLIGATOIRE)
+- [ ] `layout.tsx` cree dans `app/demos/simulateur-[nom]/` avec metadata (title, description, OG, Twitter)
+- [ ] Image OG via `/api/og?title=...&category=...`
+- [ ] Demo ajoutee dans `app/sitemap.ts` avec URL `https://www.maxpaths.dev/demos/simulateur-[nom]`
+- [ ] Title SEO contient "Simulateur" + technologies cles (50-70 caracteres)
+- [ ] Description SEO : 150-160 caracteres avec proposition de valeur
+- [ ] Domaine canonique : toujours `https://www.maxpaths.dev`
 
 ### Design
 - [ ] Fond gradient slate (light + dark)

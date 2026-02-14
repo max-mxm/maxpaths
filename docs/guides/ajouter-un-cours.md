@@ -6,12 +6,13 @@ Guide complet pour documenter et publier un nouveau guide pratique sur maxpaths.
 
 ## Vue d'Ensemble
 
-Ajouter un guide pratique implique 5 étapes principales :
+Ajouter un guide pratique implique 6 étapes principales :
 1. Créer la structure de fichiers
 2. Développer les sections du guide
-3. Ajouter le guide à la navigation
-4. Tester et valider
-5. Générer les keywords techniques de recherche
+3. SEO, GEO et Metadata (schemas JSON-LD, OG images, meta tags)
+4. Ajouter le guide à la navigation
+5. Tester et valider (dont tests SEO/GEO)
+6. Générer les keywords techniques de recherche
 
 ---
 
@@ -35,12 +36,31 @@ mkdir -p app/guides/[slug-du-guide]/_sections
 Créer `app/guides/[slug-du-guide]/page.tsx` :
 
 ```tsx
+import type { Metadata } from 'next';
 import { CourseLayout } from '@/components/course/course-layout';
 
 // Imports des sections (default ou named exports)
 import IntroductionSection from './_sections/introduction';
 import Section2 from './_sections/section-2';
 // ... autres imports
+
+// --- SEO Metadata (OBLIGATOIRE) ---
+export const metadata: Metadata = {
+  title: 'Titre SEO du Guide (50-70 caracteres, avec mots-cles)',
+  description: 'Description SEO (150-160 caracteres). Inclure mots-cles principaux et proposition de valeur.',
+  openGraph: {
+    title: 'Titre OG (peut etre different du title SEO, plus engageant)',
+    description: 'Description OG pour les reseaux sociaux (max 200 caracteres).',
+    type: 'article',
+    images: [{ url: '/api/og?title=Titre+Encode+URL&category=fundamentals', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Titre Twitter Card',
+    description: 'Description Twitter Card (max 200 caracteres).',
+    images: ['/api/og?title=Titre+Encode+URL&category=fundamentals'],
+  },
+};
 
 export default function MonGuide() {
   const sections = [
@@ -61,12 +81,42 @@ export default function MonGuide() {
     // ... autres sections
   ];
 
+  // --- JSON-LD Course Schema (OBLIGATOIRE pour GEO) ---
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: 'Titre complet du guide',
+    description: 'Description du guide (meme que metadata.description)',
+    provider: { '@type': 'Organization', name: 'Maxpaths', url: 'https://www.maxpaths.dev' },
+    educationalLevel: 'Intermediaire', // ou 'Debutant', 'Avance'
+    inLanguage: 'fr',
+    numberOfCredits: sections.length, // Nombre de sections
+    timeRequired: 'PT3H', // Format ISO 8601 (PT2H = 2h, PT3H30M = 3h30)
+    author: { '@type': 'Person', name: 'Maxime Morellon', url: 'https://www.maxpaths.dev/about' },
+    isAccessibleForFree: true,
+  };
+
+  // --- JSON-LD BreadcrumbList (OBLIGATOIRE pour SEO) ---
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.maxpaths.dev' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://www.maxpaths.dev/guides' },
+      { '@type': 'ListItem', position: 3, name: 'Nom Court du Guide' },
+    ],
+  };
+
   return (
-    <CourseLayout
-      title="Titre de Mon Guide"
-      subtitle="Description courte - X sections"
-      sections={sections}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <CourseLayout
+        title="Titre de Mon Guide"
+        subtitle="Description courte - X sections"
+        sections={sections}
+      />
+    </>
   );
 }
 ```
@@ -231,9 +281,93 @@ Icônes disponibles via `iconName` dans CourseLayout :
 
 ---
 
-## Étape 3 : Ajouter le Guide à la Navigation
+## Etape 3 : SEO, GEO et Metadata (OBLIGATOIRE)
 
-### 3.1 Page d'Accueil (`app/page.tsx`)
+Chaque guide doit avoir une couverture SEO/GEO complete pour etre correctement indexe par Google ET cite par les moteurs IA (ChatGPT, Perplexity, Claude, Copilot).
+
+### 3.1 Metadata dans `page.tsx`
+
+L'export `metadata` est **obligatoire** dans chaque `page.tsx` de guide. Voir le template a l'etape 1.2.
+
+**Regles pour les metadata :**
+
+| Champ | Longueur | Contenu |
+|-------|----------|---------|
+| `title` | 50-70 caracteres | Mot-cle principal + sujet technique. Sera affiche comme `{title} \| Maxpaths` |
+| `description` | 150-160 caracteres | Proposition de valeur + mots-cles secondaires |
+| `openGraph.title` | 60-90 caracteres | Titre engageant pour les reseaux sociaux (peut differer du title SEO) |
+| `openGraph.description` | max 200 caracteres | Description pour LinkedIn, Slack, Discord |
+| `twitter.title` | max 70 caracteres | Titre optimise pour Twitter/X |
+| `twitter.description` | max 200 caracteres | Description optimise pour Twitter/X |
+
+**Regles pour l'image OG :**
+- Utiliser l'API dynamique : `/api/og?title=Titre+Encode+URL&category=categorie`
+- Categories disponibles : `fundamentals`, `rendering`, `optimization`, `best-practices`, `advanced`
+- Format genere : 1200x630px avec gradient de la categorie
+- Encoder le titre avec `+` pour les espaces et `%26` pour `&`
+
+### 3.2 JSON-LD Course Schema
+
+Le schema `Course` est **obligatoire** pour chaque guide. Il permet :
+- Les rich results Google (affichage enrichi dans les resultats de recherche)
+- La citation par les moteurs IA qui exploitent les donnees structurees
+- Le format ISO 8601 pour `timeRequired` : `PT2H` (2h), `PT3H30M` (3h30)
+
+### 3.3 JSON-LD BreadcrumbList
+
+Le schema `BreadcrumbList` est **obligatoire**. Il :
+- Aide Google a comprendre la hierarchie du site
+- Genere les breadcrumbs dans les resultats de recherche
+- Ameliore la citabilite par les IA (structure claire)
+
+### 3.4 Ajouter dans `lib/content.ts`
+
+Ajouter le guide dans le tableau `GUIDES` avec **tous les champs SEO** :
+
+```typescript
+{
+  href: '/guides/slug-du-guide',
+  type: 'guide',
+  title: 'Titre engageant du guide',
+  description: 'Description (2-3 phrases).',
+  tags: ['Tag1', 'Tag2', 'Tag3'],
+  accentColor: 'rgb(0, 150, 136)', // Couleur d'accent
+  sections: 12,
+  duration: '3h',
+  level: 'Intermediaire',
+  publishedAt: '2026-02-14', // Date ISO
+
+  // SEO (OBLIGATOIRE)
+  seoTitle: 'Titre SEO : Mot-Cle Principal - Sous-titre',
+  seoDescription: 'Description SEO 150-160 caracteres avec mots-cles.',
+
+  // Open Graph (OBLIGATOIRE)
+  ogTitle: 'Titre OG engageant pour les reseaux sociaux',
+  ogDescription: 'Description OG (max 200 caracteres).',
+  ogImage: '/og-images/guides/slug-du-guide.jpg', // Optionnel si on utilise /api/og
+
+  // Twitter Card (OBLIGATOIRE)
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Titre Twitter optimise',
+  twitterDescription: 'Description Twitter (max 200 caracteres).',
+},
+```
+
+### 3.5 Bonnes Pratiques GEO (Generative Engine Optimization)
+
+Pour maximiser la visibilite dans les moteurs IA (ChatGPT, Perplexity, Claude) :
+
+1. **Reponse directe en debut de section** : Chaque section du guide devrait commencer par une reponse synthetique avant de developper
+2. **Statistiques et donnees chiffrees** (+37% visibilite IA) : Inclure des metriques concretes quand possible
+3. **Citations de sources** (+40% visibilite IA) : Citer la documentation officielle, des benchmarks, des etudes
+4. **Ton autoritaire** (+25%) : Utiliser un langage d'expert confiant
+5. **Termes techniques precis** (+18%) : Inclure la terminologie exacte du domaine
+
+---
+
+## Etape 4 : Ajouter le Guide à la Navigation
+
+### 4.1 Page d'Accueil (`app/page.tsx`)
 
 Ajouter une carte du guide dans la section "Guides pratiques" :
 
@@ -290,7 +424,7 @@ Ajouter une carte du guide dans la section "Guides pratiques" :
 <div className="text-sm text-muted-foreground">Guides pratiques</div>
 ```
 
-### 3.2 Index de Recherche (`lib/search-index.ts`)
+### 4.2 Index de Recherche (`lib/search-index.ts`)
 
 Ajouter le guide et chacune de ses sections dans l'index de recherche pour qu'ils soient trouvables via la commande Cmd+K :
 
@@ -325,7 +459,7 @@ Ajouter le guide et chacune de ses sections dans l'index de recherche pour qu'il
 - Penser aux termes que les utilisateurs taperaient naturellement
 - Pas de doublons avec le `title` (deja indexe automatiquement)
 
-### 3.3 Page Catalogue (`app/guides/page.tsx`)
+### 4.3 Page Catalogue (`app/guides/page.tsx`)
 
 Ajouter le guide dans l'array `courses` :
 
@@ -348,15 +482,15 @@ const courses = [
 
 ---
 
-## Étape 4 : Tester et Valider
+## Etape 5 : Tester et Valider
 
-### 4.1 Lancer le Serveur de Développement
+### 5.1 Lancer le Serveur de Développement
 
 ```bash
 npm run dev
 ```
 
-### 4.2 Tests Visuels
+### 5.2 Tests Visuels
 
 Naviguer vers `http://localhost:3000/guides/[slug-du-guide]` et vérifier :
 
@@ -367,7 +501,7 @@ Naviguer vers `http://localhost:3000/guides/[slug-du-guide]` et vérifier :
 - ✅ Mode dark/light fonctionne
 - ✅ Responsive (mobile/tablette/desktop)
 
-### 4.3 Tests Contenu
+### 5.3 Tests Contenu
 
 - ✅ CodeBlocks affichent le code correctement
 - ✅ Syntax highlighting fonctionne
@@ -376,7 +510,15 @@ Naviguer vers `http://localhost:3000/guides/[slug-du-guide]` et vérifier :
 - ✅ ComparisonTables sont scrollables sur mobile
 - ✅ Pas d'erreurs console
 
-### 4.4 Tests Accessibilité
+### 5.4 Tests SEO/GEO
+
+- Verifier les balises `<meta>` dans le `<head>` (title, description, og:*, twitter:*)
+- Verifier les schemas JSON-LD (Course + BreadcrumbList) dans le `<head>`
+- Tester l'image OG : naviguer vers `/api/og?title=Titre+Du+Guide&category=fundamentals`
+- Valider avec [Rich Results Test](https://search.google.com/test/rich-results)
+- Verifier que le guide est dans le sitemap (`/sitemap.xml`)
+
+### 5.5 Tests Accessibilité
 
 - ✅ Navigation clavier fonctionne (Tab, Enter)
 - ✅ Focus visible sur tous les éléments interactifs
@@ -384,7 +526,7 @@ Naviguer vers `http://localhost:3000/guides/[slug-du-guide]` et vérifier :
 - ✅ Alt text sur images si utilisées
 - ✅ ARIA labels corrects
 
-### 4.5 Tests Performance
+### 5.6 Tests Performance
 
 ```bash
 # Build de production
@@ -401,9 +543,9 @@ Vérifier :
 
 ---
 
-## Étape 5 : Générer les Keywords Techniques de Recherche
+## Etape 6 : Générer les Keywords Techniques de Recherche
 
-### 5.1 Exécuter la commande generate-keywords
+### 6.1 Exécuter la commande generate-keywords
 
 Après avoir complété les étapes 1-4, exécuter la commande Claude Code :
 
@@ -418,7 +560,7 @@ Cette commande analyse en profondeur le contenu du guide (page.tsx, toutes les s
 - Concepts techniques FR/EN (ex: "rendu serveur" / "server rendering")
 - Patterns et design patterns (ex: "stale-while-revalidate", "optimistic update")
 
-### 5.2 Vérifier les keywords générés
+### 6.2 Vérifier les keywords générés
 
 Après exécution, vérifier dans `lib/search-index.ts` :
 - Le guide principal a 7-15 keywords techniques
@@ -428,7 +570,7 @@ Après exécution, vérifier dans `lib/search-index.ts` :
 - Les acronymes pertinents sont présents
 - Aucun keyword ne duplique le titre
 
-### 5.3 Tester la recherche
+### 6.3 Tester la recherche
 
 Lancer `npm run dev` et tester la recherche Cmd+K avec :
 - Un nom de fonction (ex: "useQuery", "safeParse")
@@ -447,6 +589,17 @@ Avant de considérer votre guide de bonnes pratiques terminé :
 - [ ] Fichier `page.tsx` créé
 - [ ] Toutes les sections dans `_sections/` créées
 - [ ] `README.md` complété avec contexte/REX
+
+### SEO / GEO (OBLIGATOIRE)
+- [ ] `export const metadata: Metadata` dans `page.tsx` (title, description, OG, Twitter)
+- [ ] JSON-LD `Course` schema dans le return du composant
+- [ ] JSON-LD `BreadcrumbList` schema dans le return du composant
+- [ ] Image OG via `/api/og?title=...&category=...` (pas d'image statique inexistante)
+- [ ] Guide ajoute dans `lib/content.ts` avec **tous les champs SEO** (seoTitle, seoDescription, ogTitle, ogDescription, twitterCard, twitterTitle, twitterDescription)
+- [ ] Guide ajoute dans `app/sitemap.ts` avec la bonne URL `https://www.maxpaths.dev/guides/{slug}`
+- [ ] Title SEO : 50-70 caracteres, mot-cle principal en premier
+- [ ] Description SEO : 150-160 caracteres, proposition de valeur claire
+- [ ] Domaine canonique : toujours `https://www.maxpaths.dev` (jamais `maxpaths.com`)
 
 ### Contenu
 - [ ] 2-20 sections (recommandé : 8-15)
@@ -473,6 +626,9 @@ Avant de considérer votre guide de bonnes pratiques terminé :
 - [ ] Responsive OK (mobile/tablette/desktop)
 - [ ] Pas d'erreurs console
 - [ ] Accessibilité validée
+- [ ] Schemas JSON-LD valides (verifier dans le `<head>` ou via Rich Results Test)
+- [ ] Image OG generee correctement (`/api/og?title=...&category=...`)
+- [ ] Guide present dans `/sitemap.xml`
 
 ### Documentation
 - [ ] README.md du guide complété avec contexte et REX

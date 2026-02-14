@@ -77,10 +77,20 @@ export const metadata: ArticleMetadata = {
     { id: 'conclusion', title: 'Conclusion', level: 2 },
   ],
 
-  // SEO avancé (optionnel)
-  seoTitle: 'Titre SEO personnalisé | Blog maxpaths',
-  seoDescription: 'Description SEO personnalisée',
-  ogImage: '/images/blog/nom-article-og.png', // Image Open Graph
+  // SEO (OBLIGATOIRE pour le referencement)
+  seoTitle: 'Titre SEO personnalisé | Blog maxpaths', // 50-70 caracteres, mots-cles en premier
+  seoDescription: 'Description SEO personnalisée', // 150-160 caracteres, proposition de valeur
+  keywords: ['Keyword 1', 'Keyword 2', 'Keyword 3'], // Mots-cles techniques pour le referencement
+
+  // Open Graph (OBLIGATOIRE pour les partages sociaux)
+  ogTitle: 'Titre engageant pour LinkedIn/Slack/Discord',
+  ogDescription: 'Description OG (max 200 caracteres). Differente du seoDescription, plus engageante.',
+  ogImage: '/og-images/articles/nom-article.jpg', // Optionnel : l'API /api/og est utilisee par defaut
+
+  // Twitter Card (OBLIGATOIRE)
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Titre optimise pour Twitter/X',
+  twitterDescription: 'Description Twitter (max 200 caracteres).',
 };
 ```
 
@@ -336,12 +346,29 @@ Les keywords sont ajoutés dans `lib/search-index.ts` pour l'article principal E
 - **Visuels** : Utiliser ConceptCard pour concepts clés
 - **Comparaisons** : ComparisonTable pour comparer 2-3 options
 
-### SEO
+### SEO / GEO (OBLIGATOIRE)
 
-- **Description** : 150-200 caractères, avec mots-clés
-- **Tags** : 3-7 tags pertinents, max 128 caractères total
-- **Titre** : 50-70 caractères, inclure mots-clés principaux
+- **seoTitle** : 50-70 caracteres, mots-cles principaux en premier, terminer par `| Blog maxpaths`
+- **seoDescription** : 150-160 caracteres, proposition de valeur avec mots-cles
+- **keywords** : Array de 8-15 mots-cles techniques (noms d'API, librairies, acronymes, termes FR/EN)
+- **ogTitle** : Titre engageant pour les reseaux sociaux (peut differer du seoTitle)
+- **ogDescription** : Description pour LinkedIn/Slack/Discord (max 200 caracteres)
+- **twitterCard** : Toujours `'summary_large_image'`
+- **twitterTitle/Description** : Optimises pour Twitter/X
+- **Tags** : 3-7 tags pertinents (affiches sur la page blog et utilises pour le filtrage)
 - **URL** : Kebab-case, sans accents, maximum 5 mots
+
+**JSON-LD TechArticle** : Le schema est genere automatiquement dans `app/blog/[slug]/page.tsx` a partir des metadata de l'article. Il inclut :
+- `TechArticle` avec headline, author, publisher, dates, keywords
+- `BreadcrumbList` avec Accueil > Blog > Titre de l'article
+
+**Image OG** : L'image est generee dynamiquement via `/api/og?title=...&category=best-practices`. Pas besoin de creer une image statique.
+
+**GEO (visibilite dans les moteurs IA)** :
+- Commencer chaque section par une reponse directe (format "answer-first")
+- Inclure des statistiques et donnees chiffrees (+37% visibilite IA)
+- Citer les sources officielles (+40% visibilite IA)
+- Utiliser un ton autoritaire d'expert (+25%)
 
 ### Performance
 
@@ -444,17 +471,33 @@ import { metadata } from '@/app/blog/_articles/nom-article/metadata';
 
 Avant de publier un article, vérifier :
 
+### Structure & Contenu
 - [ ] Métadonnées complètes (`slug`, `title`, `description`, `author`, `publishedAt`)
-- [ ] Catégorie et tags définis
+- [ ] Catégorie et tags définis (3-7 tags)
 - [ ] Table des matières manuelle créée
 - [ ] Tous les IDs de ToC correspondent aux H2/H3
 - [ ] Article enregistré dans `metadataRegistry`
 - [ ] Case ajouté dans `loadArticleContent()`
+
+### SEO / GEO (OBLIGATOIRE)
+- [ ] `seoTitle` defini (50-70 caracteres, mots-cles en premier)
+- [ ] `seoDescription` defini (150-160 caracteres)
+- [ ] `keywords` defini (array de 8-15 mots-cles techniques)
+- [ ] `ogTitle` + `ogDescription` definis (pour reseaux sociaux)
+- [ ] `twitterCard` = `'summary_large_image'` + `twitterTitle` + `twitterDescription`
+- [ ] JSON-LD `TechArticle` genere automatiquement (verifier dans le `<head>`)
+- [ ] JSON-LD `BreadcrumbList` genere automatiquement (verifier dans le `<head>`)
+- [ ] Image OG fonctionne (tester `/api/og?title=Titre+Article&category=best-practices`)
+- [ ] Article present dans `/sitemap.xml` (genere automatiquement via `getAllArticlesMetadata()`)
+- [ ] Domaine canonique : `https://www.maxpaths.dev` (jamais `maxpaths.com`)
+
+### Tests
 - [ ] Tests sur `/blog` et `/blog/slug`
-- [ ] SEO vérifié (meta tags, Open Graph)
 - [ ] Responsive testé (mobile, tablet, desktop)
 - [ ] Pas d'erreur console
-- [ ] Sitemap généré correctement
+- [ ] Schemas JSON-LD valides dans le `<head>` (TechArticle + BreadcrumbList)
+
+### Recherche
 - [ ] Commande `/generate-keywords` exécutée
 - [ ] Keywords techniques ajoutés dans `lib/search-index.ts`
 - [ ] Entrées article + article-headings dans search index

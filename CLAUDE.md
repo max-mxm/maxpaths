@@ -22,12 +22,16 @@ Toute la documentation se trouve dans [`docs/`](./docs/).
 
 #### Si modification dans `app/guides/**/*`
 → **Consulter OBLIGATOIREMENT** : [`docs/architecture/cours-structure.md`](./docs/architecture/cours-structure.md)
+→ **Consulter** : [`docs/guides/ajouter-un-cours.md`](./docs/guides/ajouter-un-cours.md) (section SEO/GEO etape 3)
 
 Contient :
 - Structure d'un guide (CourseLayout, Sections, Catégories)
 - Organisation des fichiers recommandée
 - Composants disponibles
 - Patterns de développement
+- **Metadata SEO obligatoire** (title, description, OG, Twitter)
+- **Schemas JSON-LD** (Course + BreadcrumbList)
+- **Image OG dynamique** via `/api/og`
 
 ---
 
@@ -60,7 +64,28 @@ Contient :
 - Structure et design obligatoire des demos live
 - Standards interactifs (mesures reelles, controles, feedback)
 - Ajout dans le catalogue `/demos` et dans le guide parent
+- **`layout.tsx` obligatoire** pour metadata SEO (page.tsx est 'use client')
+- **Image OG dynamique** via `/api/og`
+- **Ajout au sitemap** obligatoire
 - Checklist de validation
+
+---
+
+#### Si modification dans `app/sitemap.ts` ou `app/robots.ts`
+→ **Verifier** : Domaine canonique = `https://www.maxpaths.dev` (jamais `maxpaths.com`)
+
+Contient :
+- URLs de toutes les pages du site
+- Bots IA autorises (GPTBot, PerplexityBot, ChatGPT-User, ClaudeBot, anthropic-ai)
+
+---
+
+#### Si modification dans `app/api/og/**/*`
+→ **Consulter** : Les categories de gradients dans [`docs/design-system/categories.md`](./docs/design-system/categories.md)
+
+Contient :
+- Generation dynamique d'images OG (1200x630)
+- Categories de gradients : fundamentals, rendering, optimization, best-practices, advanced
 
 ---
 
@@ -197,6 +222,8 @@ Contient :
 | "catalogue demos", "page demos", "liste demos" | [`docs/guides/bonnes-pratiques-demo-live.md`](./docs/guides/bonnes-pratiques-demo-live.md) (section 5) |
 | "keywords", "mots-cles", "recherche", "search index" | Executer `/generate-keywords` |
 | "nouvel article", "ajouter article", "creer article", "blog" | [`docs/guides/ajouter-article-blog.md`](./docs/guides/ajouter-article-blog.md) |
+| "SEO", "GEO", "metadata", "JSON-LD", "schema", "Open Graph", "og:image", "sitemap", "robots.txt" | Voir section SEO/GEO dans le doc concerne (guide, article ou demo) |
+| "image OG", "og-image", "social preview", "twitter card" | Route `/api/og` + metadata dans les pages |
 
 ---
 
@@ -281,6 +308,16 @@ Provider dans `app/layout.tsx` via `ThemeProvider`
 - ✅ Utiliser les gradients définis pour les catégories
 - ✅ Privilégier les icônes SVG ou icons library (Lucide React)
 - ✅ Utiliser un langage professionnel et précis
+
+### SEO / GEO (pour chaque nouveau contenu)
+- ✅ Exporter `metadata` avec title, description, OG et Twitter dans chaque page
+- ✅ Ajouter les schemas JSON-LD (Course pour guides, TechArticle pour articles, BreadcrumbList partout)
+- ✅ Utiliser `/api/og?title=...&category=...` pour les images OG dynamiques
+- ✅ Ajouter chaque nouvelle page dans `app/sitemap.ts`
+- ✅ Utiliser exclusivement le domaine `https://www.maxpaths.dev`
+- ✅ Pour les demos (`'use client'`), creer un `layout.tsx` pour les metadata
+- ✅ Ajouter les champs SEO complets dans `lib/content.ts` (seoTitle, seoDescription, ogTitle, etc.)
+- ✅ Inclure les bots IA dans `app/robots.ts` (GPTBot, PerplexityBot, ClaudeBot, etc.)
 
 ### Jamais
 - ❌ Hard-coder les couleurs
