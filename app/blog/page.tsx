@@ -2,7 +2,7 @@ import { getAllArticlesMetadata } from '@/lib/blog/get-articles';
 import { BlogPageClient } from './blog-page-client';
 
 export const metadata = {
-  title: 'Blog | maxpaths',
+  title: 'Blog | Maxpaths',
   description:
     'Articles techniques sur le développement frontend moderne : React, Next.js, Testing, Architecture',
 };

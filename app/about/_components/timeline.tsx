@@ -35,7 +35,7 @@ const milestones: TimelineNode[] = [
   },
   {
     year: '2025',
-    title: 'maxpaths nait',
+    title: 'Maxpaths nait',
     description:
       'Apres 8 ans, il est temps de documenter. Les patterns qui marchent, les erreurs a eviter, les choix d\'architecture qui tiennent dans le temps.',
   },
@@ -52,7 +52,7 @@ export function Timeline() {
           const isLeft = index % 2 === 0;
           return (
             <RevealOnScroll key={node.year} delay={index * 100}>
-              <div className="relative">
+              <div className="about-timeline-item relative">
                 {/* Mobile layout */}
                 <div className="md:hidden flex gap-6">
                   {/* Year badge */}

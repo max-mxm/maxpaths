@@ -3,7 +3,7 @@ import { getDemosForCatalog } from '@/lib/content';
 import { DemosPageClient } from './demos-page-client';
 
 export const metadata = {
-  title: 'Démos | maxpaths',
+  title: 'Démos | Maxpaths',
   description:
     'Explorez des démos interactives pour visualiser et tester des concepts frontend en direct : React, Next.js, Performance, Optimisations.',
 };

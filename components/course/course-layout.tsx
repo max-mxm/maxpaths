@@ -220,7 +220,7 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
                 </div>
 
                 {/* Section content */}
-                <div className="rounded-2xl bg-white/50 p-6 shadow-lg shadow-slate-200/50 backdrop-blur-sm md:p-8 dark:bg-slate-900/50 dark:shadow-slate-950/50">
+                <div className="rounded-2xl bg-white/50 p-6 shadow-lg shadow-slate-200/50 backdrop-blur-sm md:p-8 dark:bg-slate-900/50 dark:shadow-slate-950/50 transition-all duration-300 hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-slate-950/70">
                   {section.component}
                 </div>
               </section>
@@ -257,8 +257,9 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
             onClick={() => setMobileNavOpen(false)}
           />
 
-          {/* Sheet */}
-          <div className="absolute bottom-0 left-0 right-0 max-h-[75vh] bg-background rounded-t-2xl border-t border-border shadow-2xl overflow-hidden flex flex-col animate-in slide-in-from-bottom duration-300">
+          {/* Sheet - Animation fluide avec slide + fade */}
+          <div className="absolute bottom-0 left-0 right-0 max-h-[75vh] bg-background rounded-t-2xl border-t border-border shadow-2xl overflow-hidden flex flex-col animate-in slide-in-from-bottom fade-in duration-300"
+               style={{ animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}>
             {/* Handle bar */}
             <div className="flex justify-center py-3 flex-shrink-0">
               <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
@@ -271,7 +272,7 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
               </span>
               <button
                 onClick={() => setMobileNavOpen(false)}
-                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg hover:bg-muted transition-colors"
+                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-muted hover:bg-muted/80 transition-colors"
                 aria-label="Fermer la navigation"
               >
                 <X className="w-5 h-5" />

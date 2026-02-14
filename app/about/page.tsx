@@ -10,11 +10,11 @@ export default function AboutPage() {
       {/* =============================================
           SECTION 1 — Hero avec background moderne
       ============================================= */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
+      <section className="about-hero relative py-20 md:py-32 overflow-hidden">
         {/* Background stratifié moderne (comme page d'accueil) */}
         <div className="absolute inset-0 overflow-hidden opacity-60">
           <div
-            className="absolute top-0 left-0 right-0 h-96 opacity-[0.06] dark:opacity-[0.05]"
+            className="about-bg-float absolute top-0 left-0 right-0 h-96 opacity-[0.06] dark:opacity-[0.05]"
             style={{
               background: 'linear-gradient(120deg, var(--primary) 0%, transparent 60%)',
               transform: 'skewY(-4deg)',
@@ -102,17 +102,17 @@ export default function AboutPage() {
       {/* =============================================
           SECTION 2 — Origine du projet (pleine largeur)
       ============================================= */}
-      <section className="py-16 md:py-24 border-t border-border/50">
+      <section className="about-section about-section-2 py-16 md:py-24 border-t border-border/50">
         <div className="container">
           <RevealOnScroll>
             <div className="relative pl-6 mb-10">
-              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary to-primary/20" />
+              <div className="about-accent-bar absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary to-primary/20" />
               <div className="space-y-3">
                 <span className="text-xs font-bold tracking-[0.25em] uppercase text-primary/80">
                   Genèse
                 </span>
                 <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold leading-tight text-foreground">
-                  Pourquoi maxpaths existe
+                  Pourquoi Maxpaths existe
                 </h2>
               </div>
             </div>
@@ -128,7 +128,7 @@ export default function AboutPage() {
                 les choix d'architecture qui dégradent 6 mois plus tard, les optimisations qui génèrent plus de bugs qu'elles n'en résolvent.
               </p>
               <p className="font-medium text-foreground/90">
-                maxpaths comble ce vide en documentant les solutions testées en production, pas la théorie abstraite.
+                Maxpaths comble ce vide en documentant les solutions testées en production, pas la théorie abstraite.
               </p>
             </div>
           </RevealOnScroll>
@@ -138,11 +138,11 @@ export default function AboutPage() {
       {/* =============================================
           SECTION 3 — Application Scanorr (pleine largeur)
       ============================================= */}
-      <section className="py-16 md:py-24 border-t border-border/50">
+      <section className="about-section about-section-3 py-16 md:py-24 border-t border-border/50">
         <div className="container">
           <RevealOnScroll>
             <div className="relative pl-6 mb-10">
-              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-brand-secondary to-brand-secondary/20" />
+              <div className="about-accent-bar absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-brand-secondary to-brand-secondary/20" />
               <div className="space-y-3">
                 <span className="text-xs font-bold tracking-[0.25em] uppercase text-brand-secondary/80">
                   Application
@@ -162,7 +162,7 @@ export default function AboutPage() {
                   href="https://scanorr.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/30 hover:decoration-primary/60 transition-all"
+                  className="about-link font-medium text-primary hover:text-primary/80"
                 >
                   Scanorr
                 </a>
@@ -188,11 +188,11 @@ export default function AboutPage() {
                 href="https://scanorr.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-brand-secondary/40 font-semibold rounded-lg hover:bg-brand-secondary/5 transition-all duration-300"
+                className="about-button about-icon-rotate group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-brand-secondary/40 font-semibold rounded-lg hover:bg-brand-secondary/5"
               >
-                <Globe size={18} className="transition-transform duration-300 group-hover:rotate-12" />
+                <Globe size={18} className="about-icon-hover" />
                 Découvrir Scanorr
-                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-4 h-4 about-icon-hover" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </a>
@@ -204,7 +204,7 @@ export default function AboutPage() {
       {/* =============================================
           SECTION 4 — Timeline du Parcours
       ============================================= */}
-      <section className="py-16 md:py-24 border-t border-border/50">
+      <section className="about-section about-section-4 py-16 md:py-24 border-t border-border/50">
         <div className="container">
           <RevealOnScroll>
             <div className="relative pl-6 mb-12 md:mb-20">
@@ -227,7 +227,7 @@ export default function AboutPage() {
       {/* =============================================
           SECTION 5 — Philosophie (pleine largeur, grille centrée)
       ============================================= */}
-      <section className="relative py-16 md:py-28 border-t border-border/50 overflow-hidden">
+      <section className="about-section about-section-5 relative py-16 md:py-28 border-t border-border/50 overflow-hidden">
         {/* Background grain subtil */}
         <div className="absolute inset-0 opacity-[0.015] dark:opacity-[0.01]">
           <div
@@ -282,10 +282,10 @@ export default function AboutPage() {
               },
             ].map((value, index) => (
               <RevealOnScroll key={value.title} delay={index * 80}>
-                <div className="group relative p-7 rounded-xl border border-border/40 hover:border-primary/30 bg-card/30 hover:bg-card/60 transition-all duration-300">
+                <div className="about-card group relative p-7 rounded-xl border border-border/40 hover:border-primary/30 bg-card/30 hover:bg-card/60">
                   {/* Icon avec background gradient */}
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-primary/10 to-brand-secondary/10 mb-5 group-hover:scale-110 transition-transform duration-300">
-                    <value.icon className="w-6 h-6 text-primary" strokeWidth={2.5} />
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-primary/10 to-brand-secondary/10 mb-5">
+                    <value.icon className="about-icon-hover w-6 h-6 text-primary" strokeWidth={2.5} />
                   </div>
 
                   <h3 className="text-lg font-semibold text-foreground mb-3">
@@ -316,27 +316,27 @@ export default function AboutPage() {
                   href="https://www.linkedin.com/in/maxime-morellon-7a9403112"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 px-6 py-3 bg-[#0077B5] text-white font-semibold rounded-lg hover:bg-[#0077B5]/90 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-[#0077B5]/20 hover:-translate-y-0.5"
+                  className="about-button about-icon-scale group inline-flex items-center gap-2 px-6 py-3 bg-[#0077B5] text-white font-semibold rounded-lg hover:bg-[#0077B5]/90 shadow-md hover:shadow-lg hover:shadow-[#0077B5]/20"
                 >
-                  <Linkedin size={18} className="transition-transform duration-300 group-hover:scale-110" />
+                  <Linkedin size={18} className="about-icon-hover" />
                   LinkedIn
                 </a>
                 <a
                   href="https://www.maxime-morellon.dev/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 transition-all duration-300"
+                  className="about-button about-icon-rotate group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5"
                 >
-                  <Globe size={18} className="transition-transform duration-300 group-hover:rotate-12" />
+                  <Globe size={18} className="about-icon-hover" />
                   Portfolio
                 </a>
                 <a
-                  href="https://github.com/maxime-morellon"
+                  href="https://www.github.com/maxime-morellon"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 transition-all duration-300"
+                  className="about-button about-icon-scale group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5"
                 >
-                  <Github size={18} className="transition-transform duration-300 group-hover:scale-110" />
+                  <Github size={18} className="about-icon-hover" />
                   GitHub
                 </a>
               </div>
@@ -348,7 +348,7 @@ export default function AboutPage() {
       {/* =============================================
           SECTION 6 — CTA Final (modernisé)
       ============================================= */}
-      <section className="relative py-16 md:py-28 overflow-hidden">
+      <section className="about-section-6 relative py-16 md:py-28 overflow-hidden">
         {/* Background stratifié subtil */}
         <div className="absolute inset-0 opacity-40">
           <div
@@ -377,17 +377,17 @@ export default function AboutPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <Link
                   href="/guides"
-                  className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-0.5 overflow-hidden"
+                  className="about-button group relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 shadow-lg hover:shadow-xl hover:shadow-primary/20 overflow-hidden"
                 >
                   <span className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                   <span className="relative">Explorer les guides</span>
-                  <svg className="relative w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="about-icon-hover relative w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </Link>
                 <Link
                   href="/blog"
-                  className="group relative inline-flex items-center justify-center gap-2 px-8 py-4 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 transition-all duration-300 overflow-hidden"
+                  className="about-button group relative inline-flex items-center justify-center gap-2 px-8 py-4 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 overflow-hidden"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
                   <span className="relative">Lire le blog</span>

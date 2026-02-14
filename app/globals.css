@@ -12,6 +12,7 @@
 @import './styles/theme.utilities.css';
 @import './styles/shadcn-ui.css';
 @import './styles/logo-animations.css';
+@import './styles/about-animations.css';
 
 /* variants - update the below if you add a new variant */
 @variant dark (&:where(.dark, .dark *));
@@ -138,6 +139,45 @@
     transform: translateY(0);
   }
 
+  /* Micro-interactions pour boutons et liens */
+  .btn-press {
+    transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+
+  .link-hover {
+    position: relative;
+    transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .link-hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .link-hover:hover::after {
+    width: 100%;
+  }
+
+  /* Card lift effect */
+  .card-lift {
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card-lift:hover {
+    transform: translateY(-4px);
+  }
+
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
     *,
@@ -222,5 +262,40 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Slide animations pour le titre des démos/guides */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp-title {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Glow pulse pour les callouts et highlights */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
   }
 }

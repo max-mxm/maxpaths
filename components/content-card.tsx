@@ -62,10 +62,14 @@ export function ContentCard({
     <Link
       href={href}
       className={cn(
-        "group block rounded-xl border border-border/50 bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5",
+        "group block rounded-xl border border-border/50 bg-card transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-border active:scale-[0.99]",
         isFeatured ? 'p-6 sm:p-8 md:p-10' : 'p-4 sm:p-6',
       )}
-      style={{ borderTopWidth: '2px', borderTopColor: accentColor }}
+      style={{
+        borderTopWidth: '2px',
+        borderTopColor: accentColor,
+        transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      }}
     >
       <div className={cn(
         "flex h-full flex-col text-center md:text-left",

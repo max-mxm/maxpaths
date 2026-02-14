@@ -1,0 +1,269 @@
+/*
+ * about-animations.css
+ *
+ * Animations raffinées et professionnelles pour la page À propos
+ * Mobile-first, optimisées pour performance (transform + opacity uniquement)
+ */
+
+@layer utilities {
+  /* ===================================
+     Easing personnalisé (naturel)
+     ================================ */
+  :root {
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ===================================
+     Orchestration du chargement de page
+     ================================ */
+
+  /* Hero - Entrée immédiate */
+  .about-hero {
+    animation: about-fade-slide-up 0.7s var(--ease-out-expo) both;
+  }
+
+  /* Section 2 - Delay léger */
+  .about-section-2 {
+    animation: about-fade-slide-up 0.7s var(--ease-out-expo) 0.15s both;
+  }
+
+  /* Section 3 - Delay moyen */
+  .about-section-3 {
+    animation: about-fade-slide-up 0.7s var(--ease-out-expo) 0.25s both;
+  }
+
+  /* Section 4 - Delay moyen+ */
+  .about-section-4 {
+    animation: about-fade-slide-up 0.7s var(--ease-out-expo) 0.35s both;
+  }
+
+  /* Section 5 - Delay important */
+  .about-section-5 {
+    animation: about-fade-slide-up 0.7s var(--ease-out-expo) 0.45s both;
+  }
+
+  /* Section 6 - Delay final */
+  .about-section-6 {
+    animation: about-fade-slide-up 0.7s var(--ease-out-expo) 0.55s both;
+  }
+
+  /* ===================================
+     Micro-interactions sur liens
+     ================================ */
+
+  /* Liens texte avec underline */
+  .about-link {
+    position: relative;
+    transition: color 0.25s var(--ease-out-quart);
+  }
+
+  .about-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    opacity: 0.3;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition:
+      opacity 0.25s var(--ease-out-quart),
+      transform 0.25s var(--ease-out-quart);
+  }
+
+  .about-link:hover::after {
+    opacity: 0.6;
+    transform: scaleX(1.05);
+  }
+
+  /* ===================================
+     Boutons avec feedback subtil
+     ================================ */
+
+  .about-button {
+    position: relative;
+    transition:
+      transform 0.2s var(--ease-out-quart),
+      box-shadow 0.2s var(--ease-out-quart);
+  }
+
+  .about-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .about-button:active {
+    transform: translateY(0);
+    transition-duration: 0.1s;
+  }
+
+  /* Effet de shine subtil au hover */
+  .about-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-out-quart);
+  }
+
+  .about-button:hover::before {
+    opacity: 1;
+  }
+
+  /* ===================================
+     Cards avec lift effect
+     ================================ */
+
+  .about-card {
+    transition:
+      transform 0.3s var(--ease-out-quart),
+      box-shadow 0.3s var(--ease-out-quart),
+      border-color 0.3s var(--ease-out-quart);
+  }
+
+  .about-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* ===================================
+     Icônes avec rotation/scale subtils
+     ================================ */
+
+  .about-icon-hover {
+    transition: transform 0.3s var(--ease-out-quart);
+  }
+
+  .about-icon-rotate:hover .about-icon-hover {
+    transform: rotate(12deg) scale(1.05);
+  }
+
+  .about-icon-scale:hover .about-icon-hover {
+    transform: scale(1.1);
+  }
+
+  /* ===================================
+     Barres d'accent avec glow subtil
+     ================================ */
+
+  .about-accent-bar {
+    position: relative;
+  }
+
+  .about-accent-bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-out-quart);
+  }
+
+  .about-section:hover .about-accent-bar::before {
+    opacity: 0.4;
+  }
+
+  /* ===================================
+     Timeline avec progressive reveal
+     ================================ */
+
+  .about-timeline-item {
+    opacity: 0;
+    transform: translateX(-12px);
+    animation: about-timeline-reveal 0.6s var(--ease-out-expo) both;
+  }
+
+  .about-timeline-item:nth-child(1) { animation-delay: 0.1s; }
+  .about-timeline-item:nth-child(2) { animation-delay: 0.2s; }
+  .about-timeline-item:nth-child(3) { animation-delay: 0.3s; }
+  .about-timeline-item:nth-child(4) { animation-delay: 0.4s; }
+  .about-timeline-item:nth-child(5) { animation-delay: 0.5s; }
+  .about-timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+  /* ===================================
+     Background effects avec subtle motion
+     ================================ */
+
+  @keyframes about-bg-float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    25% {
+      transform: translate(1%, -1%) scale(1.02);
+    }
+    50% {
+      transform: translate(-1%, 1%) scale(0.98);
+    }
+    75% {
+      transform: translate(1%, 1%) scale(1.01);
+    }
+  }
+
+  .about-bg-float {
+    animation: about-bg-float 20s var(--ease-out-quart) infinite;
+  }
+}
+
+/* ===================================
+   Keyframes
+   ================================ */
+
+@keyframes about-fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes about-timeline-reveal {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===================================
+   Reduced Motion Support
+   ================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero,
+  .about-section-2,
+  .about-section-3,
+  .about-section-4,
+  .about-section-5,
+  .about-section-6,
+  .about-timeline-item,
+  .about-bg-float {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .about-link::after,
+  .about-button,
+  .about-button::before,
+  .about-card,
+  .about-icon-hover,
+  .about-accent-bar::before {
+    transition: none !important;
+  }
+}

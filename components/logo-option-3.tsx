@@ -9,13 +9,13 @@ import Link from 'next/link';
  * Animation: Chevron qui se déplace vers la droite, gradient qui tourne, lettres en stagger, glow intense
  */
 export function LogoOption3() {
-  const letters = 'maxpaths'.split('');
+  const letters = 'Maxpaths'.split('');
 
   return (
     <Link
       href="/"
       className="group flex items-center gap-2.5 transition-all duration-300"
-      aria-label="maxpaths - Accueil"
+      aria-label="Maxpaths - Accueil"
     >
       {/* Chevron avec gradient radial animé */}
       <div className="relative w-7 h-7 flex items-center justify-center overflow-hidden">

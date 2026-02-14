@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description:
     'Bonnes pratiques frontend, patterns et retours d\'experience par Maxime Morellon. Guides React, Next.js et articles techniques.',
   openGraph: {
-    title: 'maxpaths — Bonnes pratiques frontend par Maxime Morellon',
+    title: 'Maxpaths — Bonnes pratiques frontend par Maxime Morellon',
     description:
       'Guides React, Next.js et articles techniques issus de 8 ans d\'experience en production.',
     images: ['/og-image-home.png'],

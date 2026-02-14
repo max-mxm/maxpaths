@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://maxpaths.com'),
 
   title: {
-    default: 'maxpaths — Bonnes pratiques frontend par Maxime Morellon',
-    template: '%s | maxpaths'
+    default: 'Maxpaths — Bonnes pratiques frontend par Maxime Morellon',
+    template: '%s | Maxpaths'
   },
 
   description: 'Guides React et Next.js, articles techniques et retours d\'experience par Maxime Morellon. Patterns eprouves et solutions issues de 8 ans de developpement frontend.',
@@ -54,22 +54,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://maxpaths.com',
-    siteName: 'maxpaths',
-    title: 'maxpaths - Bonnes pratiques React & Next.js',
+    siteName: 'Maxpaths',
+    title: 'Maxpaths - Bonnes pratiques React & Next.js',
     description: 'Patterns éprouvés, solutions terrain et retours d\'expérience partagés gratuitement',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'maxpaths - Bonnes pratiques React & Next.js',
+        alt: 'Maxpaths - Bonnes pratiques React & Next.js',
       },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
-    title: 'maxpaths - Bonnes pratiques React & Next.js',
+    title: 'Maxpaths - Bonnes pratiques React & Next.js',
     description: 'Patterns éprouvés et retours d\'expérience par Maxime Morellon',
     images: ['/og-image.png'],
   },
@@ -98,7 +98,7 @@ export default function RootLayout({
         {/* Inline script to prevent theme flash (FOUC) */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('maxpaths-ui-theme');if(t==='dark'){document.documentElement.classList.add('dark')}else{document.documentElement.classList.add('light')}}catch(e){document.documentElement.classList.add('light')}})()`,
+            __html: `(function(){try{var t=localStorage.getItem('Maxpaths-ui-theme');if(t==='dark'){document.documentElement.classList.add('dark')}else{document.documentElement.classList.add('light')}}catch(e){document.documentElement.classList.add('light')}})()`,
           }}
         />
         {/* Organization Schema.org JSON-LD */}
@@ -108,7 +108,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "maxpaths",
+              "name": "Maxpaths",
               "url": "https://maxpaths.com",
               "logo": "https://maxpaths.com/logo.png",
               "description": "Plateforme de partage de bonnes pratiques React et Next.js basées sur des projets réels",
@@ -154,7 +154,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider defaultTheme="light" storageKey="maxpaths-ui-theme">
+        <ThemeProvider defaultTheme="light" storageKey="Maxpaths-ui-theme">
           <Header />
           {children}
           <Footer />
