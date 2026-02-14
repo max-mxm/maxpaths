@@ -100,108 +100,104 @@ export default function AboutPage() {
       </section>
 
       {/* =============================================
-          SECTION 2 — Origine du projet (redesignée)
+          SECTION 2 — Origine du projet (pleine largeur)
       ============================================= */}
       <section className="py-16 md:py-24 border-t border-border/50">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <RevealOnScroll>
-              <div className="relative pl-6 mb-10">
-                <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary to-primary/20" />
-                <div className="space-y-3">
-                  <span className="text-xs font-bold tracking-[0.25em] uppercase text-primary/80">
-                    Genèse
-                  </span>
-                  <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold leading-tight text-foreground">
-                    Pourquoi maxpaths existe
-                  </h2>
-                </div>
+          <RevealOnScroll>
+            <div className="relative pl-6 mb-10">
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary to-primary/20" />
+              <div className="space-y-3">
+                <span className="text-xs font-bold tracking-[0.25em] uppercase text-primary/80">
+                  Genèse
+                </span>
+                <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold leading-tight text-foreground">
+                  Pourquoi maxpaths existe
+                </h2>
               </div>
-            </RevealOnScroll>
+            </div>
+          </RevealOnScroll>
 
-            <RevealOnScroll delay={100}>
-              <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  La documentation officielle enseigne la syntaxe. L'expérience terrain enseigne ce qu'il ne faut jamais faire.
-                </p>
-                <p>
-                  Entre les tutoriels académiques et les projets à fort trafic, il existe un gouffre : les anti-patterns réels,
-                  les choix d'architecture qui dégradent 6 mois plus tard, les optimisations qui génèrent plus de bugs qu'elles n'en résolvent.
-                </p>
-                <p className="font-medium text-foreground/90">
-                  maxpaths comble ce vide en documentant les solutions testées en production, pas la théorie abstraite.
-                </p>
-              </div>
-            </RevealOnScroll>
-          </div>
+          <RevealOnScroll delay={100}>
+            <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
+              <p>
+                La documentation officielle enseigne la syntaxe. L'expérience terrain enseigne ce qu'il ne faut jamais faire.
+              </p>
+              <p>
+                Entre les tutoriels académiques et les projets à fort trafic, il existe un gouffre : les anti-patterns réels,
+                les choix d'architecture qui dégradent 6 mois plus tard, les optimisations qui génèrent plus de bugs qu'elles n'en résolvent.
+              </p>
+              <p className="font-medium text-foreground/90">
+                maxpaths comble ce vide en documentant les solutions testées en production, pas la théorie abstraite.
+              </p>
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 
       {/* =============================================
-          SECTION 3 — Application Scanorr
+          SECTION 3 — Application Scanorr (pleine largeur)
       ============================================= */}
       <section className="py-16 md:py-24 border-t border-border/50">
         <div className="container">
-          <div className="max-w-4xl mx-auto">
-            <RevealOnScroll>
-              <div className="relative pl-6 mb-10">
-                <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-brand-secondary to-brand-secondary/20" />
-                <div className="space-y-3">
-                  <span className="text-xs font-bold tracking-[0.25em] uppercase text-brand-secondary/80">
-                    Application
-                  </span>
-                  <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold leading-tight text-foreground">
-                    Scanorr : mise en pratique des principes
-                  </h2>
-                </div>
+          <RevealOnScroll>
+            <div className="relative pl-6 mb-10">
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-brand-secondary to-brand-secondary/20" />
+              <div className="space-y-3">
+                <span className="text-xs font-bold tracking-[0.25em] uppercase text-brand-secondary/80">
+                  Application
+                </span>
+                <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold leading-tight text-foreground">
+                  Scanorr : mise en pratique des principes
+                </h2>
               </div>
-            </RevealOnScroll>
+            </div>
+          </RevealOnScroll>
 
-            <RevealOnScroll delay={100}>
-              <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
-                <p>
-                  J'ai développé{' '}
-                  <a
-                    href="https://scanorr.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/30 hover:decoration-primary/60 transition-all"
-                  >
-                    Scanorr
-                  </a>
-                  , une application web et mobile en Next.js et React Native qui digitalise les états des lieux immobiliers.
-                  L'application intègre de l'IA pour la reconnaissance de pièces, fonctionne entièrement hors-ligne,
-                  et génère des rapports conformes à la loi ALUR avec signatures électroniques.
-                </p>
-                <p>
-                  Ce projet m'a permis de mettre en œuvre de nombreux principes documentés dans les guides :
-                  optimisations de rendu avec Server Components, mémoïsation stratégique, gestion d'état avec Zustand,
-                  validation robuste avec Zod, et architecture progressive pour gérer la complexité croissante.
-                </p>
-                <p className="font-medium text-foreground/90">
-                  Scanorr réduit le temps d'inspection de 2h à 45 minutes pour un appartement type 3 pièces,
-                  tout en garantissant la conformité légale et la protection des propriétaires.
-                </p>
-              </div>
-            </RevealOnScroll>
-
-            <RevealOnScroll delay={200}>
-              <div className="pt-8">
+          <RevealOnScroll delay={100}>
+            <div className="space-y-6 text-base md:text-lg text-muted-foreground leading-relaxed">
+              <p>
+                J'ai développé{' '}
                 <a
                   href="https://scanorr.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-brand-secondary/40 font-semibold rounded-lg hover:bg-brand-secondary/5 transition-all duration-300"
+                  className="font-medium text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/30 hover:decoration-primary/60 transition-all"
                 >
-                  <Globe size={18} className="transition-transform duration-300 group-hover:rotate-12" />
-                  Découvrir Scanorr
-                  <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+                  Scanorr
                 </a>
-              </div>
-            </RevealOnScroll>
-          </div>
+                , une application web et mobile en Next.js et React Native qui digitalise les états des lieux immobiliers.
+                L'application intègre de l'IA pour la reconnaissance de pièces, fonctionne entièrement hors-ligne,
+                et génère des rapports conformes à la loi ALUR avec signatures électroniques.
+              </p>
+              <p>
+                Ce projet m'a permis de mettre en œuvre de nombreux principes documentés dans les guides :
+                optimisations de rendu avec Server Components, mémoïsation stratégique, gestion d'état avec Zustand,
+                validation robuste avec Zod, et architecture progressive pour gérer la complexité croissante.
+              </p>
+              <p className="font-medium text-foreground/90">
+                Scanorr réduit le temps d'inspection de 2h à 45 minutes pour un appartement type 3 pièces,
+                tout en garantissant la conformité légale et la protection des propriétaires.
+              </p>
+            </div>
+          </RevealOnScroll>
+
+          <RevealOnScroll delay={200}>
+            <div className="pt-8">
+              <a
+                href="https://scanorr.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-brand-secondary/40 font-semibold rounded-lg hover:bg-brand-secondary/5 transition-all duration-300"
+              >
+                <Globe size={18} className="transition-transform duration-300 group-hover:rotate-12" />
+                Découvrir Scanorr
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 
@@ -229,7 +225,7 @@ export default function AboutPage() {
       </section>
 
       {/* =============================================
-          SECTION 5 — Philosophie (cards modernisées)
+          SECTION 5 — Philosophie (pleine largeur, grille centrée)
       ============================================= */}
       <section className="relative py-16 md:py-28 border-t border-border/50 overflow-hidden">
         {/* Background grain subtil */}
@@ -244,110 +240,108 @@ export default function AboutPage() {
         </div>
 
         <div className="container relative">
-          <div className="max-w-5xl mx-auto">
-            <RevealOnScroll>
-              <div className="relative pl-6 mb-12 md:mb-16">
-                <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary via-brand-secondary to-primary/20" />
-                <div className="space-y-3">
-                  <span className="text-xs font-bold tracking-[0.25em] uppercase text-primary/80">
-                    Philosophie
-                  </span>
-                  <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold leading-tight text-foreground">
-                    Principes fondateurs
-                  </h2>
-                </div>
+          <RevealOnScroll>
+            <div className="relative pl-6 mb-12 md:mb-16">
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary via-brand-secondary to-primary/20" />
+              <div className="space-y-3">
+                <span className="text-xs font-bold tracking-[0.25em] uppercase text-primary/80">
+                  Philosophie
+                </span>
+                <h2 className="text-[clamp(1.75rem,5vw,3rem)] font-bold leading-tight text-foreground">
+                  Principes fondateurs
+                </h2>
               </div>
-            </RevealOnScroll>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                {
-                  icon: Target,
-                  title: 'Axé production',
-                  description:
-                    'Solutions validées en conditions réelles. Zéro spéculation, uniquement des patterns éprouvés sur applications à fort trafic.',
-                },
-                {
-                  icon: Sparkles,
-                  title: 'Apprentissage interactif',
-                  description:
-                    'Démos live avec mesures temps réel. Manipulation directe, observations concrètes, code modifiable à volonté.',
-                },
-                {
-                  icon: Layers,
-                  title: 'Architecture progressive',
-                  description:
-                    'Du fondamental vers l\'avancé. Parcours structurés selon niveau et cas d\'usage, sans sauter d\'étapes.',
-                },
-                {
-                  icon: Share2,
-                  title: 'Savoir partagé',
-                  description:
-                    'Contenu ouvert et gratuit. Retours terrain, anti-patterns documentés, communauté qui apprend ensemble.',
-                },
-              ].map((value, index) => (
-                <RevealOnScroll key={value.title} delay={index * 80}>
-                  <div className="group relative p-7 rounded-xl border border-border/40 hover:border-primary/30 bg-card/30 hover:bg-card/60 transition-all duration-300">
-                    {/* Icon avec background gradient */}
-                    <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-primary/10 to-brand-secondary/10 mb-5 group-hover:scale-110 transition-transform duration-300">
-                      <value.icon className="w-6 h-6 text-primary" strokeWidth={2.5} />
-                    </div>
-
-                    <h3 className="text-lg font-semibold text-foreground mb-3">
-                      {value.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {value.description}
-                    </p>
-
-                    {/* Accent hover */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/0 via-primary/0 to-brand-secondary/0 group-hover:from-primary/5 group-hover:to-brand-secondary/5 transition-all duration-500 pointer-events-none" />
-                  </div>
-                </RevealOnScroll>
-              ))}
             </div>
+          </RevealOnScroll>
 
-            {/* Links sociaux */}
-            <RevealOnScroll delay={300}>
-              <div className="flex flex-col sm:flex-row items-center gap-4 pt-12 mt-12 border-t border-border/30">
-                <div className="flex-1 text-center sm:text-left">
-                  <p className="text-sm font-medium text-foreground/70">
-                    Restons connectés
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                icon: Target,
+                title: 'Axé production',
+                description:
+                  'Solutions validées en conditions réelles. Zéro spéculation, uniquement des patterns éprouvés sur applications à fort trafic.',
+              },
+              {
+                icon: Sparkles,
+                title: 'Apprentissage interactif',
+                description:
+                  'Démos live avec mesures temps réel. Manipulation directe, observations concrètes, code modifiable à volonté.',
+              },
+              {
+                icon: Layers,
+                title: 'Architecture progressive',
+                description:
+                  'Du fondamental vers l\'avancé. Parcours structurés selon niveau et cas d\'usage, sans sauter d\'étapes.',
+              },
+              {
+                icon: Share2,
+                title: 'Savoir partagé',
+                description:
+                  'Contenu ouvert et gratuit. Retours terrain, anti-patterns documentés, communauté qui apprend ensemble.',
+              },
+            ].map((value, index) => (
+              <RevealOnScroll key={value.title} delay={index * 80}>
+                <div className="group relative p-7 rounded-xl border border-border/40 hover:border-primary/30 bg-card/30 hover:bg-card/60 transition-all duration-300">
+                  {/* Icon avec background gradient */}
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-primary/10 to-brand-secondary/10 mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <value.icon className="w-6 h-6 text-primary" strokeWidth={2.5} />
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-foreground mb-3">
+                    {value.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {value.description}
                   </p>
-                </div>
 
-                <div className="flex flex-wrap gap-3 justify-center sm:justify-end">
-                  <a
-                    href="https://www.linkedin.com/in/maxime-morellon-7a9403112"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-6 py-3 bg-[#0077B5] text-white font-semibold rounded-lg hover:bg-[#0077B5]/90 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-[#0077B5]/20 hover:-translate-y-0.5"
-                  >
-                    <Linkedin size={18} className="transition-transform duration-300 group-hover:scale-110" />
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://www.maxime-morellon.dev/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 transition-all duration-300"
-                  >
-                    <Globe size={18} className="transition-transform duration-300 group-hover:rotate-12" />
-                    Portfolio
-                  </a>
-                  <a
-                    href="https://github.com/maxime-morellon"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 transition-all duration-300"
-                  >
-                    <Github size={18} className="transition-transform duration-300 group-hover:scale-110" />
-                    GitHub
-                  </a>
+                  {/* Accent hover */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/0 via-primary/0 to-brand-secondary/0 group-hover:from-primary/5 group-hover:to-brand-secondary/5 transition-all duration-500 pointer-events-none" />
                 </div>
-              </div>
-            </RevealOnScroll>
+              </RevealOnScroll>
+            ))}
           </div>
+
+          {/* Links sociaux */}
+          <RevealOnScroll delay={300}>
+            <div className="flex flex-col sm:flex-row items-center gap-4 pt-12 mt-12 border-t border-border/30">
+              <div className="flex-1 text-center sm:text-left">
+                <p className="text-sm font-medium text-foreground/70">
+                  Restons connectés
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-3 justify-center sm:justify-end">
+                <a
+                  href="https://www.linkedin.com/in/maxime-morellon-7a9403112"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-6 py-3 bg-[#0077B5] text-white font-semibold rounded-lg hover:bg-[#0077B5]/90 transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-[#0077B5]/20 hover:-translate-y-0.5"
+                >
+                  <Linkedin size={18} className="transition-transform duration-300 group-hover:scale-110" />
+                  LinkedIn
+                </a>
+                <a
+                  href="https://www.maxime-morellon.dev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 transition-all duration-300"
+                >
+                  <Globe size={18} className="transition-transform duration-300 group-hover:rotate-12" />
+                  Portfolio
+                </a>
+                <a
+                  href="https://github.com/maxime-morellon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-6 py-3 border border-border/60 hover:border-primary/40 font-semibold rounded-lg hover:bg-primary/5 transition-all duration-300"
+                >
+                  <Github size={18} className="transition-transform duration-300 group-hover:scale-110" />
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </RevealOnScroll>
         </div>
       </section>
 
