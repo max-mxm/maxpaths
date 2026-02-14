@@ -73,7 +73,7 @@ export function HeroSection() {
             <h1
               className="text-[clamp(4rem,12vw,10rem)] leading-[0.95] mt-12"
             >
-              <span className="block font-black tracking-[-0.04em] text-foreground lg:bg-gradient-to-r lg:from-foreground lg:via-primary/60 lg:to-brand-secondary/40 lg:bg-clip-text lg:text-transparent animate-slideInUp-title opacity-0" style={{ animationDelay: '0.35s', animationFillMode: 'forwards' }}>
+              <span className="block font-black tracking-[-0.04em] bg-gradient-to-r from-primary via-brand-secondary to-primary bg-clip-text text-transparent animate-slideInUp-title opacity-0" style={{ animationDelay: '0.35s', animationFillMode: 'forwards' }}>
                 Bonnes pratiques
               </span>
               <span className="block font-thin tracking-[0.02em] text-primary ml-0 lg:ml-16 animate-text-shimmer opacity-0" style={{ animationDelay: '0.8s', animationFillMode: 'forwards' }}>
