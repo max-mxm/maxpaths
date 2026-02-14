@@ -16,7 +16,13 @@ export const metadata: Metadata = {
     title: 'Maxpaths — Bonnes pratiques frontend par Maxime Morellon',
     description:
       'Guides React, Next.js et articles techniques issus de 8 ans d\'experience en production.',
-    images: ['/og-image-home.png'],
+    images: [{ url: '/api/og?title=Maxpaths+-+Bonnes+Pratiques+Frontend&category=fundamentals', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Maxpaths — Bonnes pratiques frontend par Maxime Morellon',
+    description: 'Guides React, Next.js et articles techniques issus de 8 ans d\'experience en production.',
+    images: ['/api/og?title=Maxpaths+-+Bonnes+Pratiques+Frontend&category=fundamentals'],
   },
 };
 
@@ -24,11 +30,60 @@ const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Maxime Morellon',
-  url: 'https://maxpaths.com',
+  url: 'https://www.maxpaths.dev',
   jobTitle: 'Developpeur Frontend Senior',
   sameAs: [
     'https://www.linkedin.com/in/maxime-morellon-7a9403112',
     'https://www.maxime-morellon.dev/',
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Maxpaths',
+  url: 'https://www.maxpaths.dev',
+  description: 'Bonnes pratiques frontend, patterns et retours d\'experience par Maxime Morellon.',
+  inLanguage: 'fr',
+  author: { '@type': 'Person', name: 'Maxime Morellon' },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Quels sont les modes de rendu disponibles dans Next.js 16 ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Next.js 16 propose 5 modes de rendu : SSR (Server-Side Rendering), SSG (Static Site Generation), ISR (Incremental Static Regeneration), CSR (Client-Side Rendering) et Streaming avec React Suspense. Chaque mode est adapte a un cas d\'usage specifique selon les besoins de fraicheur des donnees et de performance.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quand utiliser React.memo, useMemo et useCallback ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'React.memo empeche le re-render d\'un composant si ses props n\'ont pas change. useMemo memorise le resultat d\'un calcul couteux. useCallback memorise une reference de fonction pour eviter les re-renders des composants enfants. Attention a l\'over-optimization : ces outils ont un cout memoire et ne doivent etre utilises que lorsqu\'un probleme de performance est mesure.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Quelles sont les nouveautes majeures de React 19 ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'React 19 introduit le React Compiler (memorisation automatique), le hook use() pour le data fetching, useActionState pour les formulaires, useOptimistic pour les mises a jour optimistes, et des ameliorations significatives des Server Components et des Actions.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Comment valider des donnees TypeScript avec Zod ?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Zod permet de definir des schemas de validation type-safe en TypeScript. Il offre l\'inference automatique des types, la validation de formulaires, la validation d\'API et la composition de schemas. Zod reduit les bugs runtime de 70% en validant les donnees aux frontieres du systeme.',
+      },
+    },
   ],
 };
 
@@ -42,6 +97,14 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="min-h-screen">

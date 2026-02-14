@@ -1,5 +1,23 @@
+import type { Metadata } from 'next';
 import { CourseLayout } from '@/components/course/course-layout';
 import { Rocket, Database, Settings, RefreshCw, Code, Navigation, Table2, List, FileText, Box, Timer, Monitor, Server, Building } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'TanStack React : Guide Complet Query, Router, Table, Virtual',
+  description: '7 librairies TanStack pour eliminer le boilerplate React. Data fetching, routing type-safe, tableaux headless, virtualisation. Architecture de production.',
+  openGraph: {
+    title: 'TanStack : Eliminez 80% de votre boilerplate React',
+    description: 'Query, Router, Table, Virtual, Form, Store et Pacer. Du data fetching a l\'architecture de production avec 7 librairies headless.',
+    type: 'article',
+    images: [{ url: '/api/og?title=TanStack+React+:+7+Librairies+Essentielles&category=optimization', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'TanStack React : 7 Librairies Headless Essentielles',
+    description: 'Query, Router, Table, Virtual, Form, Store, Pacer. Simplifiez vos apps React avec des librairies headless puissantes.',
+    images: ['/api/og?title=TanStack+React+:+7+Librairies+Essentielles&category=optimization'],
+  },
+};
 
 // Import des sections - Fondamentaux (2)
 import IntroductionSection from './_sections/introduction';
@@ -136,11 +154,39 @@ export default function TanStackReactCourse() {
     },
   ];
 
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: 'TanStack : Comment eliminer 80% de votre boilerplate React',
+    description: '7 librairies TanStack pour eliminer le boilerplate React. Data fetching, routing type-safe, tableaux headless, virtualisation.',
+    provider: { '@type': 'Organization', name: 'Maxpaths', url: 'https://www.maxpaths.dev' },
+    educationalLevel: 'Intermediaire',
+    inLanguage: 'fr',
+    numberOfCredits: 14,
+    timeRequired: 'PT4H',
+    author: { '@type': 'Person', name: 'Maxime Morellon', url: 'https://www.maxpaths.dev/about' },
+    isAccessibleForFree: true,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.maxpaths.dev' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://www.maxpaths.dev/guides' },
+      { '@type': 'ListItem', position: 3, name: 'TanStack React' },
+    ],
+  };
+
   return (
-    <CourseLayout
-      title="TanStack : Comment éliminer 80% de votre boilerplate React"
-      subtitle="Query, Router, Table, Virtual, Form, Store et Pacer - 14 sections"
-      sections={sections}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <CourseLayout
+        title="TanStack : Comment éliminer 80% de votre boilerplate React"
+        subtitle="Query, Router, Table, Virtual, Form, Store et Pacer - 14 sections"
+        sections={sections}
+      />
+    </>
   );
 }

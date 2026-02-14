@@ -1,8 +1,25 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Target, Sparkles, Layers, Share2, Linkedin, Globe, Github } from 'lucide-react';
 import { RevealOnScroll } from '@/components/reveal-on-scroll';
 import { Timeline } from './_components/timeline';
+
+export const metadata: Metadata = {
+  title: 'A propos - Maxime Morellon, Developpeur Frontend Senior',
+  description: 'Maxime Morellon, developpeur frontend senior avec 8 ans d\'experience. Specialise React, Next.js, TypeScript. Createur de Maxpaths.',
+  openGraph: {
+    title: 'A propos | Maxpaths',
+    description: 'Maxime Morellon, developpeur frontend senior. 8 ans d\'experience React, Next.js, TypeScript.',
+    images: [{ url: '/api/og?title=Maxime+Morellon+-+Frontend+Senior&category=fundamentals', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'A propos | Maxpaths',
+    description: 'Maxime Morellon, developpeur frontend senior. 8 ans d\'experience React, Next.js, TypeScript.',
+    images: ['/api/og?title=Maxime+Morellon+-+Frontend+Senior&category=fundamentals'],
+  },
+};
 
 export default function AboutPage() {
   return (

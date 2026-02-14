@@ -1,5 +1,23 @@
+import type { Metadata } from 'next';
 import { CourseLayout } from '@/components/course/course-layout';
 import { Rocket, Server, FileText, RefreshCw, Monitor, Layers, Component, Package, Zap, Activity, Gauge, Database, Timer, Shield, Code, LayoutGrid, Building, Eye, Sparkles, Target } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Next.js 16 : SSR, SSG, ISR - Guide Complet des Rendering Modes',
+  description: 'Maitrisez les 5 modes de rendu Next.js 16. SSR, SSG, ISR, CSR, Streaming. Retours d\'experience production avec exemples concrets et Core Web Vitals.',
+  openGraph: {
+    title: 'Next.js 16 : Les Erreurs a Eviter en Production',
+    description: 'SSR, SSG, ISR, Client Components, Streaming. Retours d\'experience sur des projets Next.js en production avec exemples concrets.',
+    type: 'article',
+    images: [{ url: '/api/og?title=Next.js+16+:+Guide+Complet+des+Rendering+Modes&category=rendering', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Next.js 16 : Rendering Modes en Production',
+    description: 'SSR, SSG, ISR, CSR, Streaming. Guide pratique avec retours d\'experience et exemples concrets.',
+    images: ['/api/og?title=Next.js+16+:+Guide+Complet+des+Rendering+Modes&category=rendering'],
+  },
+};
 
 // Import des sections depuis _sections/
 // Import des sections depuis _sections/ (default exports)
@@ -181,11 +199,39 @@ export default function NextJSDemoCourse() {
     }
   ];
 
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: 'Next.js 16 : Les erreurs que j\'ai faites pour que vous ne les fassiez pas',
+    description: 'Maitrisez les 5 modes de rendu Next.js 16. SSR, SSG, ISR, CSR, Streaming. Retours d\'experience production.',
+    provider: { '@type': 'Organization', name: 'Maxpaths', url: 'https://www.maxpaths.dev' },
+    educationalLevel: 'Intermediaire',
+    inLanguage: 'fr',
+    numberOfCredits: 21,
+    timeRequired: 'PT3H',
+    author: { '@type': 'Person', name: 'Maxime Morellon', url: 'https://www.maxpaths.dev/about' },
+    isAccessibleForFree: true,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.maxpaths.dev' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://www.maxpaths.dev/guides' },
+      { '@type': 'ListItem', position: 3, name: 'Next.js 16' },
+    ],
+  };
+
   return (
-    <CourseLayout
-      title="Next.js 16 : Les erreurs que j'ai faites pour que vous ne les fassiez pas"
-      subtitle="Du débutant au senior - 21 sections complètes"
-      sections={sections}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <CourseLayout
+        title="Next.js 16 : Les erreurs que j'ai faites pour que vous ne les fassiez pas"
+        subtitle="Du débutant au senior - 21 sections complètes"
+        sections={sections}
+      />
+    </>
   );
 }

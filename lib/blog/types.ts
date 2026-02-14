@@ -27,7 +27,13 @@ export interface ArticleMetadata {
   // SEO
   seoTitle?: string;
   seoDescription?: string;
+  keywords?: string[];
+  ogTitle?: string;
+  ogDescription?: string;
   ogImage?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  twitterTitle?: string;
+  twitterDescription?: string;
 }
 
 export interface Article extends ArticleMetadata {

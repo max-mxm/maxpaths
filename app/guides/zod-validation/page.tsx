@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { CourseLayout } from '@/components/course/course-layout';
 import {
   Rocket,
@@ -14,6 +15,23 @@ import {
   Sparkles,
   Network,
 } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Zod TypeScript : Guide Complet 2026 - Validation Type-Safe',
+  description: 'Maitrisez Zod pour valider vos donnees TypeScript. Schemas, inference de types, validation de formulaires et API. Guide pratique avec exemples concrets.',
+  openGraph: {
+    title: 'Zod : La validation TypeScript que vous auriez du utiliser',
+    description: 'Guide complet : schemas, inference de types, validation de formulaires et d\'API. Reduisez les bugs runtime de 70%.',
+    type: 'article',
+    images: [{ url: '/api/og?title=Zod+:+Validation+TypeScript+Type-Safe&category=fundamentals', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Zod : Guide Complet de Validation TypeScript',
+    description: 'Schemas, inference de types, validation de formulaires et API. Guide pratique avec exemples concrets.',
+    images: ['/api/og?title=Zod+:+Validation+TypeScript+Type-Safe&category=fundamentals'],
+  },
+};
 
 import IntroductionSection from './_sections/introduction';
 import PrimitiveSchemasSection from './_sections/primitive-schemas';
@@ -124,11 +142,39 @@ export default function ZodValidationCourse() {
     },
   ];
 
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: 'Zod : La validation TypeScript que vous auriez du utiliser depuis le debut',
+    description: 'Maitrisez Zod pour valider vos donnees TypeScript. Schemas, inference de types, validation de formulaires et API.',
+    provider: { '@type': 'Organization', name: 'Maxpaths', url: 'https://www.maxpaths.dev' },
+    educationalLevel: 'Intermediaire',
+    inLanguage: 'fr',
+    numberOfCredits: 13,
+    timeRequired: 'PT3H',
+    author: { '@type': 'Person', name: 'Maxime Morellon', url: 'https://www.maxpaths.dev/about' },
+    isAccessibleForFree: true,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.maxpaths.dev' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://www.maxpaths.dev/guides' },
+      { '@type': 'ListItem', position: 3, name: 'Zod Validation' },
+    ],
+  };
+
   return (
-    <CourseLayout
-      title="Zod : La validation TypeScript que vous auriez dû utiliser depuis le début"
-      subtitle="De la validation basique aux patterns de production -- 13 sections"
-      sections={sections}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <CourseLayout
+        title="Zod : La validation TypeScript que vous auriez dû utiliser depuis le début"
+        subtitle="De la validation basique aux patterns de production -- 13 sections"
+        sections={sections}
+      />
+    </>
   );
 }

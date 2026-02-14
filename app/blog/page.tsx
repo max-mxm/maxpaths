@@ -2,9 +2,20 @@ import { getAllArticlesMetadata } from '@/lib/blog/get-articles';
 import { BlogPageClient } from './blog-page-client';
 
 export const metadata = {
-  title: 'Blog | Maxpaths',
+  title: 'Blog Frontend : React, Next.js, Testing, Architecture',
   description:
-    'Articles techniques sur le développement frontend moderne : React, Next.js, Testing, Architecture',
+    'Articles techniques sur le developpement frontend moderne : React, Next.js, Testing, Architecture. Analyses, comparatifs et retours d\'experience.',
+  openGraph: {
+    title: 'Blog Frontend | Maxpaths',
+    description: 'Articles techniques : React, Next.js, Testing, Architecture. Analyses approfondies et retours d\'experience.',
+    images: [{ url: '/api/og?title=Blog+Frontend+:+React+%26+Next.js&category=best-practices', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image' as const,
+    title: 'Blog Frontend | Maxpaths',
+    description: 'Articles techniques : React, Next.js, Testing, Architecture.',
+    images: ['/api/og?title=Blog+Frontend+:+React+%26+Next.js&category=best-practices'],
+  },
 };
 
 export default async function BlogPage() {

@@ -3,9 +3,20 @@ import { getDemosForCatalog } from '@/lib/content';
 import { DemosPageClient } from './demos-page-client';
 
 export const metadata = {
-  title: 'Démos | Maxpaths',
+  title: 'Demos Interactives React & Next.js',
   description:
-    'Explorez des démos interactives pour visualiser et tester des concepts frontend en direct : React, Next.js, Performance, Optimisations.',
+    'Explorez des demos interactives pour visualiser et tester des concepts frontend en direct : React, Next.js, Performance, Optimisations.',
+  openGraph: {
+    title: 'Demos Interactives | Maxpaths',
+    description: 'Simulateurs interactifs avec mesures reelles : performance React, rendering Next.js. Testez en direct dans votre navigateur.',
+    images: [{ url: '/api/og?title=Demos+Interactives+React+%26+Next.js&category=optimization', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image' as const,
+    title: 'Demos Interactives | Maxpaths',
+    description: 'Simulateurs interactifs avec mesures reelles : performance React, rendering Next.js.',
+    images: ['/api/og?title=Demos+Interactives+React+%26+Next.js&category=optimization'],
+  },
 };
 
 export default function DemosPage() {

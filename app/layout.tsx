@@ -73,7 +73,7 @@ export const metadata: Metadata = {
     description: 'Patterns éprouvés, solutions terrain et retours d\'expérience partagés gratuitement',
     images: [
       {
-        url: '/og-image.png',
+        url: '/api/og?title=Maxpaths+-+Bonnes+Pratiques+React+%26+Next.js&category=fundamentals',
         width: 1200,
         height: 630,
         alt: 'Maxpaths - Bonnes pratiques React & Next.js',
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Maxpaths - Bonnes pratiques React & Next.js',
     description: 'Patterns éprouvés et retours d\'expérience par Maxime Morellon',
-    images: ['/og-image.png'],
+    images: ['/api/og?title=Maxpaths+-+Bonnes+Pratiques+React+%26+Next.js&category=fundamentals'],
   },
 
   robots: {

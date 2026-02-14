@@ -1,5 +1,23 @@
+import type { Metadata } from 'next';
 import { CourseLayout } from '@/components/course/course-layout';
 import { Rocket, Repeat, Shield, Brain, Zap, Puzzle, Table2, AlertTriangle, XCircle, Cpu } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'React Memoisation : React.memo, useMemo, useCallback Expliques',
+  description: '3 mecanismes de memoisation React expliques. Quand utiliser React.memo, useMemo, useCallback. Evitez l\'over-optimization avec exemples concrets.',
+  openGraph: {
+    title: 'Memoisation React : Optimisez Sans Ralentir',
+    description: 'React.memo, useMemo, useCallback : les 3 mecanismes expliques. Exemples concrets et testables pour eviter l\'over-optimization.',
+    type: 'article',
+    images: [{ url: '/api/og?title=React+Memoisation+:+Le+Guide+Complet&category=optimization', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Memoisation React : Le Guide Complet',
+    description: 'React.memo, useMemo, useCallback : quand utiliser quoi. Exemples concrets et erreurs a eviter.',
+    images: ['/api/og?title=React+Memoisation+:+Le+Guide+Complet&category=optimization'],
+  },
+};
 
 // Import des sections - Fondamentaux (2)
 import IntroductionSection from './_sections/introduction';
@@ -104,11 +122,39 @@ export default function ReactMemoizationCourse() {
     },
   ];
 
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: 'Memoisation React : Pourquoi vos optimisations ralentissent votre app',
+    description: '3 mecanismes de memoisation React expliques. Quand utiliser React.memo, useMemo, useCallback.',
+    provider: { '@type': 'Organization', name: 'Maxpaths', url: 'https://www.maxpaths.dev' },
+    educationalLevel: 'Intermediaire',
+    inLanguage: 'fr',
+    numberOfCredits: 10,
+    timeRequired: 'PT2H',
+    author: { '@type': 'Person', name: 'Maxime Morellon', url: 'https://www.maxpaths.dev/about' },
+    isAccessibleForFree: true,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.maxpaths.dev' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://www.maxpaths.dev/guides' },
+      { '@type': 'ListItem', position: 3, name: 'Memoisation React' },
+    ],
+  };
+
   return (
-    <CourseLayout
-      title="Mémoisation React : Pourquoi vos optimisations ralentissent votre app"
-      subtitle="Comprendre et maitriser la memoisation React - 10 sections"
-      sections={sections}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <CourseLayout
+        title="Mémoisation React : Pourquoi vos optimisations ralentissent votre app"
+        subtitle="Comprendre et maitriser la memoisation React - 10 sections"
+        sections={sections}
+      />
+    </>
   );
 }

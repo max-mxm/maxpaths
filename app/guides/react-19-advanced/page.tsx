@@ -1,5 +1,23 @@
+import type { Metadata } from 'next';
 import { CourseLayout } from '@/components/course/course-layout';
 import { Rocket, Package, Cpu, Server, Zap, RefreshCw, Activity, Gauge, Trash2, Database, Combine, Building, Shield, Code, TestTube, Eye, Sparkles, Layers } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'React 19 : Patterns Avances Server Components & Compiler',
+  description: 'Patterns React 19 professionnels. use(), useActionState, useOptimistic, Server Components, React Compiler. Solutions eprouvees en production.',
+  openGraph: {
+    title: 'React 19 : Patterns des Devs Seniors',
+    description: 'Compiler, Server Components, Actions, Streaming. Patterns avances React 19 et cas d\'usage professionnels eprouves en production.',
+    type: 'article',
+    images: [{ url: '/api/og?title=React+19+:+Patterns+Avances&category=advanced', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'React 19 : Patterns Avances en Production',
+    description: 'Compiler, Server Components, Actions. Solutions professionnelles React 19 eprouvees en production.',
+    images: ['/api/og?title=React+19+:+Patterns+Avances&category=advanced'],
+  },
+};
 
 // Import des sections - Fondamentaux (2)
 import IntroductionSection from './_sections/introduction';
@@ -176,11 +194,39 @@ export default function React19AdvancedCourse() {
     }
   ];
 
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: 'React 19 : Ce que les devs seniors font (et que vous devriez copier)',
+    description: 'Patterns React 19 professionnels. use(), useActionState, useOptimistic, Server Components, React Compiler.',
+    provider: { '@type': 'Organization', name: 'Maxpaths', url: 'https://www.maxpaths.dev' },
+    educationalLevel: 'Avance',
+    inLanguage: 'fr',
+    numberOfCredits: 19,
+    timeRequired: 'PT4H',
+    author: { '@type': 'Person', name: 'Maxime Morellon', url: 'https://www.maxpaths.dev/about' },
+    isAccessibleForFree: true,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.maxpaths.dev' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://www.maxpaths.dev/guides' },
+      { '@type': 'ListItem', position: 3, name: 'React 19 Avance' },
+    ],
+  };
+
   return (
-    <CourseLayout
-      title="React 19 : Ce que les devs seniors font (et que vous devriez copier)"
-      subtitle="Maîtriser React 19, performances et patterns avancés - 19 sections"
-      sections={sections}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <CourseLayout
+        title="React 19 : Ce que les devs seniors font (et que vous devriez copier)"
+        subtitle="Maîtriser React 19, performances et patterns avancés - 19 sections"
+        sections={sections}
+      />
+    </>
   );
 }

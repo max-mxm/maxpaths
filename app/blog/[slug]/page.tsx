@@ -37,14 +37,14 @@ export async function generateMetadata({
       modifiedTime: metadata.updatedAt,
       authors: [metadata.author],
       tags: metadata.tags,
-      images: metadata.ogImage ? [{ url: metadata.ogImage }] : [],
+      images: [{ url: `/api/og?title=${encodeURIComponent(metadata.seoTitle || metadata.title)}&category=best-practices`, width: 1200, height: 630 }],
     },
 
     twitter: {
       card: 'summary_large_image',
       title: metadata.seoTitle || metadata.title,
       description: metadata.seoDescription || metadata.description,
-      images: metadata.ogImage ? [metadata.ogImage] : [],
+      images: [`/api/og?title=${encodeURIComponent(metadata.seoTitle || metadata.title)}&category=best-practices`],
     },
   };
 }
@@ -67,8 +67,49 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   const Content = article.content;
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: article.seoTitle || article.title,
+    description: article.seoDescription || article.description,
+    author: {
+      '@type': 'Person',
+      name: article.author,
+      url: 'https://www.maxpaths.dev/about',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Maxpaths',
+      url: 'https://www.maxpaths.dev',
+      logo: { '@type': 'ImageObject', url: 'https://www.maxpaths.dev/maxpaths-logo.svg' },
+    },
+    datePublished: article.publishedAt,
+    dateModified: article.updatedAt || article.publishedAt,
+    mainEntityOfPage: `https://www.maxpaths.dev/blog/${slug}`,
+    keywords: article.tags?.join(', '),
+    inLanguage: 'fr',
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accueil', item: 'https://www.maxpaths.dev' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.maxpaths.dev/blog' },
+      { '@type': 'ListItem', position: 3, name: article.title },
+    ],
+  };
+
   return (
     <div className="min-h-screen scroll-smooth bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <ArticleInteractive tableOfContents={article.tableOfContents} category={article.category}>
         <ArticleHeader metadata={article} />
 

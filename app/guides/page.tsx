@@ -1,6 +1,23 @@
+import type { Metadata } from 'next';
 import { BookOpen } from 'lucide-react';
 import { getGuidesOnlyForCatalog } from '@/lib/content';
 import { GuidesPageClient } from './guides-page-client';
+
+export const metadata: Metadata = {
+  title: 'Guides React & Next.js',
+  description: 'Guides techniques complets bases sur des retours d\'experience en production. React 19, Next.js 16, TypeScript, performance et patterns avances.',
+  openGraph: {
+    title: 'Guides React & Next.js | Maxpaths',
+    description: 'Guides techniques complets : React 19, Next.js 16, TanStack, Zod, Memoisation. Patterns eprouves en production.',
+    images: [{ url: '/api/og?title=Guides+React+%26+Next.js&category=fundamentals', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Guides React & Next.js | Maxpaths',
+    description: 'Guides techniques complets bases sur des retours d\'experience en production.',
+    images: ['/api/og?title=Guides+React+%26+Next.js&category=fundamentals'],
+  },
+};
 
 export default function CoursesPage() {
   const guides = getGuidesOnlyForCatalog();
