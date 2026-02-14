@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://maxpaths.com'),
+  metadataBase: new URL('https://www.maxpaths.dev'),
 
   title: {
     default: 'Maxpaths — Bonnes pratiques frontend par Maxime Morellon',
@@ -26,6 +26,19 @@ export const metadata: Metadata = {
   },
 
   description: 'Guides React et Next.js, articles techniques et retours d\'experience par Maxime Morellon. Patterns eprouves et solutions issues de 8 ans de developpement frontend.',
+
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+
+  manifest: '/site.webmanifest',
 
   keywords: [
     'React',
@@ -54,7 +67,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://maxpaths.com',
+    url: 'https://www.maxpaths.dev',
     siteName: 'Maxpaths',
     title: 'Maxpaths - Bonnes pratiques React & Next.js',
     description: 'Patterns éprouvés, solutions terrain et retours d\'expérience partagés gratuitement',
@@ -110,8 +123,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Maxpaths",
-              "url": "https://maxpaths.com",
-              "logo": "https://maxpaths.com/logo.png",
+              "url": "https://www.maxpaths.dev",
+              "logo": "https://www.maxpaths.dev/maxpaths-logo.svg",
               "description": "Plateforme de partage de bonnes pratiques React et Next.js basées sur des projets réels",
               "founder": {
                 "@type": "Person",

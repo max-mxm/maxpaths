@@ -1,0 +1,27 @@
+{
+  "name": "Maxpaths - Bonnes pratiques React & Next.js",
+  "short_name": "Maxpaths",
+  "description": "Guides React et Next.js, articles techniques et retours d'expérience par Maxime Morellon",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#009688",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

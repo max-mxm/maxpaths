@@ -142,7 +142,7 @@ export default function AboutPage() {
         <div className="container">
           <RevealOnScroll>
             <div className="relative pl-0 md:pl-6 mb-10 text-center md:text-left">
-              <div className="about-accent-bar absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-brand-secondary to-brand-secondary/20 hidden md:block" />
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-brand-secondary to-brand-secondary/20 hidden md:block" />
               <div className="space-y-3">
                 <span className="text-xs font-bold tracking-[0.25em] uppercase text-brand-secondary/80">
                   Application
@@ -363,17 +363,22 @@ export default function AboutPage() {
 
         <div className="container relative z-10">
           <RevealOnScroll>
-            <div className="max-w-3xl mx-auto text-center space-y-8">
+            <div className="relative pl-0 md:pl-6 mb-10 text-center md:text-left">
+              <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary via-brand-secondary to-primary/20 hidden md:block" />
               <div className="space-y-4">
                 <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-black leading-tight">
                   Prêt à explorer ?
                 </h2>
-                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl">
                   Parcourez les guides, expérimentez les démos interactives, découvrez les patterns
                   qui transformeront votre approche du développement React.
                 </p>
               </div>
+            </div>
+          </RevealOnScroll>
 
+          <RevealOnScroll delay={100}>
+            <div className="max-w-3xl mx-auto">
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <Link
                   href="/guides"

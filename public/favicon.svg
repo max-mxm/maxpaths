@@ -1,0 +1,19 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fond noir -->
+  <rect width="32" height="32" fill="#000000" rx="4"/>
+
+  <!-- Définition du gradient pour le chevron -->
+  <defs>
+    <linearGradient id="chevronGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgb(0,150,136);stop-opacity:1" />
+      <stop offset="50%" style="stop-color:rgb(62,104,186);stop-opacity:1" />
+      <stop offset="100%" style="stop-color:rgb(124,58,237);stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Forme du chevron (background) - centré et adapté -->
+  <path d="M 13 4 L 13 9.5 L 25 16 L 13 22.5 L 13 28 L 7 16 Z" fill="url(#chevronGradient)" />
+
+  <!-- Chevron (icône flèche) - centré et adapté -->
+  <path d="M 14 8 L 22 16 L 14 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
