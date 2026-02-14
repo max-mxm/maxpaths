@@ -27,4 +27,15 @@ export const metadata: ArticleMetadata = {
   seoTitle: 'Redux vs Context vs Zustand : Comparaison State Management React 2026 | maxpaths Blog',
   seoDescription:
     'Redux Toolkit, React Context ou Zustand ? Comparaison approfondie avec exemples de code, avantages, inconvenients et guide de choix selon la taille de votre projet React.',
+  keywords: ['State Management', 'Redux', 'Redux Toolkit', 'RTK', 'React Context', 'Context API', 'Zustand', 'Global State', 'Flux Pattern', 'useContext', 'createSlice', 'configureStore', 'Immer'],
+
+  // Open Graph
+  ogTitle: 'Redux vs Context vs Zustand : Quel State Management Choisir ?',
+  ogDescription: 'Comparaison technique de trois approches de gestion d\'etat en React. Redux Toolkit, React Context API, Zustand avec exemples de code et guide de choix.',
+  ogImage: '/og-images/articles/redux-vs-context-vs-zustand.jpg',
+
+  // Twitter Card
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Redux vs Context vs Zustand : Guide de Choix',
+  twitterDescription: 'Comparaison approfondie : Redux Toolkit, React Context, Zustand. Exemples de code et recommandations par taille de projet.',
 };

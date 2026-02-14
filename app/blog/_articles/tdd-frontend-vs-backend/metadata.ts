@@ -68,4 +68,15 @@ export const metadata: ArticleMetadata = {
   seoTitle: 'TDD Frontend vs Backend : Les Défis Cachés | maxpaths Blog',
   seoDescription:
     'Découvrez pourquoi le TDD en frontend présente des défis uniques absents en backend : composants visuels, états asynchrones, et interactions utilisateur.',
+  keywords: ['TDD', 'Test-Driven Development', 'Frontend Testing', 'Backend Testing', 'React Testing Library', 'Vitest', 'Jest', 'Playwright', 'Unit Testing', 'Integration Testing', 'E2E Testing', 'Testing Strategy', 'UI Testing'],
+
+  // Open Graph
+  ogTitle: 'TDD Frontend vs Backend : Les Vrais Défis',
+  ogDescription: 'Pourquoi le TDD côté front n\'est pas aussi facile que le TDD côté back. Analyse approfondie et recommandations pragmatiques.',
+  ogImage: '/og-images/articles/tdd-frontend-vs-backend.jpg',
+
+  // Twitter Card
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'TDD Frontend : Défis et Solutions',
+  twitterDescription: 'Analyse des défis du TDD en frontend. Tests UI, états asynchrones, stratégies pragmatiques.',
 };

@@ -1,5 +1,5 @@
 export interface SearchItem {
-  type: 'guide' | 'guide-section' | 'article' | 'article-heading';
+  type: 'guide' | 'guide-section' | 'demo' | 'demo-section' | 'article' | 'article-heading';
   title: string;
   description?: string;
   href: string;
@@ -143,24 +143,98 @@ const SEARCH_INDEX: SearchItem[] = [
   // GUIDE : Mémoisation React : Pourquoi vos optimisations ralentissent votre app teste en live
   // ==========================================================================
   {
-    type: 'guide',
+    type: 'demo',
     title: 'Mémoisation React : Pourquoi vos optimisations ralentissent votre app teste en live',
     description: 'Comparez 4 strategies d\'optimisation React avec des mesures reelles de temps de rendu.',
     href: '/demos/simulateur-performance',
     tags: ['React', 'Performance', 'Interactif'],
-    keywords: ['memoisation', 'memo', 'useMemo', 'useCallback', 'React.memo', 'benchmark', 'simulateur', 'render time', 'performance.now', 'benchmark live'],
+    keywords: ['memoisation', 'memoization', 'memo', 'useMemo', 'useCallback', 'React.memo', 'benchmark', 'simulateur', 'interactive', 'render time', 'rerender', 'performance.now', 'benchmark live', 'real-time', 'profiling', '60fps', '16ms'],
   },
 
   // ==========================================================================
   // DEMO : Comparateur de modes de rendering
   // ==========================================================================
   {
-    type: 'guide',
+    type: 'demo',
     title: 'SSR, SSG, ISR, CSR et Streaming compares en temps reel',
     description: 'Visualisez les differences entre les 5 modes de rendering Next.js. Timelines animees et metriques Core Web Vitals.',
     href: '/demos/simulateur-rendering',
     tags: ['Next.js', 'Rendering', 'Interactif'],
-    keywords: ['ssr', 'ssg', 'isr', 'csr', 'streaming', 'core web vitals', 'ttfb', 'lcp', 'fcp', 'tti', 'simulateur', 'timeline'],
+    keywords: ['ssr', 'ssg', 'isr', 'csr', 'streaming', 'ppr', 'rendering modes', 'core web vitals', 'cwv', 'ttfb', 'lcp', 'fcp', 'cls', 'inp', 'tti', 'simulateur', 'interactive', 'timeline', 'animation', 'real-time', 'hydration'],
+  },
+  // Demo Sections - Simulateur Performance
+  {
+    type: 'demo-section',
+    title: 'React.memo : Comparaison Visuelle',
+    href: '/demos/simulateur-performance#react-memo',
+    parentTitle: 'Simulateur Performance React',
+    tags: ['React', 'Performance', 'Memoization'],
+    keywords: ['React.memo', 'shallow comparison', 'memoized component', 'component memoization', 'props comparison', 'hoc', 'higher order component'],
+  },
+  {
+    type: 'demo-section',
+    title: 'useMemo : Optimisation des Calculs',
+    href: '/demos/simulateur-performance#usememo',
+    parentTitle: 'Simulateur Performance React',
+    tags: ['React', 'Performance', 'Hooks'],
+    keywords: ['useMemo', 'expensive calculation', 'memoization hook', 'computation cache', 'derived state', 'dependency array'],
+  },
+  {
+    type: 'demo-section',
+    title: 'useCallback : Stabilité des Fonctions',
+    href: '/demos/simulateur-performance#usecallback',
+    parentTitle: 'Simulateur Performance React',
+    tags: ['React', 'Performance', 'Hooks'],
+    keywords: ['useCallback', 'function memoization', 'callback stability', 'reference equality', 'stable reference', 'closure'],
+  },
+  {
+    type: 'demo-section',
+    title: 'Benchmarks en Temps Réel',
+    href: '/demos/simulateur-performance#benchmarks',
+    parentTitle: 'Simulateur Performance React',
+    tags: ['Performance', 'Mesures'],
+    keywords: ['benchmark', 'performance.now', 'render time', '60fps', '16ms', 'performance measurement', 'real-time metrics', 'profiling', 'flamegraph'],
+  },
+  // Demo Sections - Simulateur Rendering
+  {
+    type: 'demo-section',
+    title: 'SSR : Server-Side Rendering',
+    href: '/demos/simulateur-rendering#ssr',
+    parentTitle: 'Simulateur Rendering Next.js',
+    tags: ['Next.js', 'SSR'],
+    keywords: ['server-side rendering', 'ssr', 'getServerSideProps', 'dynamic rendering', 'ssr streaming', 'node runtime', 'per-request'],
+  },
+  {
+    type: 'demo-section',
+    title: 'SSG : Static Site Generation',
+    href: '/demos/simulateur-rendering#ssg',
+    parentTitle: 'Simulateur Rendering Next.js',
+    tags: ['Next.js', 'SSG'],
+    keywords: ['static site generation', 'ssg', 'getStaticProps', 'getStaticPaths', 'build time', 'static html', 'pre-rendering', 'cdn'],
+  },
+  {
+    type: 'demo-section',
+    title: 'ISR : Incremental Static Regeneration',
+    href: '/demos/simulateur-rendering#isr',
+    parentTitle: 'Simulateur Rendering Next.js',
+    tags: ['Next.js', 'ISR'],
+    keywords: ['incremental static regeneration', 'isr', 'revalidate', 'revalidatePath', 'on-demand isr', 'stale-while-revalidate', 'cache invalidation', 'background regeneration'],
+  },
+  {
+    type: 'demo-section',
+    title: 'CSR : Client-Side Rendering',
+    href: '/demos/simulateur-rendering#csr',
+    parentTitle: 'Simulateur Rendering Next.js',
+    tags: ['Next.js', 'CSR'],
+    keywords: ['client-side rendering', 'csr', 'use client', 'browser rendering', 'hydration', 'javascript bundle', 'spa', 'interactive'],
+  },
+  {
+    type: 'demo-section',
+    title: 'Métriques Core Web Vitals',
+    href: '/demos/simulateur-rendering#metrics',
+    parentTitle: 'Simulateur Rendering Next.js',
+    tags: ['Performance', 'Web Vitals'],
+    keywords: ['core web vitals', 'cwv', 'lcp', 'fcp', 'ttfb', 'cls', 'inp', 'tti', 'performance metrics', 'lighthouse', 'web vitals'],
   },
 
   // ==========================================================================
@@ -632,7 +706,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Comprendre les 3 mecanismes de memoisation React avec des exemples concrets et testables.',
     href: '/guides/react-memoization',
     tags: ['React', 'Performance', 'Hooks'],
-    keywords: ['memoisation', 'memo', 'useMemo', 'useCallback', 'React.memo', 're-render', 'reference stability', 'shallow comparison', 'dependency array'],
+    keywords: ['memoisation', 'memoization', 'memo', 'useMemo', 'useCallback', 'React.memo', 're-render', 'rerender', 'reconciliation', 'reference stability', 'shallow comparison', 'dependency array', 'deps', 'performance', 'optimization', 'react profiler'],
   },
   {
     type: 'guide-section',
@@ -724,7 +798,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Une analyse approfondie des defis specifiques du Test-Driven Development en frontend, compare aux pratiques backend etablies.',
     href: '/blog/tdd-frontend-vs-backend',
     tags: ['TDD', 'Frontend', 'Testing', 'Best Practices'],
-    keywords: ['test driven development', 'tdd', 'test', 'frontend testing', 'backend testing', 'vitest', 'jest', 'testing library'],
+    keywords: ['test driven development', 'tdd', 'test', 'frontend testing', 'backend testing', 'ui testing', 'vitest', 'jest', 'testing library', 'react testing library', 'playwright', 'cypress', 'unit test', 'integration test', 'e2e', 'mocking', 'test coverage'],
   },
   {
     type: 'article-heading',
@@ -816,7 +890,7 @@ const SEARCH_INDEX: SearchItem[] = [
     description: 'Comparaison technique de trois approches de gestion d\'etat en React.',
     href: '/blog/redux-vs-context-vs-zustand',
     tags: ['React', 'State Management', 'Redux', 'Zustand', 'Context API'],
-    keywords: ['state management', 'store', 'redux toolkit', 'rtk', 'rtk query', 'immer', 'createSlice', 'configureStore'],
+    keywords: ['state management', 'global state', 'store', 'redux', 'redux toolkit', 'rtk', 'rtk query', 'createSlice', 'configureStore', 'immer', 'zustand', 'context api', 'useContext', 'createContext', 'flux pattern', 'reducer', 'action', 'dispatch', 'selector', 'reselect'],
   },
   {
     type: 'article-heading',
