@@ -159,7 +159,7 @@ export default function ComparaisonCompleteSection() {
 
       {/* CTA vers le simulateur interactif */}
       <Link
-        href="/guides/nextjs-demo/simulateur-performance"
+        href="/demos/simulateur-performance"
         className="group block p-6 rounded-xl border border-orange-500/20 bg-gradient-to-r from-orange-500/5 to-amber-500/5 hover:from-orange-500/10 hover:to-amber-500/10 hover:border-orange-500/30 hover:shadow-lg transition-all duration-300"
       >
         <div className="flex items-center justify-between gap-4">

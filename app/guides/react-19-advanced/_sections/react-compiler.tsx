@@ -75,15 +75,7 @@ module.exports = {
   ]
 };
 
-// 3. Pour Next.js 16+
-// next.config.js
-module.exports = {
-  experimental: {
-    reactCompiler: true
-  }
-};
-
-// 4. Pour Vite
+// 3. Pour Vite
 // vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';

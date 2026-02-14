@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { ArrowLeft, Activity, BookOpen, ArrowRight } from 'lucide-react';
 import { CodeBlock } from '@/components/course/code-block';
 import { AnimatedSection } from '@/components/ui/animated-section';
-import { RenderingSimulator } from '../_components/rendering-simulator';
-import { RENDERING_CODE_TABS } from '../_constants/rendering-code-tabs';
+import { RenderingSimulator } from '@/app/demos/_components/rendering-simulator';
+import { RENDERING_CODE_TABS } from '@/app/demos/_constants/rendering-code-tabs';
 
 export default function SimulateurRenderingPage() {
   const [activeCodeTab, setActiveCodeTab] = useState('ssr');

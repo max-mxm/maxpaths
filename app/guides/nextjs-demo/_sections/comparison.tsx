@@ -100,7 +100,7 @@ export default function ComparisonSection() {
 
       {/* CTA vers le simulateur de rendering */}
       <Link
-        href="/guides/nextjs-demo/simulateur-rendering"
+        href="/demos/simulateur-rendering"
         className="group block p-6 bg-muted/30 rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
       >
         <div className="flex items-center justify-between gap-4">

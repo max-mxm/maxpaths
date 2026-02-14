@@ -28,19 +28,18 @@ import debounce from 'just-debounce-it'; // 200 bytes vs 70KB`}
       />
 
       <CodeBlock
-        code={`// Code Splitting avec dynamic import
-import dynamic from 'next/dynamic';
+        code={`// Code Splitting avec React.lazy()
+import React, { Suspense } from 'react';
 
-const HeavyChart = dynamic(() => import('@/components/heavy-chart'), {
-  loading: () => <p>Chargement du graphique...</p>,
-  ssr: false // Ne pas render côté serveur si trop lourd
-});
+const HeavyChart = React.lazy(() => import('@/components/heavy-chart'));
 
 export function Dashboard() {
   return (
     <div>
       <h1>Dashboard</h1>
-      <HeavyChart /> {/* Chargé seulement quand nécessaire */}
+      <Suspense fallback={<p>Chargement du graphique...</p>}>
+        <HeavyChart /> {/* Chargé seulement quand nécessaire */}
+      </Suspense>
     </div>
   );
 }`}
@@ -56,7 +55,7 @@ export function Dashboard() {
         category="optimization"
       >
         <p className="text-sm text-foreground/80">
-          Utiliser @next/bundle-analyzer ou webpack-bundle-analyzer pour visualiser la taille de chaque module
+          Utiliser webpack-bundle-analyzer, source-map-explorer ou bundle-stats pour visualiser la taille de chaque module
           et identifier les opportunités d&apos;optimisation.
         </p>
       </ConceptCard>

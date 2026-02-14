@@ -618,7 +618,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
       {/* CTA vers le simulateur */}
       <Link
-        href="/guides/nextjs-demo/simulateur-performance"
+        href="/demos/simulateur-performance"
         className="group relative block p-6 rounded-xl border-2 border-orange-500/20 bg-gradient-to-r from-orange-500/5 to-amber-500/5 hover:border-orange-500/40 hover:shadow-lg hover:shadow-orange-500/10 transition-all duration-300"
       >
         <div className="flex items-center justify-between gap-4">

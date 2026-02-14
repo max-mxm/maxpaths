@@ -59,7 +59,7 @@ export default function ServerComponentsSection() {
       </ConceptCard>
 
       <CodeBlock
-        code={`// Server Component (par défaut dans Next.js 13+ App Router)
+        code={`// Server Component (dans un framework supportant les RSC)
 import { prisma } from '@/lib/db';
 
 // ✅ Async component - SEULEMENT possible en Server Component

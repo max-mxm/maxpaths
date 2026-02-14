@@ -101,7 +101,7 @@ export interface LandingDemoItem {
 
 const DEMOS: LandingDemoItem[] = [
   {
-    href: '/guides/nextjs-demo/simulateur-performance',
+    href: '/demos/simulateur-performance',
     title: 'useMemo, useCallback, React.memo : quand utiliser quoi ? Testez en direct',
     description:
       'Comparez 4 strategies d\'optimisation React avec des mesures reelles de temps de rendu. Testez React.memo, useMemo et useCallback en live.',
@@ -114,7 +114,7 @@ const DEMOS: LandingDemoItem[] = [
     relatedGuide: '/guides/react-memoization',
   },
   {
-    href: '/guides/nextjs-demo/simulateur-rendering',
+    href: '/demos/simulateur-rendering',
     title: 'SSR, SSG, ISR : lequel choisir pour votre cas ? Testez en direct',
     description:
       'Visualisez les differences entre SSR, SSG, ISR, CSR et Streaming. Timelines animees et metriques Core Web Vitals en temps reel.',

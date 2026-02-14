@@ -25,8 +25,8 @@ Une demo live est une page interactive standalone qui permet aux utilisateurs de
 
 | Demo | Route | Guide parent | Theme couleur |
 |------|-------|-------------|---------------|
-| Simulateur Performance React | `/guides/nextjs-demo/simulateur-performance` | react-memoization | Orange/Ambre |
-| Comparateur Modes de Rendering | `/guides/nextjs-demo/simulateur-rendering` | nextjs-demo | Bleu/Cyan |
+| Simulateur Performance React | `/demos/simulateur-performance` | react-memoization | Orange/Ambre |
+| Comparateur Modes de Rendering | `/demos/simulateur-rendering` | nextjs-demo | Bleu/Cyan |
 
 ---
 
@@ -35,19 +35,21 @@ Une demo live est une page interactive standalone qui permet aux utilisateurs de
 ### Convention de Nommage
 
 ```
-app/guides/[guide-parent]/simulateur-[nom]/
+app/demos/simulateur-[nom]/
   page.tsx          # Page principale (client component)
 ```
 
-Les composants specifiques a la demo vivent dans le dossier `_components/` du guide parent :
+Les composants specifiques aux demos vivent dans le dossier `_components/` partage :
 
 ```
-app/guides/[guide-parent]/
+app/demos/
   _components/
     performance-demo.tsx       # Composant de demo
     heavy-list-examples.tsx    # Scenarios de test
+    rendering-simulator.tsx    # Autre composant de demo
   _constants/
     performance-code-tabs.ts   # Onglets code source
+    rendering-code-tabs.ts     # Autres constantes
   simulateur-[nom]/
     page.tsx                   # Point d'entree
 ```
@@ -56,6 +58,7 @@ app/guides/[guide-parent]/
 - Prefixe obligatoire : `simulateur-`
 - Slug en kebab-case
 - Descriptif et court : `simulateur-performance`, `simulateur-rendering`
+- Toutes les demos dans `/app/demos/` (pas dans `/app/guides/`)
 
 ---
 
@@ -529,15 +532,15 @@ Les keywords seront ajoutes dans `lib/search-index.ts`.
 ## Exemples de Reference
 
 ### Simulateur Performance React
-- **Route** : `/guides/nextjs-demo/simulateur-performance`
-- **Fichier** : `app/guides/nextjs-demo/simulateur-performance/page.tsx`
-- **Composants** : `performance-demo.tsx`, `heavy-list-examples.tsx`
+- **Route** : `/demos/simulateur-performance`
+- **Fichier** : `app/demos/simulateur-performance/page.tsx`
+- **Composants** : `performance-demo.tsx`, `heavy-list-examples.tsx` (dans `app/demos/_components/`)
 - **Theme** : Orange/Ambre (categorie optimization)
 
 ### Comparateur Modes de Rendering
-- **Route** : `/guides/nextjs-demo/simulateur-rendering`
-- **Fichier** : `app/guides/nextjs-demo/simulateur-rendering/page.tsx`
-- **Composant** : `rendering-simulator.tsx`
+- **Route** : `/demos/simulateur-rendering`
+- **Fichier** : `app/demos/simulateur-rendering/page.tsx`
+- **Composant** : `rendering-simulator.tsx` (dans `app/demos/_components/`)
 - **Theme** : Bleu/Cyan (categorie rendering)
 
 ---

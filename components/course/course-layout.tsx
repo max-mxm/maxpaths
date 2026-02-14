@@ -110,6 +110,18 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
   // Shared navigation content renderer
   const renderNavContent = (onLinkClick?: () => void) => (
     <>
+      {/* Titre du Guide */}
+      <div className="mb-6 pb-6 border-b border-border/40">
+        <h1 className="from-primary to-brand-secondary bg-gradient-to-r bg-clip-text text-lg font-black text-transparent leading-tight">
+          {title}
+        </h1>
+        {subtitle && (
+          <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+            {subtitle}
+          </p>
+        )}
+      </div>
+
       {categories.map((category) => {
         const categorySections = sections.filter(
           (s) => s.category === category.id,

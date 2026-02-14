@@ -5,14 +5,14 @@ import Link from 'next/link';
 import { ArrowLeft, Timer, BookOpen, Activity, ArrowRight } from 'lucide-react';
 import { CodeBlock } from '@/components/course/code-block';
 import { AnimatedSection } from '@/components/ui/animated-section';
-import { PerformanceDemo } from '../_components/performance-demo';
+import { PerformanceDemo } from '@/app/demos/_components/performance-demo';
 import {
   HeavyListBaseline,
   HeavyListWithMemo,
   HeavyListWithUseMemo,
   HeavyListOptimized,
-} from '../_components/heavy-list-examples';
-import { PERFORMANCE_CODE_TABS } from '../_constants/performance-code-tabs';
+} from '@/app/demos/_components/heavy-list-examples';
+import { PERFORMANCE_CODE_TABS } from '@/app/demos/_constants/performance-code-tabs';
 
 export default function SimulateurPerformancePage() {
   const [itemCount, setItemCount] = useState(50);

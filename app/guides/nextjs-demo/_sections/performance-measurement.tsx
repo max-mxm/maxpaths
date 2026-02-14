@@ -206,7 +206,7 @@ function MyComponent() {
       </p>
 
       <Link
-        href="/guides/nextjs-demo/simulateur-performance"
+        href="/demos/simulateur-performance"
         className="group block my-6 p-6 bg-muted/30 rounded-xl border border-border hover:border-primary/30 hover:shadow-lg transition-all duration-300"
       >
         <div className="flex items-center justify-between gap-4">

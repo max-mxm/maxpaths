@@ -5,16 +5,6 @@ import { Check } from 'lucide-react';
 export default function IntroductionSection() {
   return (
     <div className="space-y-8">
-      {/* Hero de la formation */}
-      <div className="text-center space-y-4 mb-12 pb-8 border-b border-slate-200 dark:border-slate-800">
-        <h1 className="from-primary to-brand-secondary bg-gradient-to-r bg-clip-text text-4xl md:text-5xl font-black tracking-tight text-transparent">
-          Guide Next.js 16
-        </h1>
-        <p className="text-xl text-muted-foreground font-medium">
-          Maîtriser les modes de rendu modernes
-        </p>
-      </div>
-
       <div className="prose prose-slate dark:prose-invert max-w-none">
         <p className="text-lg leading-relaxed text-foreground/80">
           Next.js est un framework React qui permet de créer des applications web modernes avec une excellente performance et une expérience développeur optimale. La version 16 apporte des améliorations significatives en termes de rendu et d&apos;optimisation.
