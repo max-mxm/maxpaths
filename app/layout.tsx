@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { MobileNavProvider, MobileNavFAB } from "@/components/mobile-nav-fab";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -171,9 +172,12 @@ export default function RootLayout({
       >
       <Analytics/>
         <ThemeProvider defaultTheme="light" storageKey="Maxpaths-ui-theme">
-          <Header />
-          {children}
-          <Footer />
+          <MobileNavProvider>
+            <Header />
+            {children}
+            <Footer />
+            <MobileNavFAB />
+          </MobileNavProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useScrollProgress } from '@/hooks/use-scroll-progress';
-import { List, X } from 'lucide-react';
+import { useMobileNav } from '@/components/mobile-nav-fab';
 
 interface Section {
   id: string;
@@ -54,22 +54,38 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
   const [activeSection, setActiveSection] = useState('');
   const scrollProgress = useScrollProgress();
   const [sectionsAnimated, setSectionsAnimated] = useState(false);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { setGuideNav } = useMobileNav();
 
   // Trigger entrance animation after mount (content stays visible during SSR)
   useEffect(() => {
     setSectionsAnimated(true);
   }, []);
 
-  // Body scroll lock when mobile nav is open
+  // Register guide sections in the global mobile nav context
   useEffect(() => {
-    if (mobileNavOpen) {
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = '';
-      };
-    }
-  }, [mobileNavOpen]);
+    setGuideNav({
+      title,
+      subtitle,
+      sections: sections.map((s) => ({
+        id: s.id,
+        title: s.title,
+        icon: s.icon,
+        badge: s.badge,
+        category: s.category,
+      })),
+      activeSection,
+    });
+
+    return () => {
+      setGuideNav(null);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, subtitle, sections, setGuideNav]);
+
+  // Keep activeSection synced in the context
+  useEffect(() => {
+    setGuideNav((prev) => prev ? { ...prev, activeSection } : null);
+  }, [activeSection, setGuideNav]);
 
   // Scroll spy for active section detection (throttled with rAF)
   useEffect(() => {
@@ -107,8 +123,8 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
     };
   }, [sections]);
 
-  // Shared navigation content renderer
-  const renderNavContent = (onLinkClick?: () => void) => (
+  // Shared navigation content renderer (for desktop sidebar only)
+  const renderNavContent = () => (
     <>
       {/* Titre du Guide */}
       <div className="mb-6 pb-6 border-b border-border/40">
@@ -144,7 +160,6 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
                 <li key={section.id}>
                   <a
                     href={`#${section.id}`}
-                    onClick={onLinkClick}
                     className={cn(
                       'group flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-all duration-200 min-h-[44px]',
                       activeSection === section.id
@@ -250,54 +265,6 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
           </div>
         </main>
       </div>
-
-      {/* Mobile Navigation FAB */}
-      <button
-        onClick={() => setMobileNavOpen(true)}
-        className="fixed bottom-6 right-6 z-40 lg:hidden min-h-[56px] min-w-[56px] rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:bg-primary/90 active:scale-95 transition-all"
-        aria-label="Ouvrir la navigation du guide"
-      >
-        <List className="w-6 h-6" />
-      </button>
-
-      {/* Mobile Navigation Bottom Sheet */}
-      {mobileNavOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
-            onClick={() => setMobileNavOpen(false)}
-          />
-
-          {/* Sheet - Animation fluide avec slide + fade */}
-          <div className="absolute bottom-0 left-0 right-0 max-h-[75vh] bg-background rounded-t-2xl border-t border-border shadow-2xl overflow-hidden flex flex-col animate-in slide-in-from-bottom fade-in duration-300"
-               style={{ animationTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}>
-            {/* Handle bar */}
-            <div className="flex justify-center py-3 flex-shrink-0">
-              <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
-            </div>
-
-            {/* Header */}
-            <div className="px-6 pb-3 border-b border-border/50 flex items-center justify-between flex-shrink-0">
-              <span className="text-sm font-bold text-muted-foreground">
-                Navigation du guide
-              </span>
-              <button
-                onClick={() => setMobileNavOpen(false)}
-                className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-muted hover:bg-muted/80 transition-colors"
-                aria-label="Fermer la navigation"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Scrollable nav content */}
-            <nav className="overflow-y-auto flex-1 px-4 py-4 space-y-4">
-              {renderNavContent(() => setMobileNavOpen(false))}
-            </nav>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

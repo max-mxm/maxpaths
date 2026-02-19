@@ -4,15 +4,12 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { ThemeToggle } from './theme-toggle';
 import { NavLink } from './nav-link';
-import { MobileMenu } from './mobile-menu';
 import { SearchTrigger, SearchTriggerMobile } from './search/search-trigger';
 import { SearchDialog } from './search/search-dialog';
-import { Menu, X } from 'lucide-react';
 
 import { LogoOption3 } from './logo-option-3';
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
 
@@ -43,7 +40,7 @@ export function Header() {
             Guides
           </NavLink>
           <NavLink href="/demos" active={pathname.startsWith('/demos')}>
-            Démos
+            Demos
           </NavLink>
           <NavLink href="/blog" active={pathname.startsWith('/blog')}>
             Blog
@@ -53,25 +50,13 @@ export function Header() {
           </NavLink>
         </nav>
 
-        {/* Actions: Search + ThemeToggle + Mobile Hamburger */}
+        {/* Actions: Search + ThemeToggle */}
         <div className="flex items-center gap-3">
           <SearchTrigger onClick={() => setSearchOpen(true)} />
           <SearchTriggerMobile onClick={() => setSearchOpen(true)} />
           <ThemeToggle />
-          <button
-            className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
         </div>
       </div>
-
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <MobileMenu pathname={pathname} onClose={() => setMobileMenuOpen(false)} />
-      )}
 
       {/* Search Dialog */}
       <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />

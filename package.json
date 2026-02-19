@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "remotion:studio": "remotion studio remotion/index.ts",
-    "remotion:render": "remotion render remotion/index.ts"
+    "lint": "eslint"
   },
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
@@ -21,14 +19,12 @@
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@remotion/cli": "4.0.421",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
-    "remotion": "4.0.421",
     "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
