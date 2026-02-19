@@ -8,12 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@fontsource/inter':
-        specifier: 5.1.1
-        version: 5.1.1
-      '@remotion/cli':
-        specifier: 4.0.421
-        version: 4.0.421(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@vercel/analytics':
         specifier: ^1.6.1
         version: 1.6.1(next@16.1.6(@babel/core@7.29.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
@@ -35,13 +29,13 @@ importers:
       react-dom:
         specifier: 19.2.3
         version: 19.2.3(react@19.2.3)
-      remotion:
-        specifier: 4.0.421
-        version: 4.0.421(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.4.1
     devDependencies:
+      '@remotion/cli':
+        specifier: 4.0.421
+        version: 4.0.421(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.1.18
@@ -60,6 +54,9 @@ importers:
       eslint-config-next:
         specifier: 16.1.6
         version: 16.1.6(@typescript-eslint/parser@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
+      remotion:
+        specifier: 4.0.421
+        version: 4.0.421(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -344,9 +341,6 @@ packages:
   '@eslint/plugin-kit@0.4.1':
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@fontsource/inter@5.1.1':
-    resolution: {integrity: sha512-weN3E+rq0Xb3Z93VHJ+Rc7WOQX9ETJPTAJ+gDcaMHtjft67L58sfS65rAjC5tZUXQ2FdZ/V1/sSzCwZ6v05kJw==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2966,8 +2960,6 @@ snapshots:
     dependencies:
       '@eslint/core': 0.17.0
       levn: 0.4.1
-
-  '@fontsource/inter@5.1.1': {}
 
   '@humanfs/core@0.19.1': {}
 
