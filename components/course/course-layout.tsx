@@ -53,12 +53,12 @@ const categories = [
 export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
   const [activeSection, setActiveSection] = useState('');
   const scrollProgress = useScrollProgress();
-  const [mounted, setMounted] = useState(false);
+  const [sectionsAnimated, setSectionsAnimated] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  // Mount animation
+  // Trigger entrance animation after mount (content stays visible during SSR)
   useEffect(() => {
-    setMounted(true);
+    setSectionsAnimated(true);
   }, []);
 
   // Body scroll lock when mobile nav is open
@@ -200,8 +200,8 @@ export function CourseLayout({ title, subtitle, sections }: CourseLayoutProps) {
                 key={section.id}
                 id={section.id}
                 className={cn(
-                  'scroll-mt-32 transition-all duration-700',
-                  mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                  'scroll-mt-32',
+                  sectionsAnimated && 'transition-all duration-700 opacity-100 translate-y-0'
                 )}
                 style={{
                   transitionDelay: `${index * 100}ms`,

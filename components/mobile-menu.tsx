@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 interface MobileMenuProps {
   pathname: string;
@@ -9,8 +9,6 @@ interface MobileMenuProps {
 }
 
 export function MobileMenu({ pathname, onClose }: MobileMenuProps) {
-  const [isDark, setIsDark] = useState(false);
-
   // Disable body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -19,22 +17,11 @@ export function MobileMenu({ pathname, onClose }: MobileMenuProps) {
     };
   }, []);
 
-  // Detect dark mode
+  // Close on route change (edge case safety)
   useEffect(() => {
-    const checkDarkMode = () => {
-      setIsDark(document.documentElement.classList.contains('dark'));
-    };
-    checkDarkMode();
-
-    // Observer pour détecter les changements de thème
-    const observer = new MutationObserver(checkDarkMode);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-
-    return () => observer.disconnect();
-  }, []);
+    onClose();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   return (
     <div className="fixed inset-0 top-16 z-40 bg-[#ffffff] dark:bg-[#0c0c0c] md:hidden border-t border-slate-200 dark:border-slate-800">
@@ -46,13 +33,13 @@ export function MobileMenu({ pathname, onClose }: MobileMenuProps) {
           Guides
         </MobileNavLink>
         <MobileNavLink href="/demos" active={pathname.startsWith('/demos')} onClick={onClose}>
-          Démos
+          Demos
         </MobileNavLink>
         <MobileNavLink href="/blog" active={pathname.startsWith('/blog')} onClick={onClose}>
           Blog
         </MobileNavLink>
         <MobileNavLink href="/about" active={pathname === '/about'} onClick={onClose}>
-          À propos
+          A propos
         </MobileNavLink>
       </nav>
     </div>
@@ -67,10 +54,16 @@ interface MobileNavLinkProps {
 }
 
 function MobileNavLink({ href, active, onClick, children }: MobileNavLinkProps) {
+  const handleClick = () => {
+    // Release scroll lock synchronously before navigation
+    document.body.style.overflow = '';
+    onClick();
+  };
+
   return (
     <Link
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       className={`
         min-h-[44px] px-4 py-3 rounded-lg text-lg font-semibold transition-colors
         ${active ? 'bg-primary/10 text-primary' : 'bg-muted/50 text-foreground hover:bg-muted'}

@@ -11,8 +11,6 @@
     "remotion:render": "remotion render remotion/index.ts"
   },
   "dependencies": {
-    "@fontsource/inter": "5.1.1",
-    "@remotion/cli": "4.0.421",
     "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.563.0",
@@ -20,16 +18,17 @@
     "prism-react-renderer": "^2.4.1",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "remotion": "4.0.421",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@remotion/cli": "4.0.421",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "remotion": "4.0.421",
     "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"

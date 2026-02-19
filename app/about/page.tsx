@@ -123,7 +123,7 @@ export default function AboutPage() {
         <div className="container">
           <RevealOnScroll>
             <div className="relative pl-0 md:pl-6 mb-10 text-center md:text-left">
-              <div className="about-accent-bar absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary to-primary/20 hidden md:block" />
+              <div className="about-accent-bar absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary via-brand-secondary to-primary/20 hidden md:block" />
               <div className="space-y-3">
                 <span className="text-xs font-bold tracking-[0.25em] uppercase text-primary/80">
                   Genèse

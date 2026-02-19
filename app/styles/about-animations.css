@@ -155,10 +155,6 @@
      Barres d'accent avec glow subtil
      ================================ */
 
-  .about-accent-bar {
-    position: relative;
-  }
-
   .about-accent-bar::before {
     content: '';
     position: absolute;
